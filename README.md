@@ -4,7 +4,13 @@ Projekt z przedmiotu [PAP](https://studia.elka.pw.edu.pl/f-pl/21Z/103A-INxxx-ISP
 
 Skład zespołu:
 
-- [Bartłomiej Dudek](https://gitlab-stud.elka.pw.edu.pl/bdudek "Bartłomiej Maciej Dudek")
-- [Jakub Marcowski](https://gitlab-stud.elka.pw.edu.pl/jmarcows "Jakub Mateusz Marcowski")
+- [Bartłomiej Dudek](https://gitlab-stud.elka.pw.edu.pl/bdudek "Bartłomiej Dudek")
+- [Jakub Marcowski](https://gitlab-stud.elka.pw.edu.pl/jmarcows "Jakub Marcowski")
 - [Jakub Niezabitowski](https://gitlab-stud.elka.pw.edu.pl/jniezabi "Jakub Niezabitowski")
-- [Jan Rusak](https://gitlab-stud.elka.pw.edu.pl/jrusak "Jan Jakub Rusak")
+- [Jan Rusak](https://gitlab-stud.elka.pw.edu.pl/jrusak "Jan Rusak")
+
+---
+
+#### Dokumenty:
+
+- [Wymagania](docs/wymagania.md "wymagania.md")
