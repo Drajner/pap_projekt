@@ -16,3 +16,4 @@ Projekt z przedmiotu [PAP](https://studia.elka.pw.edu.pl/f-pl/21Z/103A-INxxx-ISP
 #### Dokumenty
 
 - [Wymagania](docs/wymagania.md "docs/wymagania.md")
+- [TODO](docs/todo.md "docs/todo.md")
