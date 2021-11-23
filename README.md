@@ -17,4 +17,4 @@ Projekt z przedmiotu [PAP](https://studia.elka.pw.edu.pl/f-pl/21Z/103A-INxxx-ISP
 
 - [Wymagania](docs/wymagania.md "docs/wymagania.md")
 - [TODO](docs/todo.md "docs/todo.md")
-- [Koncept wyglądu interfejsu](docs/todo.md "docs/GUI_concept.png")
+- [Koncept wyglądu interfejsu](docs/GUI_concept.png "docs/GUI_concept.png")
