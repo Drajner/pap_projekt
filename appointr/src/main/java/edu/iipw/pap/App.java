@@ -100,6 +100,41 @@ public class App extends Application {
         }
     }
 
+    public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Patient> patients){
+        Scanner sc = new Scanner(System.in);
+        Appointment appointment;
+        String attribute;
+
+        showAppointments(appointments);
+        System.out.print("Wybierz wizyte po indeksie: "); appointment = appointments.get(sc.nextInt());
+
+        boolean fin = false;
+        while(!fin){
+            System.out.println(appointment);
+            System.out.print("Wpisz atrybut do zmiany lub opuść edytowanie: {patient, datetime, address, quit}: ");
+            attribute = sc.nextLine();
+            switch (attribute) {
+                case "patient":
+                    printPatients(patients);
+                    System.out.print("Wybierz nowego pacjenta po indeksie: ");
+                    appointment.setPatient(patients.get(sc.nextInt()));
+                    break;
+                case "datetime":
+                    System.out.print("Wprowadź nową datę i czas spotkania: ");
+                    appointment.setTimeOfAppointment(LocalDateTime.parse(sc.nextLine()));
+                    break;
+                case "address":
+                    System.out.print("Wprowadź nowy adres: ");
+                    appointment.setAddress(sc.nextLine());
+                    break;
+                case "quit":
+                    fin = true;
+                    break;
+            }
+        }
+    }
+
+
 
 
     public static void main(String[] args) {
@@ -118,11 +153,10 @@ public class App extends Application {
             System.out.println("2. Pokaż pacjentów");
             System.out.println("3. Dodaj pacjenta");
             System.out.println("4. Dodaj wizytę");
-            System.out.println("5. Edytuj pacjenta");
-            System.out.println("6. Edytuj wizytę");
-            System.out.println("7. Usuń pacjenta. Do użycia tylko wtedy gdy są pacjenci.");
-            System.out.println("8. Usuń wizytę. Do użycia tylko wtedy gdy są wizyty.");
-            System.out.println("9. Zakończ");
+            System.out.println("5. Edytuj wizytę");
+            System.out.println("6. Usuń pacjenta. Do użycia tylko wtedy gdy są pacjenci.");
+            System.out.println("7. Usuń wizytę. Do użycia tylko wtedy gdy są wizyty.");
+            System.out.println("8. Zakończ");
             input =  inputScan.nextLine();
             switch(input){
                 case "1":
@@ -138,24 +172,21 @@ public class App extends Application {
                     addAppointment(Jacek, patients, appointments);
                     break;
                 case "5":
-                    changePatient(patients);
+                    changeAppointment(appointments, patients);
                     break;
                 case "6":
-                    editAppointment(appointments);
-                    break;
-                case "7":
                     System.out.println("Którego pacjenta chcesz usunąć (podaj cyfrę)?");
                     input =  inputScan.nextLine();
                     inputValue = Integer.valueOf(input) - 1;
                     patients.remove(inputValue);
                     break;
-                case "8":
+                case "7":
                     System.out.println("Którą wizytę chcesz usunąć (podaj cyfrę)?");
                     input =  inputScan.nextLine();
                     inputValue = Integer.valueOf(input) - 1;
                     appointments.remove(inputValue);
                     break;
-                case "9":
+                case "8":
                     notEnd = false;
                     break;
             }
