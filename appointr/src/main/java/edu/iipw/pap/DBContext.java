@@ -35,5 +35,7 @@ public class DBContext implements AutoCloseable {
     public static void main(String[] args) {
         DBContext context = new DBContext();
         Connection conn = context.getConnection();
+        System.out.println(conn);
     }
+
 }
