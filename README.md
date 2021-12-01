@@ -1,4 +1,4 @@
-# PAP21Z-Z31
+# ![Appointr](images/appointr_full_logo.png?raw=true)
 
 Projekt z przedmiotu [PAP](https://studia.elka.pw.edu.pl/f-pl/21Z/103A-INxxx-ISP-PAP/priv/ "Programowanie Aplikacyjne") zespołu 31 w semestrze 21Z.
 
