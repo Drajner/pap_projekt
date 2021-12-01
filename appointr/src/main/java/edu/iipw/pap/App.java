@@ -55,7 +55,7 @@ public class App extends Application {
 
     }
 
-    public void addPatient(ArrayList<Patient> patients) {
+    public static void addPatient(ArrayList<Patient> patients) {
         Scanner sc = new Scanner(System.in);
         String name, surname, description;
         LocalDate birth_date;
@@ -65,6 +65,14 @@ public class App extends Application {
         System.out.print("Opis: "); description = sc.nextLine();
         Patient p = new Patient(name, surname, birth_date, description);
         patients.add(p);
+    }
+
+    public static void printPeople(ArrayList<Person> people){
+        int c = 0;
+        for (Person p: people) {
+            System.out.println(c + '.' + p.getFullName());
+            c += 1;
+        }
     }
 
     public static void main(String[] args) {
