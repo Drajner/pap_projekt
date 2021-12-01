@@ -1,22 +1,22 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+// import java.time.LocalDate;
+// import java.time.LocalDateTime;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+// import javafx.scene.control.Button;
+// import javafx.scene.control.Label;
+// import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+// import javafx.event.ActionEvent;
+// import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 
 
 /**
- * JavaFX App
+ * JavaFX App.
  */
 public class App extends Application {
 
