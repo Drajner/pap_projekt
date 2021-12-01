@@ -1,5 +1,6 @@
 package edu.iipw.pap;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,8 +21,8 @@ import javafx.fxml.FXMLLoader;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage){
-        String javaVersion = SystemInfo.javaVersion();
+    public void start(Stage stage) throws IOException {
+        /*String javaVersion = SystemInfo.javaVersion();
         String javafxVersion = SystemInfo.javafxVersion();
 
         Doctor doctor1 = new Doctor("John", "Moore", LocalDate.parse("1980-07-17"), "Dentist", "qwerty", "password");
@@ -41,6 +42,11 @@ public class App extends Application {
         StackPane root = new StackPane(label);
         root.getChildren().add(addPatientButton);
         Scene scene = new Scene(root, 640, 480);
+        stage.setScene(scene);
+        stage.show();  */
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+        stage.setTitle("Gabinet");
         stage.setScene(scene);
         stage.show();
 
