@@ -7,35 +7,37 @@ import java.sql.SQLException;
 
 public class DBContext implements AutoCloseable {
     private Connection conn = null;
+    private String dbUrl = "jdbc:oracle:thin:@//ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl";
+    private String dbUser = "z31";
+    private String dbPassword = "khffcc";
 
     public void close() {
         if (conn != null) {
             try {
-                System.out.println("Closing database connection to bookStoreDB");
+                System.out.println("Closing database connection to z31DB");
                 conn.close();
-                } catch (SQLException e) {
+            } catch (SQLException e) {
                     System.out.println("Unable to close connection: " + e);
-                }
-            conn = null;
             }
+            conn = null;
         }
+    }
 
     public Connection getConnection() {
-    if (conn == null) {
-        try {
-            System.out.println("Opening connection to z31DB");
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@//ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl", "z31", "khffcc");
-        } catch(SQLException e) {
-            System.out.println("Unable to open connection: " + e);
+        if (conn == null) {
+            try {
+                System.out.println("Opening connection to z31DB");
+                conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+            } catch(SQLException e) {
+                System.out.println("Unable to open connection: " + e);
+            }
         }
-        }
-    return conn;
+        return conn;
     }
 
     public static void main(String[] args) {
         DBContext context = new DBContext();
         Connection conn = context.getConnection();
-        System.out.println(conn);
     }
 
 }
