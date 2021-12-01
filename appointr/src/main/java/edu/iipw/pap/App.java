@@ -68,9 +68,9 @@ public class App extends Application {
         patients.add(p);
     }
 
-    public static void printPeople(ArrayList<Person> people){
+    public static void printPatients(ArrayList<Patient> patients){
         int c = 0;
-        for (Person p: people) {
+        for (Patient p: patients) {
             System.out.println(c + '.' + p.getFullName());
             c += 1;
         }
@@ -82,7 +82,7 @@ public class App extends Application {
         LocalDateTime appointment_date;
         Patient patient;
 
-        printPeople(patients);
+        printPatients(patients);
         System.out.print("Wbierz pacjenta po indeksie: ");  patient = patients.get(sc.nextInt());
         System.out.print("Data urodzenia: "); appointment_date = LocalDateTime.parse(sc.nextLine());
         System.out.print("Adres: "); address = sc.nextLine();
