@@ -1,6 +1,10 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Scanner;
 // import java.time.LocalDate;
 // import java.time.LocalDateTime;
 
@@ -44,7 +48,9 @@ public class App extends Application {
         Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
         stage.show();  */
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("hello-view.fxml"));
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoggingScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 480);
         stage.setTitle("Gabinet");
         stage.setScene(scene);
@@ -52,8 +58,109 @@ public class App extends Application {
 
     }
 
+    public static void showAppointments(ArrayList<Appointment> appointments){
+        int c = 0;
+        for (Appointment a : appointments) {
+            System.out.println(c + ". " + a);
+            c += 1;
+        }
+    }
+
+    public static void addPatient(ArrayList<Patient> patients) {
+        Scanner sc = new Scanner(System.in);
+        String name, surname, description;
+        LocalDate birth_date;
+        System.out.print("Imię: "); name = sc.nextLine();
+        System.out.print("Nazwisko: "); surname = sc.nextLine();
+        System.out.print("Data urodzenia: "); birth_date = LocalDate.parse(sc.nextLine());
+        System.out.print("Opis: "); description = sc.nextLine();
+        Patient p = new Patient(name, surname, birth_date, description);
+        patients.add(p);
+    }
+
+    public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
+        Scanner sc = new Scanner(System.in);
+        String address;
+        LocalDateTime appointment_date;
+        Patient patient;
+
+        printPatients(patients);
+        System.out.print("Wbierz pacjenta po indeksie: ");  patient = patients.get(sc.nextInt());
+        System.out.print("Data urodzenia: "); appointment_date = LocalDateTime.parse(sc.nextLine());
+        System.out.print("Adres: "); address = sc.nextLine();
+        Appointment a = new Appointment(doctor, patient, appointment_date, address);
+        appointments.add(a);
+    }
+
+    public static void printPatients(ArrayList<Patient> patients){
+        int c = 0;
+        for (Patient p: patients) {
+            System.out.println(c + '.' + p.getFullName());
+            c += 1;
+        }
+    }
+
+
+
     public static void main(String[] args) {
-        launch();
+        //launch();
+        ArrayList<Patient> patients = new ArrayList<Patient>();
+        ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+        LocalDate  data = LocalDate.parse("1970-01-01");
+        Doctor Jacek = new Doctor("Jacek", "Kowalski", data , "Dentysta", "jacek", "jacek");
+        boolean notEnd = true;
+        Scanner inputScan = new Scanner(System.in);
+        String input;
+        int inputValue = 0;
+        System.out.println("Witamy w Appointr!");
+        while(notEnd){
+            System.out.println("1. Pokaż wizyty");
+            System.out.println("2. Pokaż pacjentów");
+            System.out.println("3. Dodaj pacjenta");
+            System.out.println("4. Dodaj wizytę");
+            System.out.println("5. Edytuj pacjenta");
+            System.out.println("6. Edytuj wizytę");
+            System.out.println("7. Usuń pacjenta. Do użycia tylko wtedy gdy są pacjenci.");
+            System.out.println("8. Usuń wizytę. Do użycia tylko wtedy gdy są wizyty.");
+            System.out.println("9. Zakończ");
+            input =  inputScan.nextLine();
+            switch(input){
+                case "1":
+                    showAppointments(appointments);
+                    break;
+                case "2":
+                    printPatients(patients);
+                    break;
+                case "3":
+                    addPatient(patients);
+                    break;
+                case "4":
+                    addAppointment(Jacek, patients, appointments);
+                    break;
+                case "5":
+                    changePatient(patients);
+                    break;
+                case "6":
+                    editAppointment(appointments);
+                    break;
+                case "7":
+                    System.out.println("Którego pacjenta chcesz usunąć (podaj cyfrę)?");
+                    input =  inputScan.nextLine();
+                    inputValue = Integer.valueOf(input) - 1;
+                    patients.remove(inputValue);
+                    break;
+                case "8":
+                    System.out.println("Którą wizytę chcesz usunąć (podaj cyfrę)?");
+                    input =  inputScan.nextLine();
+                    inputValue = Integer.valueOf(input) - 1;
+                    appointments.remove(inputValue);
+                    break;
+                case "9":
+                    notEnd = false;
+                    break;
+            }
+
+        }
     }
 
 }
