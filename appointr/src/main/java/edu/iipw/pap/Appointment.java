@@ -101,7 +101,7 @@ public class Appointment {
                 "doctor=" + doctor +
                 ", patient=" + patient +
                 ", timeOfAppointment=" + timeOfAppointment +
-                ", address='" + address + '\'' +
+                ", address=\"" + address + '\"' +
                 '}';
     }
 
