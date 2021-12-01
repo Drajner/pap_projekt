@@ -84,6 +84,40 @@ public class App extends Application {
         }
     }
 
+    public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Patient> patients){
+        Scanner sc = new Scanner(System.in);
+        Appointment appointment;
+        String attribute;
+
+        showAppointments(appointments);
+        System.out.print("Wybierz wizyte po indeksie: "); appointment = appointments.get(sc.nextInt());
+
+        boolean fin = false;
+        while(!fin){
+            System.out.println(appointment);
+            System.out.print("Wpisz atrybut do zmiany lub opuść edytowanie: {patient, datetime, address, quit}: ");
+            attribute = sc.nextLine();
+            switch (attribute) {
+                case "patient":
+                    printPatients(patients);
+                    System.out.print("Wybierz nowego pacjenta po indeksie: ");
+                    appointment.setPatient(patients.get(sc.nextInt()));
+                    break;
+                case "datetime":
+                    System.out.print("Wprowadź nową datę i czas spotkania: ");
+                    appointment.setTimeOfAppointment(LocalDateTime.parse(sc.nextLine()));
+                    break;
+                case "address":
+                    System.out.print("Wprowadź nowy adres: ");
+                    appointment.setAddress(sc.nextLine());
+                    break;
+                case "quit":
+                    fin = true;
+                    break;
+            }
+        }
+    }
+
     public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
         Scanner sc = new Scanner(System.in);
         String address;
