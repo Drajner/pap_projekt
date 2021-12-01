@@ -71,7 +71,15 @@ public class App extends Application {
     public static void printPatients(ArrayList<Patient> patients){
         int c = 0;
         for (Patient p: patients) {
-            System.out.println(c + '.' + p.getFullName());
+            System.out.println(c + ". " + p);
+            c += 1;
+        }
+    }
+
+    public static void showAppointments(ArrayList<Appointment> appointments){
+        int c = 0;
+        for (Appointment a : appointments) {
+            System.out.println(c + ". " + a);
             c += 1;
         }
     }
