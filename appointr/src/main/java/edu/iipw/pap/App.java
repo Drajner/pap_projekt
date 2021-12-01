@@ -2,6 +2,7 @@ package edu.iipw.pap;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 // import java.time.LocalDate;
@@ -73,6 +74,20 @@ public class App extends Application {
             System.out.println(c + '.' + p.getFullName());
             c += 1;
         }
+    }
+
+    public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
+        Scanner sc = new Scanner(System.in);
+        String address;
+        LocalDateTime appointment_date;
+        Patient patient;
+
+        printPeople(patients);
+        System.out.print("Wbierz pacjenta po indeksie: ");  patient = patients.get(sc.nextInt());
+        System.out.print("Data urodzenia: "); appointment_date = LocalDateTime.parse(sc.nextLine());
+        System.out.print("Adres: "); address = sc.nextLine();
+        Appointment a = new Appointment(doctor, patient, appointment_date, address);
+        appointments.add(a);
     }
 
     public static void main(String[] args) {
