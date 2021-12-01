@@ -1,6 +1,9 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 // import java.time.LocalDate;
 // import java.time.LocalDateTime;
 
@@ -50,6 +53,18 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    public void addPatient(ArrayList<Patient> patients) {
+        Scanner sc = new Scanner(System.in);
+        String name, surname, description;
+        LocalDate birth_date;
+        System.out.print("Imię: "); name = sc.nextLine();
+        System.out.print("Nazwisko: "); surname = sc.nextLine();
+        System.out.print("Data urodzenia: "); birth_date = LocalDate.parse(sc.nextLine());
+        System.out.print("Opis: "); description = sc.nextLine();
+        Patient p = new Patient(name, surname, birth_date, description);
+        patients.add(p);
     }
 
     public static void main(String[] args) {
