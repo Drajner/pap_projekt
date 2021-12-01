@@ -5,9 +5,13 @@ import java.time.LocalDateTime;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 
 
 /**
@@ -16,7 +20,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage){
         String javaVersion = SystemInfo.javaVersion();
         String javafxVersion = SystemInfo.javafxVersion();
 
@@ -30,11 +34,16 @@ public class App extends Application {
                 "Patient: " + patient1.toString() + "\n" +
                 "Appointment: " + appointment1.toString());
 
+        Button addPatientButton = new Button();
+        addPatientButton.setText("Dodaj");
         Label label = new Label(labelString);
         label.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-font-size: 12px;");
-        Scene scene = new Scene(new StackPane(label), 640, 480);
+        StackPane root = new StackPane(label);
+        root.getChildren().add(addPatientButton);
+        Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {
