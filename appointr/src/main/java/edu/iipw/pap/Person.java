@@ -3,7 +3,7 @@ package edu.iipw.pap;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Person {
+public abstract class Person {
     private String name;
     private String surname;
     private LocalDate dateOfBirth;
