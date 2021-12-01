@@ -1,14 +1,14 @@
 package edu.iipw.pap;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Appointment {
     private Doctor doctor;
     private Patient patient;
-    private LocalDate timeOfAppointment;
+    private LocalDateTime timeOfAppointment;
     private String address;
 
-    public Appointment(Doctor doctor, Patient patient, LocalDate timeOfAppointment, String address) {
+    public Appointment(Doctor doctor, Patient patient, LocalDateTime timeOfAppointment, String address) {
         this.doctor = doctor;
         this.patient = patient;
         this.timeOfAppointment = timeOfAppointment;
@@ -23,7 +23,7 @@ public class Appointment {
         return patient;
     }
 
-    public LocalDate getTimeOfAppointment() {
+    public LocalDateTime getTimeOfAppointment() {
         return timeOfAppointment;
     }
 
@@ -39,7 +39,7 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public void setTimeOfAppointment(LocalDate timeOfAppointment) {
+    public void setTimeOfAppointment(LocalDateTime timeOfAppointment) {
         this.timeOfAppointment = timeOfAppointment;
     }
 
@@ -56,4 +56,5 @@ public class Appointment {
                 ", address='" + address + '\'' +
                 '}';
     }
+
 }

@@ -1,6 +1,7 @@
 package edu.iipw.pap;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Doctor extends Person{
     private String specialization;
@@ -38,16 +39,20 @@ public class Doctor extends Person{
         this.password = password;
     }
 
-    public Appointment createAppointment(Patient patient, LocalDate timeOfAppointment, String address) {
+    public Appointment createAppointment(Patient patient, LocalDateTime timeOfAppointment, String address) {
         return new Appointment(this, patient, timeOfAppointment, address);
     }
 
     @Override
     public String toString() {
         return "Doctor{" +
-                "specialization='" + specialization + '\'' +
+                "name='" + getName() + '\'' +
+                ", surname='" + getSurname() + '\'' +
+                ", dateOfBirth=" + getDateOfBirth() + '\'' +
+                ", specialization='" + specialization + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

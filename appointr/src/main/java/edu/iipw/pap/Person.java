@@ -45,4 +45,14 @@ public class Person {
     public int getAge() {
         return Period.between(dateOfBirth, LocalDate.now()).getYears();
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", dateOfBirth=" + dateOfBirth + '\'' +
+                '}';
+    }
+
 }

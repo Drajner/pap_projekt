@@ -17,4 +17,15 @@ public class Patient extends Person{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "name='" + getName() + '\'' +
+                ", surname='" + getSurname() + '\'' +
+                ", dateOfBirth=" + getDateOfBirth() +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
 }
