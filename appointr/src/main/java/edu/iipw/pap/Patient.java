@@ -42,10 +42,10 @@ public class Patient extends Person{
     @Override
     public String toString() {
         return "Patient{" +
-                "name='" + getName() + '\'' +
-                ", surname='" + getSurname() + '\'' +
+                "name=\"" + getName() + '\"' +
+                ", surname=\"" + getSurname() + '\"' +
                 ", dateOfBirth=" + getDateOfBirth() +
-                ", description='" + description + '\'' +
+                ", description=\"" + description + '\"' +
                 '}';
     }
 
