@@ -5,11 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
-// import java.time.LocalDate;
-// import java.time.LocalDateTime;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 // import javafx.scene.control.Button;
 // import javafx.scene.control.Label;
 // import javafx.scene.layout.StackPane;
@@ -19,9 +18,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
 
-/**
- * JavaFX App.
- */
+/** JavaFX App. */
 public class App extends Application {
 
     @Override
@@ -52,7 +49,8 @@ public class App extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoggingScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 480);
-        stage.setTitle("Gabinet");
+        stage.getIcons().add(new Image(Icon.icon()));
+        stage.setTitle("Appointr");
         stage.setScene(scene);
         stage.show();
 
@@ -134,11 +132,8 @@ public class App extends Application {
         }
     }
 
-
-
-
     public static void main(String[] args) {
-        //launch();
+        launch();
         ArrayList<Patient> patients = new ArrayList<Patient>();
         ArrayList<Appointment> appointments = new ArrayList<Appointment>();
         LocalDate  data = LocalDate.parse("1970-01-01");
@@ -192,6 +187,7 @@ public class App extends Application {
             }
 
         }
+
     }
 
 }
