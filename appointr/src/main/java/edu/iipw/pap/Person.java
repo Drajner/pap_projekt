@@ -3,6 +3,7 @@ package edu.iipw.pap;
 import java.time.LocalDate;
 import java.time.Period;
 
+/** An abstract class representing a person. */
 public abstract class Person {
     /** The person's first name. */
     private String name;
