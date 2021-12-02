@@ -2,7 +2,7 @@ package edu.iipw.pap;
 
 public class Icon {
 
-    public static String icon() {
+    public static final String icon() {
         return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAXNSR0IArs4c6QAAIABJREFUeF7tfQmUHFXV/" +
                "+9W92SSAAkf+yqbQLomCwFEEQUDyj5dkwSCC7IkXR3BBRQExQ+Iiop+gCAqTNckLIJLBNLVYfUPsooLS4SkqwPIJgaC7AlMZuu6//N6aoae" +
                "nl5eVVdvM/3OyclJ+r737r2vbtV79937u4Rma2qgqYGCGqCmbpoaaGqgsAaaBtJ8OpoaKKKBpoE0H4+mBpoG0nwGmhrwpoHmF8Sb3pq9xok" +

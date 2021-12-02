@@ -48,7 +48,9 @@ public class App extends Application {
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoggingScreen.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+        int sceneX = 640;
+        int sceneY = 480;
+        Scene scene = new Scene(fxmlLoader.load(), sceneX, sceneY);
         stage.getIcons().add(new Image(Icon.icon()));
         stage.setTitle("Appointr");
         stage.setScene(scene);
