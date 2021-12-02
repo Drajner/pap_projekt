@@ -58,11 +58,15 @@ public class App extends Application {
 
     }
 
-    public static void showAppointments(ArrayList<Appointment> appointments){
-        int c = 0;
-        for (Appointment a : appointments) {
-            System.out.println(c + ". " + a);
-            c += 1;
+    public static void showAppointments(ArrayList<Appointment> appointments) {
+        if (appointments.isEmpty()) {
+            System.out.println("Brak wizyt");
+        } else {
+            Appointment a;
+            for (int i = 0; i < appointments.size(); i++) {
+                a = appointments.get(i);
+                System.out.println(i + ". " + a);
+            }
         }
     }
 
