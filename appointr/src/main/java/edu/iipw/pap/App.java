@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 // import javafx.scene.control.Button;
 // import javafx.scene.control.Label;
 // import javafx.scene.layout.StackPane;
@@ -19,14 +20,13 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
 
-/**
- * JavaFX App.
- */
+/** JavaFX App. */
 public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        /*String javaVersion = SystemInfo.javaVersion();
+        /*
+        String javaVersion = SystemInfo.javaVersion();
         String javafxVersion = SystemInfo.javafxVersion();
 
         Doctor doctor1 = new Doctor("John", "Moore", LocalDate.parse("1980-07-17"), "Dentist", "qwerty", "password");
@@ -34,10 +34,10 @@ public class App extends Application {
         Appointment appointment1 = new Appointment(doctor1, patient1, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 221B");
 
         String labelString = new String("Java version: " + javaVersion + "\n" +
-                "JavaFX version: " + javafxVersion + "\n" +
-                "Doctor: " + doctor1.toString() + "\n" +
-                "Patient: " + patient1.toString() + "\n" +
-                "Appointment: " + appointment1.toString());
+                                        "JavaFX version: " + javafxVersion + "\n" +
+                                        "Doctor: " + doctor1.toString() + "\n" +
+                                        "Patient: " + patient1.toString() + "\n" +
+                                        "Appointment: " + appointment1.toString());
 
         Button addPatientButton = new Button();
         addPatientButton.setText("Dodaj");
@@ -47,12 +47,15 @@ public class App extends Application {
         root.getChildren().add(addPatientButton);
         Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
-        stage.show();  */
-
+        stage.show();
+        */
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoggingScreen.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
-        stage.setTitle("Gabinet");
+        int sceneX = 640;
+        int sceneY = 480;
+        Scene scene = new Scene(fxmlLoader.load(), sceneX, sceneY);
+        stage.getIcons().add(new Image(Icon.icon()));
+        stage.setTitle("Appointr");
         stage.setScene(scene);
         stage.show();
 
@@ -70,42 +73,39 @@ public class App extends Application {
         }
     }
 
+    public static void printPatients(ArrayList<Patient> patients){
+        int c = 0;
+        for (Patient p: patients) {
+            System.out.println(c + ". " + p.getFullName());
+            c += 1;
+        }
+    }
+
     public static void addPatient(ArrayList<Patient> patients) {
         Scanner sc = new Scanner(System.in);
         String name, surname, description;
-        LocalDate birth_date;
+        LocalDate birthDate;
+
         System.out.print("Imię: "); name = sc.nextLine();
         System.out.print("Nazwisko: "); surname = sc.nextLine();
-        System.out.print("Data urodzenia: "); birth_date = LocalDate.parse(sc.nextLine());
+        System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
         System.out.print("Opis: "); description = sc.nextLine();
-        Patient p = new Patient(name, surname, birth_date, description);
+        Patient p = new Patient(name, surname, birthDate, description);
         patients.add(p);
     }
 
     public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
         Scanner sc = new Scanner(System.in);
         String address;
-        LocalDateTime appointment_date;
+        LocalDateTime appointmentDate;
         Patient patient;
 
         printPatients(patients);
-        System.out.print("Wbierz pacjenta po indeksie: ");  patient = patients.get(sc.nextInt());
-        System.out.print("Data urodzenia: "); appointment_date = LocalDateTime.parse(sc.nextLine());
+        System.out.print("Wbierz pacjenta po indeksie: "); patient = patients.get(sc.nextInt());
+        System.out.print("Data urodzenia: "); appointmentDate = LocalDateTime.parse(sc.nextLine());
         System.out.print("Adres: "); address = sc.nextLine();
-        Appointment a = new Appointment(doctor, patient, appointment_date, address);
+        Appointment a = new Appointment(doctor, patient, appointmentDate, address);
         appointments.add(a);
-    }
-
-    public static void printPatients(ArrayList<Patient> patients){
-        if (patients.isEmpty()) {
-            System.out.println("Brak pacjentów");
-        } else {
-            Patient p;
-            for (int i = 0; i < patients.size(); i++) {
-                p = patients.get(i);
-                System.out.println(i + ". " + p);
-            }
-        }
     }
 
     public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Patient> patients){
@@ -142,24 +142,21 @@ public class App extends Application {
         }
     }
 
-
-
-
     public static void main(String[] args) {
-        //launch();
+        // launch();
         ArrayList<Patient> patients = new ArrayList<>();
         Patient p = new Patient("kozi", "szef", LocalDate.parse("2001-05-03"), "git gosc");
         patients.add(p);
         ArrayList<Appointment> appointments = new ArrayList<>();
-        LocalDate  data = LocalDate.parse("1970-01-01");
-        Doctor Jacek = new Doctor("Jacek", "Kowalski", data , "Dentysta", "jacek", "jacek");
+        LocalDate data = LocalDate.parse("1970-01-01");
+        Doctor doctor1 = new Doctor("Jacek", "Kowalski", data, "Dentysta", "jacek", "kEcAj");
         boolean notEnd = true;
         Scanner inputScan = new Scanner(System.in);
         String input;
         int inputValue;
         System.out.println("Witamy w Appointr!");
-        while(notEnd){
-            System.out.println("1. Pokaż wizyty");
+        while(notEnd) {
+            System.out.println("\n1. Pokaż wizyty");
             System.out.println("2. Pokaż pacjentów");
             System.out.println("3. Dodaj pacjenta");
             System.out.println("4. Dodaj wizytę");
@@ -180,7 +177,7 @@ public class App extends Application {
                     addPatient(patients);
                     break;
                 case "4":
-                    addAppointment(Jacek, patients, appointments);
+                    addAppointment(doctor1, patients, appointments);
                     break;
                 case "5":
                     changeAppointment(appointments, patients);
