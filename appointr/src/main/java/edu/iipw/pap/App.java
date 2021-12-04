@@ -19,11 +19,6 @@ import javafx.stage.Stage;
 // import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 
-// Links for further reading:
-// https://www.lwjgl.org/guide
-// https://javastart.pl/baza-wiedzy/java-zaawansowane/enum
-// https://www.freecodecamp.org/news/java-string-to-int-how-to-convert-a-string-to-an-integer/
-
 /** JavaFX App. */
 public class App extends Application {
 
@@ -98,7 +93,6 @@ public class App extends Application {
         System.out.print("Nazwisko: "); surname = sc.nextLine();
         System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
         System.out.print("Opis: "); description = sc.nextLine();
-        sc.close();
         Patient p = new Patient(name, surname, birthDate, description);
         patients.add(p);
     }
@@ -117,7 +111,6 @@ public class App extends Application {
         System.out.print("Godzina wizyty (HH:MM:SS): "); datetime += "T" + sc.nextLine();
         appointmentDate = LocalDateTime.parse(datetime);
         System.out.print("Adres: "); address = sc.nextLine();
-        sc.close();
         Appointment a = new Appointment(doctor, patient, appointmentDate, address);
         appointments.add(a);
     }
@@ -153,7 +146,6 @@ public class App extends Application {
                     break;
                 case "quit":
                     fin = true;
-                    sc.close();
                     break;
                 default:
                     System.out.println("Niepoprawny atrybut.");
@@ -219,7 +211,6 @@ public class App extends Application {
                     break;
                 case "8":
                     System.out.println("Kończę pracę.");
-                    inputScan.close();
                     System.exit(0);
                 case "9":
                     System.out.println("Interline test: ");
