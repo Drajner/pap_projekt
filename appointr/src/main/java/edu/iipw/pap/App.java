@@ -19,6 +19,10 @@ import javafx.stage.Stage;
 // import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 
+// Links for further reading:
+// https://www.lwjgl.org/guide
+// https://javastart.pl/baza-wiedzy/java-zaawansowane/enum
+// https://www.freecodecamp.org/news/java-string-to-int-how-to-convert-a-string-to-an-integer/
 
 /** JavaFX App. */
 public class App extends Application {
@@ -94,6 +98,7 @@ public class App extends Application {
         System.out.print("Nazwisko: "); surname = sc.nextLine();
         System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
         System.out.print("Opis: "); description = sc.nextLine();
+        sc.close();
         Patient p = new Patient(name, surname, birthDate, description);
         patients.add(p);
     }
@@ -101,13 +106,18 @@ public class App extends Application {
     public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
         Scanner sc = new Scanner(System.in);
         String address;
+        String datetime = "";
         LocalDateTime appointmentDate;
         Patient patient;
 
         printPatients(patients);
         System.out.print("Wbierz pacjenta po indeksie: "); patient = patients.get(sc.nextInt());
-        System.out.print("Data urodzenia: "); appointmentDate = LocalDateTime.parse(sc.nextLine());
+        sc.nextLine();
+        System.out.print("Data wizyty (YYYY-MM-DD): "); datetime += sc.nextLine();
+        System.out.print("Godzina wizyty (HH:MM:SS): "); datetime += "T" + sc.nextLine();
+        appointmentDate = LocalDateTime.parse(datetime);
         System.out.print("Adres: "); address = sc.nextLine();
+        sc.close();
         Appointment a = new Appointment(doctor, patient, appointmentDate, address);
         appointments.add(a);
     }
@@ -119,6 +129,7 @@ public class App extends Application {
 
         showAppointments(appointments);
         System.out.print("Wybierz wizyte po indeksie: "); appointment = appointments.get(sc.nextInt());
+        sc.nextLine();
 
         boolean fin = false;
         while(!fin){
@@ -130,6 +141,7 @@ public class App extends Application {
                     printPatients(patients);
                     System.out.print("Wybierz nowego pacjenta po indeksie: ");
                     appointment.setPatient(patients.get(sc.nextInt()));
+                    sc.nextLine();
                     break;
                 case "datetime":
                     System.out.print("Wprowadź nową datę i czas spotkania: ");
@@ -141,6 +153,10 @@ public class App extends Application {
                     break;
                 case "quit":
                     fin = true;
+                    sc.close();
+                    break;
+                default:
+                    System.out.println("Niepoprawny atrybut.");
                     break;
             }
         }
@@ -195,15 +211,23 @@ public class App extends Application {
                     break;
                 case "7":
                     showAppointments(appointments);
-                    System.out.print("\nKtórą wizytę chcesz usunąć?");
+                    System.out.println("Którą wizytę chcesz usunąć?\n");
                     System.out.print("Podaj indeks: ");
                     input =  inputScan.nextLine();
                     inputValue = Integer.parseInt(input);
                     appointments.remove(inputValue);
                     break;
                 case "8":
-                    System.out.println("\nKończę pracę.");
+                    System.out.println("Kończę pracę.");
+                    inputScan.close();
                     System.exit(0);
+                case "9":
+                    System.out.println("Interline test: \n");
+                    CLI cli = new CLI();
+                    cli.interline(5);
+                    break;
+                default:
+                    System.out.println("Nie ma takiej opcji. Spróbuj ponownie:");
             }
 
         }
