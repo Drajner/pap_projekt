@@ -222,9 +222,11 @@ public class App extends Application {
                     inputScan.close();
                     System.exit(0);
                 case "9":
-                    System.out.println("Interline test: \n");
+                    System.out.println("Interline test: ");
                     CLI cli = new CLI();
-                    cli.interline(5);
+                    cli.interline(90, 100, 150, 200);
+                    System.out.println();
+                    cli.interlineGradient(90, 100, 150, 200, 200, 25, 25);
                     break;
                 default:
                     System.out.println("Nie ma takiej opcji. Spróbuj ponownie:");
