@@ -121,6 +121,47 @@ public class App extends Application {
         patients.add(p);
     }
 
+    public static void changePatient(ArrayList<Patient> patients){
+        Scanner sc = new Scanner(System.in);
+        Patient patient;
+        String attribute;
+
+        showPatients(patients);
+        System.out.print("Wybierz pacjenta po indeksie: "); patient = patients.get(sc.nextInt());
+        sc.nextLine();
+
+        boolean fin = false;
+        while(!fin){
+            System.out.println(patient);
+            System.out.print("Wybierz atrybut do zmiany lub opuść edytowanie: {name, surname, dateOfBirth, description, quit}: ");
+            attribute = sc.nextLine();
+            switch (attribute) {
+                case "name":
+                    System.out.print("Wprowadź nowe imię: ");
+                    patient.setName(sc.nextLine());
+                    break;
+                case "surname":
+                    System.out.print("Wprowadź nowe nazwisko: ");
+                    patient.setSurname(sc.nextLine());
+                    break;
+                case "dateOfBirth":
+                    System.out.print("Wprowadź nową datę urodzenia: ");
+                    patient.setDateOfBirth(LocalDate.parse(sc.nextLine()));
+                    break;
+                case "description":
+                    System.out.print("Wprowadź nowy opis: ");
+                    patient.setDescription(sc.nextLine());
+                    break;
+                case "quit":
+                    fin = true;
+                    break;
+                default:
+                    System.out.println("Niepoprawny atrybut.");
+                    break;
+            }
+        }
+    }
+
     public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Doctor> doctors, ArrayList<Patient> patients){
         Scanner sc = new Scanner(System.in);
         Appointment appointment;
@@ -197,11 +238,12 @@ public class App extends Application {
             System.out.println(CLI.ANSI_RGB(listingColor, "5.") + CLI.ANSI_RESET + " Dodaj lekarza");
             System.out.println(CLI.ANSI_RGB(listingColor, "6.") + CLI.ANSI_RESET + " Dodaj pacjenta");
             System.out.println(CLI.ANSI_RGB(listingColor, "7.") + CLI.ANSI_RESET + " Edytuj wizytę");
-            System.out.println(CLI.ANSI_RGB(listingColor, "8.") + CLI.ANSI_RESET + " Usuń wizytę");
-            System.out.println(CLI.ANSI_RGB(listingColor, "9.") + CLI.ANSI_RESET + " Usuń lekarza");
-            System.out.println(CLI.ANSI_RGB(listingColor, "10.") + CLI.ANSI_RESET + " Usuń pacjenta");
-            System.out.println(CLI.ANSI_RGB(listingColor, "11.") + CLI.ANSI_RESET + " Test GUI");
-            System.out.println(CLI.ANSI_RGB(listingColor, "12.") + CLI.ANSI_RESET + " Zakończ");
+            System.out.println(CLI.ANSI_RGB(listingColor, "8.") + CLI.ANSI_RESET + " Edytuj pacjenta");
+            System.out.println(CLI.ANSI_RGB(listingColor, "9.") + CLI.ANSI_RESET + " Usuń wizytę");
+            System.out.println(CLI.ANSI_RGB(listingColor, "10.") + CLI.ANSI_RESET + " Usuń lekarza");
+            System.out.println(CLI.ANSI_RGB(listingColor, "11.") + CLI.ANSI_RESET + " Usuń pacjenta");
+            System.out.println(CLI.ANSI_RGB(listingColor, "12.") + CLI.ANSI_RESET + " Test GUI");
+            System.out.println(CLI.ANSI_RGB(listingColor, "13.") + CLI.ANSI_RESET + " Zakończ");
             System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
             System.out.print("Wpisz opcję: ");
             input =  sc.nextLine();
@@ -236,6 +278,10 @@ public class App extends Application {
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "8":
+                    changePatient(patients);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+                    break;
+                case "9":
                     if (appointments.isEmpty()) {
                         System.out.println("Brak wizyt.");
                     } else {
@@ -248,7 +294,7 @@ public class App extends Application {
                     }
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
-                case "9":
+                case "10":
                     if (doctors.isEmpty()) {
                         System.out.println("Brak lekarzy.");
                     } else {
@@ -261,7 +307,7 @@ public class App extends Application {
                     }
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
-                case "10":
+                case "11":
                     if (patients.isEmpty()) {
                         System.out.println("Brak pacjentów.");
                     } else {
@@ -274,10 +320,10 @@ public class App extends Application {
                     }
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
-                case "11":
+                case "12":
                     launch();
                     break;
-                case "12":
+                case "13":
                     System.out.println("Kończę pracę.");
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     System.exit(0);
