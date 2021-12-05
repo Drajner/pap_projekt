@@ -43,22 +43,6 @@ public class App extends Application {
         }
     }
 
-    public static void showPatients(ArrayList<Patient> patients){
-        if (patients.isEmpty()) {
-            System.out.println("Brak pacjentów.");
-        } else {
-            ArrayList<Integer> listingColor = new ArrayList<>();
-            listingColor.add(250);
-            listingColor.add(75);
-            listingColor.add(75);
-            Patient p;
-            for (int i = 0; i < patients.size(); i++) {
-                p = patients.get(i);
-                System.out.println(CLI.ANSI_RGB(listingColor, i + ". ") + CLI.ANSI_RESET + p);
-            }
-        }
-    }
-
     public static void showDoctors(ArrayList<Doctor> doctors){
         if (doctors.isEmpty()) {
             System.out.println("Brak lekarzy.");
@@ -71,6 +55,22 @@ public class App extends Application {
             for (int i = 0; i < doctors.size(); i++) {
                 d = doctors.get(i);
                 System.out.println(CLI.ANSI_RGB(listingColor, i + ". ") + CLI.ANSI_RESET + d);
+            }
+        }
+    }
+
+    public static void showPatients(ArrayList<Patient> patients){
+        if (patients.isEmpty()) {
+            System.out.println("Brak pacjentów.");
+        } else {
+            ArrayList<Integer> listingColor = new ArrayList<>();
+            listingColor.add(250);
+            listingColor.add(75);
+            listingColor.add(75);
+            Patient p;
+            for (int i = 0; i < patients.size(); i++) {
+                p = patients.get(i);
+                System.out.println(CLI.ANSI_RGB(listingColor, i + ". ") + CLI.ANSI_RESET + p);
             }
         }
     }
@@ -93,19 +93,6 @@ public class App extends Application {
         appointments.add(a);
     }
 
-    public static void addPatient(ArrayList<Patient> patients) {
-        Scanner sc = new Scanner(System.in);
-        String name, surname, description;
-        LocalDate birthDate;
-
-        System.out.print("Imię: "); name = sc.nextLine();
-        System.out.print("Nazwisko: "); surname = sc.nextLine();
-        System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
-        System.out.print("Opis dolegliwości: "); description = sc.nextLine();
-        Patient p = new Patient(name, surname, birthDate, description);
-        patients.add(p);
-    }
-
     public static void addDoctor(ArrayList<Doctor> doctors) {
         Scanner sc = new Scanner(System.in);
         String name, surname, specialization, login, password;
@@ -119,6 +106,19 @@ public class App extends Application {
         System.out.print("Hasło: "); password = sc.nextLine();
         Doctor d = new Doctor(name, surname, birthDate, specialization, login, password);
         doctors.add(d);
+    }
+
+    public static void addPatient(ArrayList<Patient> patients) {
+        Scanner sc = new Scanner(System.in);
+        String name, surname, description;
+        LocalDate birthDate;
+
+        System.out.print("Imię: "); name = sc.nextLine();
+        System.out.print("Nazwisko: "); surname = sc.nextLine();
+        System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
+        System.out.print("Opis dolegliwości: "); description = sc.nextLine();
+        Patient p = new Patient(name, surname, birthDate, description);
+        patients.add(p);
     }
 
     public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Doctor> doctors, ArrayList<Patient> patients){
@@ -236,30 +236,42 @@ public class App extends Application {
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "8":
-                    showAppointments(appointments);
-                    System.out.println("Którą wizytę chcesz usunąć?");
-                    System.out.print("Podaj indeks: ");
-                    input =  sc.nextLine();
-                    inputValue = Integer.parseInt(input);
-                    appointments.remove(inputValue);
+                    if (appointments.isEmpty()) {
+                        System.out.println("Brak wizyt.");
+                    } else {
+                        showAppointments(appointments);
+                        System.out.println("Którą wizytę chcesz usunąć?");
+                        System.out.print("Podaj indeks: ");
+                        input =  sc.nextLine();
+                        inputValue = Integer.parseInt(input);
+                        appointments.remove(inputValue);
+                    }
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "9":
-                    showDoctors(doctors);
-                    System.out.println("Którego lekarza chcesz usunąć?");
-                    System.out.print("Podaj indeks: ");
-                    input =  sc.nextLine();
-                    inputValue = Integer.parseInt(input);
-                    doctors.remove(inputValue);
+                    if (doctors.isEmpty()) {
+                        System.out.println("Brak lekarzy.");
+                    } else {
+                        showDoctors(doctors);
+                        System.out.println("Którego lekarza chcesz usunąć?");
+                        System.out.print("Podaj indeks: ");
+                        input =  sc.nextLine();
+                        inputValue = Integer.parseInt(input);
+                        doctors.remove(inputValue);
+                    }
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "10":
-                    showPatients(patients);
-                    System.out.println("Którego pacjenta chcesz usunąć?");
-                    System.out.print("Podaj indeks: ");
-                    input =  sc.nextLine();
-                    inputValue = Integer.parseInt(input);
-                    patients.remove(inputValue);
+                    if (patients.isEmpty()) {
+                        System.out.println("Brak pacjentów.");
+                    } else {
+                        showPatients(patients);
+                        System.out.println("Którego pacjenta chcesz usunąć?");
+                        System.out.print("Podaj indeks: ");
+                        input =  sc.nextLine();
+                        inputValue = Integer.parseInt(input);
+                        patients.remove(inputValue);
+                    }
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "11":
