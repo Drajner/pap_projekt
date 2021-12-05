@@ -5,50 +5,18 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
-// import java.time.LocalDate;
-// import java.time.LocalDateTime;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-// import javafx.scene.control.Button;
-// import javafx.scene.control.Label;
-// import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-// import javafx.event.ActionEvent;
-// import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 
 /** JavaFX App. */
 public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        /*
-        String javaVersion = SystemInfo.javaVersion();
-        String javafxVersion = SystemInfo.javafxVersion();
-
-        Doctor doctor1 = new Doctor("John", "Moore", LocalDate.parse("1980-07-17"), "Dentist", "qwerty", "password");
-        Patient patient1 = new Patient("Adam", "Durham", LocalDate.parse("1997-04-26"), "Severe toothache");
-        Appointment appointment1 = new Appointment(doctor1, patient1, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 221B");
-
-        String labelString = new String("Java version: " + javaVersion + "\n" +
-                                        "JavaFX version: " + javafxVersion + "\n" +
-                                        "Doctor: " + doctor1.toString() + "\n" +
-                                        "Patient: " + patient1.toString() + "\n" +
-                                        "Appointment: " + appointment1.toString());
-
-        Button addPatientButton = new Button();
-        addPatientButton.setText("Dodaj");
-        Label label = new Label(labelString);
-        label.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-font-size: 12px;");
-        StackPane root = new StackPane(label);
-        root.getChildren().add(addPatientButton);
-        Scene scene = new Scene(root, 640, 480);
-        stage.setScene(scene);
-        stage.show();
-        */
-
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoggingScreen.fxml"));
         int sceneX = 640;
         int sceneY = 480;
@@ -57,31 +25,72 @@ public class App extends Application {
         stage.setTitle("Appointr");
         stage.setScene(scene);
         stage.show();
-
     }
 
     public static void showAppointments(ArrayList<Appointment> appointments) {
         if (appointments.isEmpty()) {
-            System.out.println("Brak wizyt");
+            System.out.println("Brak wizyt.");
         } else {
+            ArrayList<Integer> listingColor = new ArrayList<>();
+            listingColor.add(250);
+            listingColor.add(75);
+            listingColor.add(75);
             Appointment a;
             for (int i = 0; i < appointments.size(); i++) {
                 a = appointments.get(i);
-                System.out.println(i + ". " + a);
+                System.out.println(CLI.ANSI_RGB(listingColor, i + ". ") + CLI.ANSI_RESET + a);
             }
         }
     }
 
-    public static void printPatients(ArrayList<Patient> patients){
+    public static void showPatients(ArrayList<Patient> patients){
         if (patients.isEmpty()) {
-            System.out.println("Brak pacjentów");
+            System.out.println("Brak pacjentów.");
         } else {
+            ArrayList<Integer> listingColor = new ArrayList<>();
+            listingColor.add(250);
+            listingColor.add(75);
+            listingColor.add(75);
             Patient p;
             for (int i = 0; i < patients.size(); i++) {
                 p = patients.get(i);
-                System.out.println(i + ". " + p);
+                System.out.println(CLI.ANSI_RGB(listingColor, i + ". ") + CLI.ANSI_RESET + p);
             }
         }
+    }
+
+    public static void showDoctors(ArrayList<Doctor> doctors){
+        if (doctors.isEmpty()) {
+            System.out.println("Brak lekarzy.");
+        } else {
+            ArrayList<Integer> listingColor = new ArrayList<>();
+            listingColor.add(250);
+            listingColor.add(75);
+            listingColor.add(75);
+            Doctor d;
+            for (int i = 0; i < doctors.size(); i++) {
+                d = doctors.get(i);
+                System.out.println(CLI.ANSI_RGB(listingColor, i + ". ") + CLI.ANSI_RESET + d);
+            }
+        }
+    }
+
+    public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
+        Scanner sc = new Scanner(System.in);
+        String address;
+        String datetime = "";
+        LocalDateTime appointmentDate;
+        Patient patient;
+
+        showPatients(patients);
+        System.out.print("Wybierz pacjenta po indeksie: "); patient = patients.get(sc.nextInt());
+        sc.nextLine();
+        System.out.print("Data wizyty (YYYY-MM-DD): "); datetime += sc.nextLine();
+        System.out.print("Godzina wizyty (HH:MM:SS): "); datetime += "T" + sc.nextLine();
+        appointmentDate = LocalDateTime.parse(datetime);
+        System.out.print("Adres: "); address = sc.nextLine();
+        Appointment a = new Appointment(doctor, patient, appointmentDate, address);
+        appointments.add(a);
     }
 
     public static void addPatient(ArrayList<Patient> patients) {
@@ -92,30 +101,27 @@ public class App extends Application {
         System.out.print("Imię: "); name = sc.nextLine();
         System.out.print("Nazwisko: "); surname = sc.nextLine();
         System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
-        System.out.print("Opis: "); description = sc.nextLine();
+        System.out.print("Opis dolegliwości: "); description = sc.nextLine();
         Patient p = new Patient(name, surname, birthDate, description);
         patients.add(p);
     }
 
-    public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
+    public static void addDoctor(ArrayList<Doctor> doctors) {
         Scanner sc = new Scanner(System.in);
-        String address;
-        String datetime = "";
-        LocalDateTime appointmentDate;
-        Patient patient;
+        String name, surname, specialization, login, password;
+        LocalDate birthDate;
 
-        printPatients(patients);
-        System.out.print("Wbierz pacjenta po indeksie: "); patient = patients.get(sc.nextInt());
-        sc.nextLine();
-        System.out.print("Data wizyty (YYYY-MM-DD): "); datetime += sc.nextLine();
-        System.out.print("Godzina wizyty (HH:MM:SS): "); datetime += "T" + sc.nextLine();
-        appointmentDate = LocalDateTime.parse(datetime);
-        System.out.print("Adres: "); address = sc.nextLine();
-        Appointment a = new Appointment(doctor, patient, appointmentDate, address);
-        appointments.add(a);
+        System.out.print("Imię: "); name = sc.nextLine();
+        System.out.print("Nazwisko: "); surname = sc.nextLine();
+        System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
+        System.out.print("Specjalizacja: "); specialization = sc.nextLine();
+        System.out.print("Login: "); login = sc.nextLine();
+        System.out.print("Hasło: "); password = sc.nextLine();
+        Doctor d = new Doctor(name, surname, birthDate, specialization, login, password);
+        doctors.add(d);
     }
 
-    public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Patient> patients){
+    public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Doctor> doctors, ArrayList<Patient> patients){
         Scanner sc = new Scanner(System.in);
         Appointment appointment;
         String attribute;
@@ -127,11 +133,16 @@ public class App extends Application {
         boolean fin = false;
         while(!fin){
             System.out.println(appointment);
-            System.out.print("Wpisz atrybut do zmiany lub opuść edytowanie: {patient, datetime, address, quit}: ");
+            System.out.print("Wybierz atrybut do zmiany lub opuść edytowanie: {doctor, patient, datetime, address, quit}: ");
             attribute = sc.nextLine();
             switch (attribute) {
+                case "doctor":
+                    showDoctors(doctors);
+                    System.out.print("Wybierz lekarza po indeksie: "); appointment.setDoctor(doctors.get(sc.nextInt()));
+                    sc.nextLine();
+                    break;
                 case "patient":
-                    printPatients(patients);
+                    showPatients(patients);
                     System.out.print("Wybierz nowego pacjenta po indeksie: ");
                     appointment.setPatient(patients.get(sc.nextInt()));
                     sc.nextLine();
@@ -155,75 +166,118 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        // launch();
         ArrayList<Patient> patients = new ArrayList<>();
-        Patient p = new Patient("Adam", "Nowak", LocalDate.parse("2001-05-03"), "chore wątroba");
-        patients.add(p);
         ArrayList<Appointment> appointments = new ArrayList<>();
-        LocalDate data = LocalDate.parse("1970-01-01");
-        Doctor doctor1 = new Doctor("Jacek", "Kowalski", data, "Dentysta", "jacek", "kEcAj");
-        Scanner inputScan = new Scanner(System.in);
+        ArrayList<Doctor> doctors = new ArrayList<>();
+        Patient patient1 = new Patient("Kamil", "Nowak", LocalDate.parse("2001-05-03"), "Cysts on the liver");
+        Patient patient2 = new Patient("Adam", "Durham", LocalDate.parse("1997-04-26"), "Severe toothache");
+        patients.add(patient1);
+        patients.add(patient2);
+        Doctor doctor1 = new Doctor("Jacek", "Kowalski", LocalDate.parse("1970-01-01"), "Optometrist", "jacek", "kEcAj");
+        Doctor doctor2 = new Doctor("John", "Moore", LocalDate.parse("1980-07-17"), "Dentist", "qwerty", "password");
+        doctors.add(doctor1);
+        doctors.add(doctor2);
+        Appointment appointment = new Appointment(doctor2, patient2, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 221B");
+        appointments.add(appointment);
+        Scanner sc = new Scanner(System.in);
         String input;
         int inputValue;
-        System.out.println("Witamy w Appointr!");
+        System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+        System.out.println(CLI.ANSI_RGB_Gradient(150, 200, 250, 250, 75, 75, "Witamy w Appointr!"));
+        System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+        ArrayList<Integer> listingColor = new ArrayList<>();
+        listingColor.add(100);
+        listingColor.add(150);
+        listingColor.add(200);
         while(true) {
-            System.out.println("\n1. Pokaż wizyty");
-            System.out.println("2. Pokaż pacjentów");
-            System.out.println("3. Dodaj pacjenta");
-            System.out.println("4. Dodaj wizytę");
-            System.out.println("5. Edytuj wizytę");
-            System.out.println("6. Usuń pacjenta. Do użycia tylko wtedy gdy są pacjenci.");
-            System.out.println("7. Usuń wizytę. Do użycia tylko wtedy gdy są wizyty.");
-            System.out.println("8. Zakończ\n");
-            System.out.print("Wpisz numer: ");
-            input =  inputScan.nextLine();
+            System.out.println(CLI.ANSI_RGB(listingColor, "1.") + CLI.ANSI_RESET + " Pokaż wizyty");
+            System.out.println(CLI.ANSI_RGB(listingColor, "2.") + CLI.ANSI_RESET + " Pokaż lekarzy");
+            System.out.println(CLI.ANSI_RGB(listingColor, "3.") + CLI.ANSI_RESET + " Pokaż pacjentów");
+            System.out.println(CLI.ANSI_RGB(listingColor, "4.") + CLI.ANSI_RESET + " Dodaj wizytę");
+            System.out.println(CLI.ANSI_RGB(listingColor, "5.") + CLI.ANSI_RESET + " Dodaj lekarza");
+            System.out.println(CLI.ANSI_RGB(listingColor, "6.") + CLI.ANSI_RESET + " Dodaj pacjenta");
+            System.out.println(CLI.ANSI_RGB(listingColor, "7.") + CLI.ANSI_RESET + " Edytuj wizytę");
+            System.out.println(CLI.ANSI_RGB(listingColor, "8.") + CLI.ANSI_RESET + " Usuń wizytę");
+            System.out.println(CLI.ANSI_RGB(listingColor, "9.") + CLI.ANSI_RESET + " Usuń lekarza");
+            System.out.println(CLI.ANSI_RGB(listingColor, "10.") + CLI.ANSI_RESET + " Usuń pacjenta");
+            System.out.println(CLI.ANSI_RGB(listingColor, "11.") + CLI.ANSI_RESET + " Test GUI");
+            System.out.println(CLI.ANSI_RGB(listingColor, "12.") + CLI.ANSI_RESET + " Zakończ");
+            System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+            System.out.print("Wpisz opcję: ");
+            input =  sc.nextLine();
+            System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
             switch(input){
                 case "1":
                     showAppointments(appointments);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "2":
-                    printPatients(patients);
+                    showDoctors(doctors);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "3":
-                    addPatient(patients);
+                    showPatients(patients);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "4":
                     addAppointment(doctor1, patients, appointments);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "5":
-                    changeAppointment(appointments, patients);
+                    addDoctor(doctors);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "6":
-                    printPatients(patients);
-                    System.out.println("\nKtórego pacjenta chcesz usunąć?");
-                    System.out.print("Podaj indeks: ");
-                    input =  inputScan.nextLine();
-                    inputValue = Integer.parseInt(input);
-                    patients.remove(inputValue);
+                    addPatient(patients);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "7":
-                    showAppointments(appointments);
-                    System.out.println("Którą wizytę chcesz usunąć?\n");
-                    System.out.print("Podaj indeks: ");
-                    input =  inputScan.nextLine();
-                    inputValue = Integer.parseInt(input);
-                    appointments.remove(inputValue);
+                    changeAppointment(appointments, doctors, patients);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "8":
-                    System.out.println("Kończę pracę.");
-                    System.exit(0);
+                    showAppointments(appointments);
+                    System.out.println("Którą wizytę chcesz usunąć?");
+                    System.out.print("Podaj indeks: ");
+                    input =  sc.nextLine();
+                    inputValue = Integer.parseInt(input);
+                    appointments.remove(inputValue);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+                    break;
                 case "9":
-                    System.out.println("Interline test: ");
-                    CLI cli = new CLI();
-                    cli.interline(90, 100, 150, 200);
-                    System.out.println();
-                    cli.interlineGradient(90, 100, 150, 200, 200, 25, 25);
+                    showDoctors(doctors);
+                    System.out.println("Którego lekarza chcesz usunąć?");
+                    System.out.print("Podaj indeks: ");
+                    input =  sc.nextLine();
+                    inputValue = Integer.parseInt(input);
+                    doctors.remove(inputValue);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+                    break;
+                case "10":
+                    showPatients(patients);
+                    System.out.println("Którego pacjenta chcesz usunąć?");
+                    System.out.print("Podaj indeks: ");
+                    input =  sc.nextLine();
+                    inputValue = Integer.parseInt(input);
+                    patients.remove(inputValue);
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+                    break;
+                case "11":
+                    launch();
+                    break;
+                case "12":
+                    System.out.println("Kończę pracę.");
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Nie ma takiej opcji. Spróbuj ponownie:");
+                    System.out.println("Nie ma takiej opcji - spróbuj ponownie.");
+                    System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+                    break;
             }
 
         }
+
     }
 
 }
