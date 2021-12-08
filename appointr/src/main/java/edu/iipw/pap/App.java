@@ -104,7 +104,7 @@ public class App extends Application {
         System.out.print("Specjalizacja: "); specialization = sc.nextLine();
         System.out.print("Login: "); login = sc.nextLine();
         System.out.print("Hasło: "); password = sc.nextLine();
-        Doctor d = new Doctor(name, surname, birthDate, specialization, login, password);
+        Doctor d = new Doctor(name, surname, birthDate, specialization, login, password, new ArrayList<Appointment>());
         doctors.add(d);
     }
 
@@ -214,12 +214,17 @@ public class App extends Application {
         Patient patient2 = new Patient("Adam", "Durham", LocalDate.parse("1997-04-26"), "Severe toothache");
         patients.add(patient1);
         patients.add(patient2);
-        Doctor doctor1 = new Doctor("Jacek", "Kowalski", LocalDate.parse("1970-01-01"), "Optometrist", "jacek", "kEcAj");
-        Doctor doctor2 = new Doctor("John", "Moore", LocalDate.parse("1980-07-17"), "Dentist", "qwerty", "password");
+        Doctor doctor1 = new Doctor("Jacek", "Kowalski", LocalDate.parse("1970-01-01"), "Optometrist", "jacek", "kEcAj", new ArrayList<Appointment>());
+        Doctor doctor2 = new Doctor("John", "Moore", LocalDate.parse("1980-07-17"), "Dentist", "qwerty", "password", new ArrayList<Appointment>());
         doctors.add(doctor1);
         doctors.add(doctor2);
-        Appointment appointment = new Appointment(doctor2, patient2, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 221B");
-        appointments.add(appointment);
+        Appointment appointment1 = new Appointment(doctor2, patient2, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 221B");
+        Appointment appointment2 = new Appointment(doctor2, patient1, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 222A");
+        doctor2.addAppointment(appointment1);
+        doctor2.addAppointment(appointment2);  // should say that doctor2 cannot have appointment2 assigned to him
+        for(int i = 0; i < doctor2.getAppointments().size(); i++){
+            appointments.add(doctor2.getAppointments().get(i));
+        }
         Scanner sc = new Scanner(System.in);
         String input;
         int inputValue;
@@ -322,7 +327,7 @@ public class App extends Application {
                     break;
                 case "12":
                     launch();
-                    break;
+                    // no break because we want to close the program after launch()
                 case "13":
                     System.out.println("Kończę pracę.");
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
