@@ -97,12 +97,8 @@ public class Appointment {
      */
     @Override
     public String toString() {
-        return "Appointment{" +
-                "doctor=" + doctor +
-                ", patient=" + patient +
-                ", timeOfAppointment=" + timeOfAppointment +
-                ", address=\"" + address + '\"' +
-                '}';
+        return "[Doctor: " + doctor + "][Patient: " + patient +
+                "][When: " + timeOfAppointment + "][Where: " + address + ']';
     }
 
 }

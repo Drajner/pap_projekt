@@ -94,11 +94,7 @@ public abstract class Person {
      */
     @Override
     public String toString() {
-        return "Person{" +
-                "name=\"" + name + '\"' +
-                ", surname=\"" + surname + '\"' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
+        return name + ' ' + surname;
     }
 
 }
