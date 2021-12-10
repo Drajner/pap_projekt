@@ -21,8 +21,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         stg = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoggingScreen.fxml"));
-        int sceneX = 640;
-        int sceneY = 480;
+        int sceneX = 350;
+        int sceneY = 300;
         Scene scene = new Scene(fxmlLoader.load(), sceneX, sceneY);
         stage.getIcons().add(new Image(Icon.icon()));
         stage.setTitle("Appointr");
