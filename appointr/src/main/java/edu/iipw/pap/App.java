@@ -24,7 +24,7 @@ public class App extends Application {
         int sceneX = 350;
         int sceneY = 300;
         Scene scene = new Scene(fxmlLoader.load(), sceneX, sceneY);
-        stage.getIcons().add(new Image(Icon.icon()));
+        stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
         stage.setTitle("Appointr");
         stage.setScene(scene);
 
