@@ -27,6 +27,9 @@ public class App extends Application {
         stage.getIcons().add(new Image(Icon.icon()));
         stage.setTitle("Appointr");
         stage.setScene(scene);
+
+        stage.setResizable(false);
+
         stage.show();
     }
 
