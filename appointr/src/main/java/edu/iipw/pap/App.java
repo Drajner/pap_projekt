@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,20 +23,45 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stg = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoggingScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("loadingScreen.fxml"));
         int sceneX = 350;
         int sceneY = 300;
         Scene scene = new Scene(fxmlLoader.load(), sceneX, sceneY);
         stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
         stage.setTitle("Appointr");
         stage.setScene(scene);
-
         stage.setResizable(false);
-
         stage.show();
+
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                }
+                return null;
+            }
+        };
+
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                try {
+                    changeScene("loggingScreen.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        new Thread(sleeper).start();
     }
 
     public void changeScene(String fxml) throws IOException {
+        if (fxml == "doctorView.fxml") {
+            stg.setResizable(true);
+        }
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
         stg.getScene().setRoot(pane);
     }

@@ -1,8 +1,11 @@
 package edu.iipw.pap;
 
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class DBContext implements AutoCloseable {
@@ -38,6 +41,23 @@ public class DBContext implements AutoCloseable {
     public static void main(String[] args) {
         DBContext context = new DBContext();
         Connection conn = context.getConnection();
+        System.out.println("Connection opened: " + conn);
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT name FROM patients");
+            while (rs.next()) {
+                String patientName = new String();
+                InputStreamReader in = new InputStreamReader(rs.getAsciiStream("name"));
+                while(in.ready()){
+                    patientName = patientName + (char)in.read();
+                }
+                System.out.println(patientName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        context.close();
+        System.out.println("Connection closed");
     }
 
 }
