@@ -60,11 +60,13 @@ public class App extends Application {
 
     public void changeScene(String fxml) throws IOException {
         if (fxml == "doctorView.fxml") {
-            stg.setResizable(false);
+            stg.setResizable(true);
+            /*
             stg.setMinHeight(480);
             stg.setMaxHeight(480);
             stg.setMinWidth(640);
             stg.setMaxWidth(640);
+            */
         }
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
         stg.getScene().setRoot(pane);
