@@ -19,6 +19,10 @@ public class AppointmentController {
     @FXML
     private TextField address;
 
+    public AppointmentController() {
+        // doctor = moze LoggerController bedzie posiadal funckje ktora zwroci aktualnie zalogowanego lekarza
+    }
+
     public void cancel() {
 
     }
@@ -50,7 +54,6 @@ public class AppointmentController {
     }
 
     public void addAppointment() {
-        // doctor = moze LoggerController bedzie posiadal funckje ktora zwroci aktualnie zalogowanego lekarza
         Appointment appointment = createAppointment();
         // dodanie wizyty do bazy danych
     }
