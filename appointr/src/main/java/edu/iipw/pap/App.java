@@ -37,7 +37,7 @@ public class App extends Application {
             @Override
             protected Void call() throws Exception {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                 }
                 return null;
@@ -48,7 +48,7 @@ public class App extends Application {
             @Override
             public void handle(WorkerStateEvent event) {
                 try {
-                    changeScene("loggingScreen.fxml");
+                    changeScene("LoggingScreen.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

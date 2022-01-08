@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.AddPatientController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="314.0" text="Nowy pacjent" textAlignment="CENTER">
          <font>
@@ -72,11 +72,11 @@
          </VBox.margin></TextArea>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" prefWidth="50.0" text="Dodaj">
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPatient" prefWidth="50.0" text="Dodaj">
                <HBox.margin>
                   <Insets left="85.0" />
                </HBox.margin></Button>
-            <Button fx:id="cancelButton" mnemonicParsing="false" prefWidth="50.0" text="Anuluj">
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancel" prefWidth="50.0" text="Anuluj">
                <HBox.margin>
                   <Insets left="30.0" />
                </HBox.margin></Button>
