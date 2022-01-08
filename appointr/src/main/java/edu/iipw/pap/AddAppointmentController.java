@@ -1,14 +1,16 @@
 package edu.iipw.pap;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class AppointmentController {
+public class AddAppointmentController {
     private Doctor doctor;
     @FXML
     private ChoiceBox<Patient> patientList;
@@ -19,7 +21,7 @@ public class AppointmentController {
     @FXML
     private TextField address;
 
-    public AppointmentController() {
+    public AddAppointmentController() {
         // doctor = moze LoggerController bedzie posiadal funckje ktora zwroci aktualnie zalogowanego lekarza
     }
 
@@ -56,13 +58,5 @@ public class AppointmentController {
     public void addAppointment() {
         Appointment appointment = createAppointment();
         // dodanie wizyty do bazy danych
-    }
-
-    public void editAppointment() {
-
-    }
-
-    public void deleteAppointment() {
-
     }
 }
