@@ -8,9 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class AppController {
+public class LoggerController {
 
-    public AppController() { }
+    public LoggerController() { }
 
     @FXML
     private Button logInButton;
