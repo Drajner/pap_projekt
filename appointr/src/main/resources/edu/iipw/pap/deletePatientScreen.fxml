@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.DeletePatientController">
    <children>
       <Pane prefHeight="75.0" prefWidth="200.0" />
       <ChoiceBox fx:id="patientList" prefWidth="150.0" />
       <Pane prefHeight="75.0" prefWidth="200.0" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="deleteButton" mnemonicParsing="false" text="Usuń" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePatient" text="Usuń" />
             <Pane prefHeight="50.0" prefWidth="25.0" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" text="Anuluj" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancel" text="Anuluj" />
          </children>
       </HBox>
    </children>
