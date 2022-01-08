@@ -32,11 +32,11 @@
          </VBox.margin></ChoiceBox>
       <HBox prefHeight="30.0" prefWidth="200.0">
          <children>
-            <Button fx:id="deleteButton" mnemonicParsing="false" prefWidth="50.0" text="Usuń">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteAppointment" prefWidth="50.0" text="Usuń">
                <HBox.margin>
                   <Insets left="35.0" />
                </HBox.margin></Button>
-            <Button fx:id="cancelButton" mnemonicParsing="false" prefWidth="50.0" text="Anuluj">
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancel" prefWidth="50.0" text="Anuluj">
                <HBox.margin>
                   <Insets left="30.0" />
                </HBox.margin></Button>
