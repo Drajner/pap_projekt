@@ -252,6 +252,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        /*
         ArrayList<Patient> patients = new ArrayList<>();
         ArrayList<Appointment> appointments = new ArrayList<>();
         ArrayList<Doctor> doctors = new ArrayList<>();
@@ -270,6 +271,12 @@ public class App extends Application {
         for(int i = 0; i < doctor2.getAppointments().size(); i++){
             appointments.add(doctor2.getAppointments().get(i));
         }
+        */
+        Populate populate = new Populate();
+        ArrayList<Patient> patients = populate.patients;
+        ArrayList<Doctor> doctors = populate.doctors;
+        ArrayList<Appointment> appointments = populate.appointments;
+
         Scanner sc = new Scanner(System.in);
         String input;
         int inputValue;
@@ -284,7 +291,7 @@ public class App extends Application {
             System.out.println(CLI.ANSI_RGB(listingColor, "1.") + CLI.ANSI_RESET + " Pokaż wizyty");
             System.out.println(CLI.ANSI_RGB(listingColor, "2.") + CLI.ANSI_RESET + " Pokaż lekarzy");
             System.out.println(CLI.ANSI_RGB(listingColor, "3.") + CLI.ANSI_RESET + " Pokaż pacjentów");
-            System.out.println(CLI.ANSI_RGB(listingColor, "4.") + CLI.ANSI_RESET + " Dodaj wizytę");
+            System.out.println(CLI.ANSI_RGB(listingColor, "4.") + CLI.ANSI_RESET + " Dodaj wizytę (dla pierwszego lekarza)");
             System.out.println(CLI.ANSI_RGB(listingColor, "5.") + CLI.ANSI_RESET + " Dodaj lekarza");
             System.out.println(CLI.ANSI_RGB(listingColor, "6.") + CLI.ANSI_RESET + " Dodaj pacjenta");
             System.out.println(CLI.ANSI_RGB(listingColor, "7.") + CLI.ANSI_RESET + " Edytuj wizytę");
@@ -312,7 +319,11 @@ public class App extends Application {
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "4":
+                    /*
                     addAppointment(doctor1, patients, appointments);
+                    */
+                    addAppointment(doctors.get(0), patients, appointments);
+
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "5":
