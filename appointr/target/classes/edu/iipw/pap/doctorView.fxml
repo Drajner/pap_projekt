@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="BOTTOM_CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.LoggerController">
+<VBox alignment="BOTTOM_CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.doctorViewController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -36,12 +36,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button minHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Dodaj Pacjenta" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button minHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Edytuj Pacjentów" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button minHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Usuń Pacjenta" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button minHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Dodaj Wizytę" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button minHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Edytuj Wizytę" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button minHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Usuń Wizytę" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="addPatientButton" minHeight="25.0" mnemonicParsing="false" onAction="#addPatient" prefHeight="25.0" prefWidth="120.0" text="Dodaj Pacjenta" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="editPatientButton" minHeight="25.0" mnemonicParsing="false" onAction="#editPatient" prefHeight="25.0" prefWidth="120.0" text="Edytuj Pacjentów" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="deletePatientButton" minHeight="25.0" mnemonicParsing="false" onAction="#deletePatient" prefHeight="25.0" prefWidth="120.0" text="Usuń Pacjenta" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="addAppointmentButton" minHeight="25.0" mnemonicParsing="false" onAction="#addAppointment" prefHeight="25.0" prefWidth="120.0" text="Dodaj Wizytę" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="editAppointmentButton" minHeight="25.0" mnemonicParsing="false" onAction="#editAppointment" prefHeight="25.0" prefWidth="120.0" text="Edytuj Wizytę" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="deleteAppointmentButton" minHeight="25.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="25.0" prefWidth="120.0" text="Usuń Wizytę" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>
