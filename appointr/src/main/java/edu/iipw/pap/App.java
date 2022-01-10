@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.application.Application;
+// import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
@@ -273,6 +274,7 @@ public class App extends Application {
         }
         */
         Populate populate = new Populate();
+        // ObservableList<Patient> patients = populate.patients;
         ArrayList<Patient> patients = populate.patients;
         ArrayList<Doctor> doctors = populate.doctors;
         ArrayList<Appointment> appointments = populate.appointments;

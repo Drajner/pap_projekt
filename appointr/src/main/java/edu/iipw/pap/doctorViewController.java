@@ -1,17 +1,27 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class doctorViewController {
+public class doctorViewController implements Initializable{
 
     public doctorViewController() { }
 
@@ -27,6 +37,37 @@ public class doctorViewController {
     private Button editAppointmentButton;
     @FXML
     private Button deleteAppointmentButton;
+    @FXML
+    private TableView<TableRow> appointmentTable;
+    @FXML
+    private TableColumn<TableRow, Integer> numberColumn;
+    @FXML
+    private TableColumn<TableRow, LocalDate> dateColumn;
+    @FXML
+    private TableColumn<TableRow, String> nameColumn;
+    @FXML
+    private TableColumn<TableRow, String> addressColumn;
+
+    private ObservableList<TableRow> data;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        numberColumn.setCellValueFactory(new PropertyValueFactory<TableRow, Integer>("index"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<TableRow, LocalDate>("date"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<TableRow, String>("name"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<TableRow, String>("address"));
+
+        Populate populate = new Populate();
+        ArrayList<Appointment> appointments = populate.appointments;
+        ArrayList<TableRow> rows = new ArrayList<TableRow>();
+        for (int i = 0; i < appointments.size(); i++) {
+            rows.add(new TableRow(appointments.get(i), i + 1));
+        }
+
+        data = FXCollections.observableArrayList(rows);
+
+        appointmentTable.setItems(data);
+    }
 
     public void addPatient(ActionEvent event) throws IOException {
         Parent root;

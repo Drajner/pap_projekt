@@ -17,7 +17,6 @@ public class Patient extends Person{
     public Patient(String name, String surname, LocalDate dateOfBirth, String description) {
         super(name, surname, dateOfBirth);
         this.description = description;
-        System.out.print(name);
     }
 
     /**

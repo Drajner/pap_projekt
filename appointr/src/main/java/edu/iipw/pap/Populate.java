@@ -4,10 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+// import javafx.collections.FXCollections;
+// import javafx.collections.ObservableList;
+
 // https://danetestowe.pl/generator?age=2565&ageValue=&sex=no
 // https://pesel.cstudios.pl/o-generatorze/generator-on-line
 // https://passwordsgenerator.net/
 public class Populate {
+    // public ObservableList<Patient> patients;
     public ArrayList<Patient> patients;
 
     public ArrayList<Doctor> doctors;
@@ -49,6 +53,9 @@ public class Populate {
         Appointment appointment10 = new Appointment(doctor9, patient10, LocalDateTime.parse("2022-01-30T16:00:00"), "Baker Street 221C");
 
         patients = new ArrayList<>();
+        // final ObservableList<Person> patients = FXCollections.observableArrayList(
+        //         patient1, patient2, patient3, patient4, patient5, patient6, patient7, patient8, patient9, patient10
+        // );
         appointments = new ArrayList<>();
         doctors = new ArrayList<>();
 
