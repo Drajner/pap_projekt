@@ -1,11 +1,11 @@
 package edu.iipw.pap;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -20,13 +20,18 @@ public class AddAppointmentController {
     private Spinner<LocalTime> hourSelection;
     @FXML
     private TextField address;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button addButton;
 
     public AddAppointmentController() {
         // doctor = moze LoggerController bedzie posiadal funckje ktora zwroci aktualnie zalogowanego lekarza
     }
 
-    public void cancel() {
-
+    public void cancel(ActionEvent event) throws IOException {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     public Patient getPatient() {
