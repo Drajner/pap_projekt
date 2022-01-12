@@ -127,7 +127,7 @@ public class DBContext implements AutoCloseable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return appointments;
     }
 
     public void deleteDoctor(Connection conn, String pesel) throws Exception{
