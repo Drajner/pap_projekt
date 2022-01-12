@@ -1,6 +1,7 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,14 +31,22 @@ public class AddPatientController {
     @FXML
     private TextArea descriptionField;
 
+    private Doctor loggedDoctor;
+
+    private Connection conn;
+
+    public void transferConn(Connection usedConn){
+        conn = usedConn;
+    }
+
     public void addPatient(ActionEvent event) throws IOException {
         Patient patient = createPatientFromData();
 
-//        try {
-//            DBContext.addPatient(conn, patient);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DBContext.addPatient(conn, patient);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();

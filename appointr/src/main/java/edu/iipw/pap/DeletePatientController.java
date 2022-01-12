@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -27,22 +28,31 @@ public class DeletePatientController implements Initializable {
 
     private ArrayList<Patient> patients;
 
+    private Doctor loggedDoctor;
+
+    private Connection conn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DBContext dbContext = new DBContext();
-        patients = dbContext.getPatients(conn);
+        try {
+            patients = dbContext.getPatients(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         for (Patient p: patients) {
             patientList.getItems().add(p.toString());
         }
     }
 
-    public void transferData(ObservableList<TableRow> data) {
+    public void transferData(ObservableList<TableRow> data, Doctor doctor, Connection usedConn) {
         // fajnie jakby bylo przekazane connection i w sumie nic wiecej
-
-//        for (TableRow tr: data) {
-//            patientList.getItems().add(tr.getAppointment().getPatient().toString());
-//        }
+        loggedDoctor = doctor;
+        conn = usedConn;
+        for (TableRow tr: data) {
+            patientList.getItems().add(tr.getAppointment().getPatient().toString());
+        }
 
     }
 
@@ -53,11 +63,11 @@ public class DeletePatientController implements Initializable {
     public void deletePatient(ActionEvent event) throws IOException {
         Patient patient = deletePatientFromData();
 
-//        try {
-//            DBContext.deletePatient(conn, patient.getPesel());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DBContext.deletePatient(conn, patient.getPesel());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();

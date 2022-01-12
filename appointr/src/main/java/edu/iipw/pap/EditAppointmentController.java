@@ -60,6 +60,10 @@ public class EditAppointmentController implements Initializable {
 
     }
 
+    public void transferAppointment(Appointment appointment) {
+
+    }
+
     public void cancel(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();

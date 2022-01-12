@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 public class ChooseEditAppointmentController implements Initializable {
@@ -29,16 +30,23 @@ public class ChooseEditAppointmentController implements Initializable {
 
     private ObservableList<TableRow> tempData;
 
+    private Doctor loggedDoctor;
+
+    private Connection conn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
-    public void transferData(ObservableList<TableRow> data) {
+    public void transferData(ObservableList<TableRow> data, Doctor doctor, Connection usedConn) {
+        loggedDoctor = doctor;
+        conn = usedConn;
         tempData = data;
         for (TableRow tr: data) {
             appointmentList.getItems().add(tr.getAppointment().toString());
         }
+        appointmentList.setValue(data.get(0).getAppointment().toString());
     }
 
     public void chooseAppointment(ActionEvent event) throws IOException {

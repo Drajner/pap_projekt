@@ -20,7 +20,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddAppointmentController implements Initializable {
-    private Doctor doctor;
+
+    public AddAppointmentController() {
+    // doctor = moze LoggerController bedzie posiadal funckje ktora zwroci aktualnie zalogowanego lekarza
+    }
+
     @FXML
     private ChoiceBox<Patient> patientList;
     @FXML
@@ -33,6 +37,15 @@ public class AddAppointmentController implements Initializable {
     private Button cancelButton;
     @FXML
     private Button addButton;
+
+    private Doctor loggedDoctor;
+
+    private Connection conn;
+
+    public void transferDoctorAndConn(Doctor doctor, Connection usedConn){
+        loggedDoctor = doctor;
+        conn = usedConn;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,9 +71,7 @@ public class AddAppointmentController implements Initializable {
 
     }
 
-    public AddAppointmentController() {
-        // doctor = moze LoggerController bedzie posiadal funckje ktora zwroci aktualnie zalogowanego lekarza
-    }
+
 
     public void cancel(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
@@ -92,17 +103,17 @@ public class AddAppointmentController implements Initializable {
         LocalDateTime dateTime = LocalDateTime.of(date, time);
         String address = getAddress();
 
-        return new Appointment(id, doctor, patient, dateTime, address);
+        return new Appointment(id, loggedDoctor, patient, dateTime, address);
     }
 
     public void addAppointment() {
         Appointment appointment = createAppointment();
 
-//        try {
-//            DBContext.addAppointment(conn, appointment);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DBContext.addAppointment(conn, appointment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();

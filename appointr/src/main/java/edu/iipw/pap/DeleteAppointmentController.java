@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -26,11 +27,17 @@ public class DeleteAppointmentController implements Initializable {
 
     private ArrayList<Appointment> appointments = new ArrayList<>();
 
+    private Connection conn;
+
+    private Doctor loggedDoctor;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void transferData(ObservableList<TableRow> data) {
+    public void transferData(ObservableList<TableRow> data, Doctor doctor, Connection usedConn) {
+        loggedDoctor = doctor;
+        conn = usedConn;
         for (TableRow tr: data) {
             appointmentList.getItems().add(tr.getAppointment().toString());
             appointments.add(tr.getAppointment());
@@ -44,11 +51,11 @@ public class DeleteAppointmentController implements Initializable {
     public void deleteAppointment(ActionEvent event) throws IOException {
         Appointment appointment = deleteAppointmentFromData();
 
-//        try {
-//            DBContext.deleteAppointment(conn, appointment.Id);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DBContext.deleteAppointment(conn, appointment.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();

@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.Parent;
 
 public class LoggerController {
 
@@ -27,6 +29,7 @@ public class LoggerController {
 
     private void checkLogin() throws IOException {
         App a = new App();
+        Parent root;
 
         DBContext dbContext = new DBContext();
         Connection conn = dbContext.getConnection();
@@ -41,6 +44,10 @@ public class LoggerController {
         for (Doctor d: doctors) {
             if (login.equals(d.getLogin()) && password.equals(d.getPassword())) {
                 isLogin = true;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditPatientScreen.fxml"));
+                root = loader.load();
+                doctorViewController dvc = loader.getController();
+                dvc.usedDoctorAndConn(d, conn);
                 a.changeScene("doctorView.fxml");
             }
         }

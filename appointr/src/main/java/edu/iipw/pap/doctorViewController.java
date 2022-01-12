@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.sql.Connection;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,6 +51,10 @@ public class doctorViewController implements Initializable{
 
     private ObservableList<TableRow> data;
 
+    private Doctor usedDoctor;
+
+    private Connection conn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         numberColumn.setCellValueFactory(new PropertyValueFactory<TableRow, Integer>("index"));
@@ -69,10 +74,18 @@ public class doctorViewController implements Initializable{
         appointmentTable.setItems(data);
     }
 
+    public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn){
+        usedDoctor = loggedDoctor;
+        conn = usedConn;
+    }
+
     public void addPatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("addPatientScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addPatientScreen.fxml"));
+            root = loader.load();
+            AddPatientController apc = loader.getController();
+            apc.transferConn(conn);
             int sceneX = 300;
             int sceneY = 320;
             Stage stage = new Stage();
@@ -92,7 +105,7 @@ public class doctorViewController implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditPatientScreen.fxml"));
             root = loader.load();
             ChooseEditPatientController cepc = loader.getController();
-            cepc.transferData(data);
+            cepc.transferData(data, usedDoctor, conn);
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();
@@ -113,7 +126,7 @@ public class doctorViewController implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("deletePatientScreen.fxml"));
             root = loader.load();
             DeletePatientController dpc = loader.getController();
-            dpc.transferData(data);
+            dpc.transferData(data, usedDoctor, conn);
             // instead of this:
             // root = FXMLLoader.load(getClass().getResource("deletePatientScreen.fxml"));
             int sceneX = 200;
@@ -132,7 +145,10 @@ public class doctorViewController implements Initializable{
     public void addAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("addAppointmentScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addAppointmentScreen.fxml"));
+            root = loader.load();
+            AddAppointmentController aac = loader.getController();
+            aac.transferDoctorAndConn(usedDoctor, conn);
             int sceneX = 240;
             int sceneY = 240;
             Stage stage = new Stage();
@@ -152,7 +168,7 @@ public class doctorViewController implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditAppointmentScreen.fxml"));
             root = loader.load();
             ChooseEditAppointmentController ceac = loader.getController();
-            ceac.transferData(data);
+            ceac.transferData(data, usedDoctor, conn);
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();
@@ -172,7 +188,7 @@ public class doctorViewController implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("deletePatientScreen.fxml"));
             root = loader.load();
             DeleteAppointmentController dac = loader.getController();
-            dac.transferData(data);
+            dac.transferData(data, usedDoctor, conn);
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();
