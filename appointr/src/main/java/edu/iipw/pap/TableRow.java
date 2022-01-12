@@ -14,7 +14,7 @@ public class TableRow {
         this.index = index;
         this.date = appointment.getTimeOfAppointment().toLocalDate();
         this.name = appointment.getPatient().getName() + " " + appointment.getPatient().getSurname();
-        this.address = appointment.getAddress();
+        this.address = appointment.getOfficeId();
     }
 
     public Appointment getAppointment() {
