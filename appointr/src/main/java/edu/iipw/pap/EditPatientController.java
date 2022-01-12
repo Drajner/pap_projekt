@@ -47,7 +47,16 @@ public class EditPatientController {
     }
 
     public void editPatient(ActionEvent event) throws IOException {
-        editPatientFromData();
+        Patient patient = editPatientFromData();
+
+        try {
+            DBContext.editPatient(conn, patient);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     public void cancel(ActionEvent event) throws IOException {
@@ -55,10 +64,9 @@ public class EditPatientController {
         stage.close();
     }
 
-    private void editPatientFromData() throws IOException{
+    private Patient editPatientFromData() throws IOException{
+        return new Patient(peselField.getText(), nameField.getText(), surnameField.getText(),
+                dataField.getValue(), descriptionField.getText());
 
-        new Patient(peselField.getText(), nameField.getText(), surnameField.getText(), dataField.getValue(), descriptionField.getText());
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
     }
 }
