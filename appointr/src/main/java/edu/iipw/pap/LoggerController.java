@@ -1,6 +1,7 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -26,6 +27,9 @@ public class LoggerController {
 
     private void checkLogin() throws IOException {
         App a = new App();
+
+        DBContext dbContext = new DBContext();
+        Connection conn = dbContext.getConnection();
 
         Populate populate = new Populate();
         ArrayList<Doctor> doctors = populate.doctors;

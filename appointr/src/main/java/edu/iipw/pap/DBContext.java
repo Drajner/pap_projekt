@@ -144,14 +144,14 @@ public class DBContext implements AutoCloseable {
                 doctor.getSpecialization(), doctor.getLogin(), doctor.getPassword()));
     }
 
-    public void addPatient(Connection conn, Patient patient) throws SQLException {
+    public static void addPatient(Connection conn, Patient patient) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.executeQuery(String.format("INSERT INTO patients VALUES (%s, %s, %s, %s, %s)",
                 patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(),
                 patient.getDescription()));
     }
 
-    public void addAppointment(Connection conn, Appointment appointment) throws Exception{
+    public static void addAppointment(Connection conn, Appointment appointment) throws Exception{
         Statement stmt = conn.createStatement();
         stmt.executeQuery(String.format("INSERT INTO appointments VALUES (NULL, %s, %s, %s, %s)",
                 appointment.getDoctor().getPesel(), appointment.getPatient().getPesel(),

@@ -31,7 +31,16 @@ public class AddPatientController {
     private TextArea descriptionField;
 
     public void addPatient(ActionEvent event) throws IOException {
-        createPatientFromData();
+        Patient patient = createPatientFromData();
+
+//        try {
+//            DBContext.addPatient(conn, patient);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     public void cancel(ActionEvent event) throws IOException {
@@ -39,10 +48,9 @@ public class AddPatientController {
         stage.close();
     }
 
-    private void createPatientFromData() throws IOException{
+    private Patient createPatientFromData() throws IOException{
 
-        new Patient(peselField.getText(), nameField.getText(), surnameField.getText(), dataField.getValue(), descriptionField.getText());
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        return new Patient(peselField.getText(), nameField.getText(),
+                surnameField.getText(), dataField.getValue(), descriptionField.getText());
     }
 }

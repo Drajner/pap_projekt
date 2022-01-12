@@ -12,6 +12,7 @@ import javafx.scene.control.SpinnerValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -95,6 +96,14 @@ public class AddAppointmentController implements Initializable {
 
     public void addAppointment() {
         Appointment appointment = createAppointment();
-        // dodanie wizyty do bazy danych
+
+//        try {
+//            DBContext.addAppointment(conn, appointment);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 }
