@@ -1,5 +1,6 @@
 package edu.iipw.pap;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class DeletePatientController implements Initializable {
 
-    public DeletePatientController() {}
+    public DeletePatientController() { }
 
     @FXML
     private ChoiceBox<String> patientList;
@@ -24,10 +25,11 @@ public class DeletePatientController implements Initializable {
     private Button cancelButton;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Populate populate = new Populate();
-        for (Patient p: populate.patients) {
-            patientList.getItems().add(p.toString());
+    public void initialize(URL url, ResourceBundle resourceBundle) { }
+
+    public void transferData(ObservableList<TableRow> data) {
+        for (TableRow tr: data) {
+            patientList.getItems().add(tr.getAppointment().getPatient().toString());
         }
     }
 
@@ -41,7 +43,6 @@ public class DeletePatientController implements Initializable {
     }
 
     private void deletePatientFromData() throws IOException{
-
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }

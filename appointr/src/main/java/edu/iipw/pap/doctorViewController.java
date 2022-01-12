@@ -106,7 +106,13 @@ public class doctorViewController implements Initializable{
     public void deletePatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("deletePatientScreen.fxml"));
+            // this:
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("deletePatientScreen.fxml"));
+            root = loader.load();
+            DeletePatientController dpc = loader.getController();
+            dpc.transferData(data);
+            // instead of this:
+            // root = FXMLLoader.load(getClass().getResource("deletePatientScreen.fxml"));
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();
