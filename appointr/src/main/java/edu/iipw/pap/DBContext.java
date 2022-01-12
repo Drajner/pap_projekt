@@ -163,7 +163,7 @@ public class DBContext implements AutoCloseable {
         stmt.executeQuery(String.format(
                 "UPDATE doctors" +
                 "SET pesel = %s, name = %s, surname = %s, birth_date = %s, spec_id = %d",
-                doctor.getPesel(), doctor.getName(), doctor.getSurname(), doctor.getDateOfBirth(), doctor.getSpecialization()))
+                doctor.getPesel(), doctor.getName(), doctor.getSurname(), doctor.getDateOfBirth(), doctor.getSpecialization()));
     }
 
     public static void editPatient(Connection conn, Patient patient) throws Exception {
@@ -171,7 +171,7 @@ public class DBContext implements AutoCloseable {
         stmt.executeQuery(String.format(
                 "UPDATE patients" +
                         "SET pesel = %s, name = %s, surname = %s, birth_date = %s, description = %s",
-                patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(), patient.getDescription()))
+                patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(), patient.getDescription()));
     }
 
     public static void editAppointment(Connection conn, Appointment appointment) throws Exception {
@@ -180,7 +180,7 @@ public class DBContext implements AutoCloseable {
                 "UPDATE appointments" +
                         "SET appointment_id = %d, doctor = %s, patient = %s, time = %s, office_id = %d",
                 appointment.getId(), appointment.getDoctor().getPesel(), appointment.getPatient().getPesel(),
-                appointment.getTimeOfAppointment(), appointment.getOfficeId()))
+                appointment.getTimeOfAppointment(), appointment.getOfficeId()));
     }
 
     public static void main(String[] args) {
