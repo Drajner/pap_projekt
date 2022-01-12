@@ -42,7 +42,7 @@ public class Patient extends Person{
      */
     @Override
     public String toString() {
-        return getName() + ' ' + getSurname() + "; " + description;
+        return getPesel() + ' ' + getName() + ' ' + getSurname() + "; " + description;
     }
 
 }

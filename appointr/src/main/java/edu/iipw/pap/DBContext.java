@@ -41,7 +41,7 @@ public class DBContext implements AutoCloseable {
         return conn;
     }
 
-    public String getPatients(Connection conn) throws Exception{
+    public ArrayList<Patient> getPatients(Connection conn) throws Exception{
         Patient patient;
         ArrayList<Patient> patients = new ArrayList<>();
 
@@ -52,18 +52,17 @@ public class DBContext implements AutoCloseable {
                 String pesel = rs.getString(1);
                 String name = rs.getString(2);
                 String surname = rs.getString(3);
-                LocalDate dateOfBirth = LocalDate.parse(rs.getString(4));
+                LocalDate dateOfBirth = LocalDate.parse(rs.getString(4).substring(0, 10));
                 String description = rs.getString(5);
 
                 patient = new Patient(pesel, name, surname, dateOfBirth, description);
 
                 patients.add(patient);
-                System.out.println(patients.get(0).toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return patients;
     }
 
     public static void main(String[] args) throws Exception {
