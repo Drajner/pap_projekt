@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -24,17 +25,42 @@ public class DeletePatientController implements Initializable {
     @FXML
     private Button cancelButton;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { }
+    private ArrayList<Patient> patients;
 
-    public void transferData(ObservableList<TableRow> data) {
-        for (TableRow tr: data) {
-            patientList.getItems().add(tr.getAppointment().getPatient().toString());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        DBContext dbContext = new DBContext();
+        patients = dbContext.getPatients(conn);
+
+        for (Patient p: patients) {
+            patientList.getItems().add(p.toString());
         }
     }
 
+    public void transferData(ObservableList<TableRow> data) {
+        // fajnie jakby bylo przekazane connection i w sumie nic wiecej
+
+//        for (TableRow tr: data) {
+//            patientList.getItems().add(tr.getAppointment().getPatient().toString());
+//        }
+
+    }
+
+    public String getPatient() {
+        return patientList.getValue();
+    }
+
     public void deletePatient(ActionEvent event) throws IOException {
-        deletePatientFromData();
+        Patient patient = deletePatientFromData();
+
+//        try {
+//            DBContext.deletePatient(conn, patient.getPesel());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     public void cancel(ActionEvent event) throws IOException {
@@ -42,8 +68,16 @@ public class DeletePatientController implements Initializable {
         stage.close();
     }
 
-    private void deletePatientFromData() throws IOException{
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+    private Patient deletePatientFromData() throws IOException{
+        String s_patient = getPatient();
+        Patient patient = null;
+
+        for (Patient p: patients) {
+            if (s_patient.equals(p.toString())) {
+                patient = p;
+                break;
+            }
+        }
+        return patient;
     }
 }

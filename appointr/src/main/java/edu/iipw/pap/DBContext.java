@@ -127,7 +127,7 @@ public class DBContext implements AutoCloseable {
         stmt.executeQuery("DELETE FROM doctors WHERE pesel = " + pesel);
     }
 
-    public void deletePatient(Connection conn, String pesel) throws Exception{
+    public static void deletePatient(Connection conn, String pesel) throws Exception{
         Statement stmt = conn.createStatement();
         stmt.executeQuery("DELETE FROM patients WHERE pesel = " + pesel);
     }

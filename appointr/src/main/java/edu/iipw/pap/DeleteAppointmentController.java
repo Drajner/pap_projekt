@@ -45,7 +45,7 @@ public class DeleteAppointmentController implements Initializable {
         Appointment appointment = deleteAppointmentFromData();
 
 //        try {
-//            DBContext.deleteAppointment(conn, appointment.appointmentId);
+//            DBContext.deleteAppointment(conn, appointment.Id);
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
