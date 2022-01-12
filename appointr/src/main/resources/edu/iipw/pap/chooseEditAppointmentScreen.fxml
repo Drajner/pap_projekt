@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.chooseEditAppointmentController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.ChooseEditAppointmentController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="247.0" text="Edytuj wizytę" textAlignment="CENTER">
          <font>
@@ -32,7 +32,7 @@
          </VBox.margin></ChoiceBox>
       <HBox prefHeight="30.0" prefWidth="200.0">
          <children>
-            <Button fx:id="chooseButton" mnemonicParsing="false" onAction="#deleteAppointment" prefWidth="50.0" text="OK">
+            <Button fx:id="chooseButton" mnemonicParsing="false" onAction="#chooseAppointment" prefWidth="50.0" text="OK">
                <HBox.margin>
                   <Insets left="35.0" />
                </HBox.margin></Button>

@@ -89,9 +89,12 @@ public class doctorViewController implements Initializable{
     public void editPatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("editPatientScreen.fxml"));
-            int sceneX = 300;
-            int sceneY = 320;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditPatientScreen.fxml"));
+            root = loader.load();
+            ChooseEditPatientController cepc = loader.getController();
+            cepc.transferData(data);
+            int sceneX = 200;
+            int sceneY = 150;
             Stage stage = new Stage();
             stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
             stage.setTitle("Edit patient");
@@ -146,9 +149,9 @@ public class doctorViewController implements Initializable{
     public void editAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("editAppointmentScreen.fxml"));
-            int sceneX = 240;
-            int sceneY = 240;
+            root = FXMLLoader.load(getClass().getResource("chooseEditAppointmentScreen.fxml"));
+            int sceneX = 200;
+            int sceneY = 150;
             Stage stage = new Stage();
             stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
             stage.setTitle("Edit appointment");
