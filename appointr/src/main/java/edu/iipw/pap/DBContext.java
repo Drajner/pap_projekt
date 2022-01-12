@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class DBContext implements AutoCloseable {
     private Connection conn = null;
-    private String dbUrl = "jdbc:oracle:thin:@//ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl";
-    private String dbUser = "z31";
-    private String dbPassword = "khffcc";
+    private final String dbUrl = "jdbc:oracle:thin:@//ora4.ii.pw.edu.pl:1521/pdb1.ii.pw.edu.pl";
+    private final String dbUser = "z31";
+    private final String dbPassword = "khffcc";
 
     public void close() {
         if (conn != null) {
@@ -39,6 +39,32 @@ public class DBContext implements AutoCloseable {
             }
         }
         return conn;
+    }
+
+    public ArrayList<Doctor> getDoctors(Connection conn) throws Exception{
+        Doctor doctor;
+        ArrayList<Doctor> doctors = new ArrayList<>();
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM doctors");
+            while (rs.next()) {
+                String pesel = rs.getString(1);
+                String name = rs.getString(2);
+                String surname = rs.getString(3);
+                LocalDate dateOfBirth = LocalDate.parse(rs.getString(4).substring(0, 10));
+                String specialization = rs.getString(5);
+                String login = rs.getString(6);
+                String password = rs.getString(7);
+
+                doctor = new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<Appointment>());
+
+                doctors.add(doctor);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return doctors;
     }
 
     public ArrayList<Patient> getPatients(Connection conn) throws Exception{
