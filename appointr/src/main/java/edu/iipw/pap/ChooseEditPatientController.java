@@ -1,10 +1,15 @@
 package edu.iipw.pap;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,14 +29,18 @@ public class ChooseEditPatientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Populate populate = new Populate();
-        for (Patient p: populate.patients) {
-            patientList.getItems().add(p.toString());
-        }
+
     }
 
-    public void deletePatient(ActionEvent event) throws IOException {
-        deletePatientFromData();
+    public void transferData(ObservableList<TableRow> data) {
+        for (TableRow tr: data) {
+            patientList.getItems().add(tr.getAppointment().getPatient().toString());
+        }
+        //patientList.setValue(populate.patients.get(0).toString());
+    }
+
+    public void choosePatient(ActionEvent event) throws IOException {
+        choosePatientFromData();
     }
 
     public void cancel(ActionEvent event) throws IOException {
@@ -39,9 +48,22 @@ public class ChooseEditPatientController implements Initializable {
         stage.close();
     }
 
-    private void deletePatientFromData() throws IOException{
-
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+    private void choosePatientFromData() throws IOException{
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("editPatientScreen.fxml"));
+            int sceneX = 300;
+            int sceneY = 320;
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
+            stage.setTitle("Edit patient");
+            stage.setScene(new Scene(root, sceneX, sceneY));
+            stage.setResizable(false);
+            stage.show();
+            Stage stage2 = (Stage) cancelButton.getScene().getWindow();
+            stage2.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }
