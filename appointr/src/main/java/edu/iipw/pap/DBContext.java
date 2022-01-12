@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 
@@ -63,6 +64,25 @@ public class DBContext implements AutoCloseable {
         return new Patient(pesel, name, surname, dateOfBirth, description);
     }
 
+    private Appointment createAppointment(ResultSet rs) throws Exception {
+        Statement stmt = conn.createStatement();
+
+        int appointment_id = rs.getInt(1);
+
+        String doctor_pesel = rs.getString(2);
+        ResultSet doctor_rs = stmt.executeQuery("SELECT * FROM doctors WHERE pesel = " + doctor_pesel);
+        Doctor doctor = createDoctor(doctor_rs);
+
+        String patient_pesel = rs.getString(3);
+        ResultSet patient_rs = stmt.executeQuery("SELECT * FROM patients WHERE pesel = " + doctor_pesel);
+        Patient patient = createPatient(patient_rs);
+
+        LocalDateTime time = LocalDateTime.parse(rs.getString(4));
+        String officeId = rs.getString(5);
+
+        return new Appointment(doctor, patient, time, officeId);
+    }
+
     public ArrayList<Doctor> getDoctors(Connection conn) throws Exception{
         ArrayList<Doctor> doctors = new ArrayList<>();
 
@@ -96,7 +116,17 @@ public class DBContext implements AutoCloseable {
     public ArrayList<Appointment> getAppointments(Connection conn) {
         Patient patient;
         Doctor doctor;
+        ArrayList<Appointment> appointments = new ArrayList<>();
 
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM appointments");
+            while (rs.next()) {
+                appointments.add(createAppointment(rs));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
