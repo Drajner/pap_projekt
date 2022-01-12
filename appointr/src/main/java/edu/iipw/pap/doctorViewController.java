@@ -149,7 +149,10 @@ public class doctorViewController implements Initializable{
     public void editAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("chooseEditAppointmentScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditAppointmentScreen.fxml"));
+            root = loader.load();
+            ChooseEditAppointmentController ceac = loader.getController();
+            ceac.transferData(data);
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();
@@ -166,7 +169,10 @@ public class doctorViewController implements Initializable{
     public void deleteAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("deleteAppointmentScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("deletePatientScreen.fxml"));
+            root = loader.load();
+            DeleteAppointmentController dac = loader.getController();
+            dac.transferData(data);
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();

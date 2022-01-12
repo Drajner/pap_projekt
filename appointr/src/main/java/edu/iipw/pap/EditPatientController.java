@@ -1,5 +1,6 @@
 package edu.iipw.pap;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,6 +30,15 @@ public class EditPatientController {
     private DatePicker dataField;
     @FXML
     private TextArea descriptionField;
+
+    public void transferPatient(Patient patient) {
+        peselField.setText(patient.getPesel());
+        nameField.setText(patient.getName());
+        surnameField.setText(patient.getSurname());
+        descriptionField.setText((patient.getDescription()));
+        dataField.setValue(patient.getDateOfBirth());
+        //patientList.setValue(populate.patients.get(0).toString());
+    }
 
     public void editPatient(ActionEvent event) throws IOException {
         editPatientFromData();
