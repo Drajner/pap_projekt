@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.application.Application;
-// import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
@@ -40,6 +39,7 @@ public class App extends Application {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
                 return null;
             }
@@ -64,6 +64,8 @@ public class App extends Application {
             stg.setResizable(true);
             stg.setHeight(480);
             stg.setWidth(640);
+            stg.setMinHeight(360);
+            stg.setMinWidth(380);
         }
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
         stg.getScene().setRoot(pane);
