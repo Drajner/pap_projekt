@@ -51,7 +51,7 @@ public class DBContext implements AutoCloseable {
         String login = rs.getString(6);
         String password = rs.getString(7);
 
-        return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<Appointment>());
+        return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>());
     }
 
     private Patient createPatient(ResultSet rs) throws Exception {
@@ -69,12 +69,12 @@ public class DBContext implements AutoCloseable {
 
         int appointment_id = rs.getInt(1);
 
-        String doctor_pesel = rs.getString(2);
-        ResultSet doctor_rs = stmt.executeQuery("SELECT * FROM doctors WHERE pesel = " + doctor_pesel);
+        String doctorPesel = rs.getString(2);
+        ResultSet doctor_rs = stmt.executeQuery("SELECT * FROM doctors WHERE pesel = " + doctorPesel);
         Doctor doctor = createDoctor(doctor_rs);
 
-        String patient_pesel = rs.getString(3);
-        ResultSet patient_rs = stmt.executeQuery("SELECT * FROM patients WHERE pesel = " + doctor_pesel);
+        String patientPesel = rs.getString(3);
+        ResultSet patient_rs = stmt.executeQuery("SELECT * FROM patients WHERE pesel = " + doctorPesel);
         Patient patient = createPatient(patient_rs);
 
         LocalDateTime time = LocalDateTime.parse(rs.getString(4));
@@ -86,36 +86,28 @@ public class DBContext implements AutoCloseable {
     public ArrayList<Doctor> getDoctors(Connection conn) throws Exception{
         ArrayList<Doctor> doctors = new ArrayList<>();
 
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM doctors");
-            while (rs.next()) {
-                doctors.add(createDoctor(rs));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM doctors");
+        while (rs.next()) {
+            doctors.add(createDoctor(rs));
         }
+
         return doctors;
     }
 
     public ArrayList<Patient> getPatients(Connection conn) throws Exception{
         ArrayList<Patient> patients = new ArrayList<>();
 
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM patients");
-            while (rs.next()) {
-                patients.add(createPatient(rs));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM patients");
+        while (rs.next()) {
+            patients.add(createPatient(rs));
         }
+
         return patients;
     }
 
     public ArrayList<Appointment> getAppointments(Connection conn) {
-        Patient patient;
-        Doctor doctor;
         ArrayList<Appointment> appointments = new ArrayList<>();
 
         try {
@@ -140,7 +132,10 @@ public class DBContext implements AutoCloseable {
         stmt.executeQuery("DELETE FROM patients WHERE pesel = " + pesel);
     }
 
-    public void deleteAppointment() {}
+    public void deleteAppointment(Connection conn, int appointmentId) throws Exception{
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery("DELETE FROM appointments WHERE appointment_id = " + appointmentId);
+    }
 
     public void addDoctor(Connection conn, Doctor doctor) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -156,30 +151,26 @@ public class DBContext implements AutoCloseable {
                 patient.getDescription()));
     }
 
-    public void addAppointment() {}
+    public void addAppointment(Connection conn, Appointment appointment) throws Exception{
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery(String.format("INSERT INTO appointments VALUES (NULL, %s, %s, %s, %s)",
+                appointment.getDoctor().getPesel(), appointment.getPatient().getPesel(),
+                appointment.getTimeOfAppointment(), appointment.getOfficeId()));
+    }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         DBContext context = new DBContext();
-        Connection conn = context.getConnection();
-        System.out.println("Connection opened: " + conn);
+        try {
+            Connection conn = context.getConnection();
+            System.out.println("Connection opened: " + conn);
 
-        context.getPatients(conn);
-//        try {
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT name FROM patients");
-//            while (rs.next()) {
-//                String patientName = new String();
-//                InputStreamReader in = new InputStreamReader(rs.getAsciiStream("name"));
-//                while(in.ready()){
-//                    patientName = patientName + (char)in.read();
-//                }
-//                System.out.println(patientName);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        context.close();
-        System.out.println("Connection closed");
+            ArrayList<Patient> patients = context.getPatients(conn);
+
+            context.close();
+            System.out.println("Connection closed");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
