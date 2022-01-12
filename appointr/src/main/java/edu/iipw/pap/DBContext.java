@@ -174,8 +174,14 @@ public class DBContext implements AutoCloseable {
                 patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(), patient.getDescription()))
     }
 
-    public static void editAppointment() {}
-
+    public static void editAppointment(Connection conn, Appointment appointment) throws Exception {
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery(String.format(
+                "UPDATE appointments" +
+                        "SET appointment_id = %d, doctor = %s, patient = %s, time = %s, office_id = %d",
+                appointment.getId(), appointment.getDoctor().getPesel(), appointment.getPatient().getPesel(),
+                appointment.getTimeOfAppointment(), appointment.getOfficeId()))
+    }
 
     public static void main(String[] args) {
         DBContext context = new DBContext();
