@@ -91,6 +91,28 @@ public class DBContext implements AutoCloseable {
         return patients;
     }
 
+    public ArrayList<Appointment> getAppointments() {
+        return null;
+    }
+
+    public void deleteDoctor(Connection conn, String pesel) throws Exception{
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery("DELETE FROM doctors WHERE pesel = " + pesel);
+    }
+
+    public void deletePatient(Connection conn, String pesel) throws Exception{
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery("DELETE FROM patients WHERE pesel = " + pesel);
+    }
+
+    public void deleteAppointment() {}
+
+    public void addDoctor() {}
+
+    public void addPatient() {}
+
+    public void addAppointment() {}
+
     public static void main(String[] args) throws Exception {
         DBContext context = new DBContext();
         Connection conn = context.getConnection();
