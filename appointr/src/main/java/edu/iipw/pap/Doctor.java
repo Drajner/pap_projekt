@@ -32,6 +32,7 @@ public class Doctor extends Person{
         this.login = login;
         this.password = password;
         this.appointments = appointments;
+
     }
 
     /**
