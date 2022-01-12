@@ -85,13 +85,14 @@ public class AddAppointmentController implements Initializable {
     }
 
     public Appointment createAppointment() {
+        int id = 404;
         Patient patient = getPatient();
         LocalDate date = getDate();
         LocalTime time = getTime();
         LocalDateTime dateTime = LocalDateTime.of(date, time);
         String address = getAddress();
 
-        return new Appointment(doctor, patient, dateTime, address);
+        return new Appointment(id, doctor, patient, dateTime, address);
     }
 
     public void addAppointment() {

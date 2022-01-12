@@ -133,7 +133,8 @@ public class App extends Application {
         System.out.print("Godzina wizyty (HH:MM:SS): "); datetime += "T" + sc.nextLine();
         appointmentDate = LocalDateTime.parse(datetime);
         System.out.print("Adres: "); address = sc.nextLine();
-        Appointment a = new Appointment(doctor, patient, appointmentDate, address);
+        int id = 500;
+        Appointment a = new Appointment(id, doctor, patient, appointmentDate, address);
         appointments.add(a);
     }
 

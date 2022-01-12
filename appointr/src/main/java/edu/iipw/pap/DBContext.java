@@ -80,7 +80,7 @@ public class DBContext implements AutoCloseable {
         LocalDateTime time = LocalDateTime.parse(rs.getString(4));
         String officeId = rs.getString(5);
 
-        return new Appointment(doctor, patient, time, officeId);
+        return new Appointment(appointment_id, doctor, patient, time, officeId);
     }
 
     public ArrayList<Doctor> getDoctors(Connection conn) throws Exception{
