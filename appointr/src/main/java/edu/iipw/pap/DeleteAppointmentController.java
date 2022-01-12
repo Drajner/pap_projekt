@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DeleteAppointmentController implements Initializable {
@@ -23,14 +24,16 @@ public class DeleteAppointmentController implements Initializable {
     @FXML
     private Button cancelButton;
 
+    private ArrayList<Appointment> appointments = new ArrayList<>();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     public void transferData(ObservableList<TableRow> data) {
         for (TableRow tr: data) {
             appointmentList.getItems().add(tr.getAppointment().toString());
+            appointments.add(tr.getAppointment());
         }
     }
 
@@ -39,7 +42,16 @@ public class DeleteAppointmentController implements Initializable {
     }
 
     public void deleteAppointment(ActionEvent event) throws IOException {
-        deleteAppointmentFromData();
+        Appointment appointment = deleteAppointmentFromData();
+
+//        try {
+//            DBContext.deleteAppointment(conn, appointment.appointmentId);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     public void cancel(ActionEvent event) throws IOException {
@@ -47,11 +59,18 @@ public class DeleteAppointmentController implements Initializable {
         stage.close();
     }
 
-    private void deleteAppointmentFromData() throws IOException{
+    private Appointment deleteAppointmentFromData() throws IOException{
 
-        String appointment = getAppointment();
-        // usuniecie z bazy danych wizyty
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        String s_appointment = getAppointment();
+        Appointment appointment = null;
+
+        for (Appointment a: appointments) {
+            if (a.toString().equals(s_appointment)) {
+                appointment = a;
+                break;
+            }
+        }
+
+        return appointment;
     }
 }
