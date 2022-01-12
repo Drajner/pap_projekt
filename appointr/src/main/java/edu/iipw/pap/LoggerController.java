@@ -37,11 +37,16 @@ public class LoggerController {
         String login = loginField.getText();
         String password = passwordField.getText();
 
+        boolean isLogin = false;
         for (Doctor d: doctors) {
-            if (login.equals(d.getLogin()) && password.equals(d.getPassword()))
+            if (login.equals(d.getLogin()) && password.equals(d.getPassword())) {
+                isLogin = true;
                 a.changeScene("doctorView.fxml");
+            }
         }
-        System.out.println("Wrong login or password");
+        if (!isLogin) {
+            System.out.println("Wrong login or password");
+        }
     }
 
 }
