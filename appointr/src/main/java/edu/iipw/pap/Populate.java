@@ -42,16 +42,16 @@ public class Populate {
         Doctor doctor9 = new Doctor("19", "Andżelika", "Nowakowska", LocalDate.parse("1970-04-09"), "Neurologist", "V\\\\YD^3g8vh5tG'm", "c+}W}8k)Y/^U8q4]", new ArrayList<Appointment>());  // 70040923184
         Doctor doctor10 = new Doctor("20", "Oliwia", "Wojciechowska", LocalDate.parse("1958-05-01"), "Oncologist", "_S]+ygM2.]M=2k3]", "z?;3Lvs@Sxx{LK!)", new ArrayList<Appointment>());  // 58050153827
 
-        Appointment appointment1 = new Appointment(0, doctor3, patient1, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 221B");
-        Appointment appointment2 = new Appointment(1, doctor2, patient2, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 222A");
-        Appointment appointment3 = new Appointment(2, doctor4, patient3, LocalDateTime.parse("2021-11-04T09:15:00"), "Baker Street 221A");
-        Appointment appointment4 = new Appointment(3, doctor1, patient4, LocalDateTime.parse("2021-07-07T08:15:00"), "Baker Street 221C");
-        Appointment appointment5 = new Appointment(4, doctor5, patient5, LocalDateTime.parse("2022-01-07T12:15:00"), "Baker Street 222B");
-        Appointment appointment6 = new Appointment(5, doctor6, patient6, LocalDateTime.parse("2022-01-14T14:15:00"), "Baker Street 222B");
-        Appointment appointment7 = new Appointment(6, doctor10, patient7, LocalDateTime.parse("2022-01-17T11:45:00"), "Baker Street 221A");
-        Appointment appointment8 = new Appointment(7, doctor7, patient8, LocalDateTime.parse("2022-01-21T12:00:00"), "Baker Street 221B");
-        Appointment appointment9 = new Appointment(8, doctor8, patient9, LocalDateTime.parse("2022-01-27T17:15:00"), "Baker Street 222A");
-        Appointment appointment10 = new Appointment(9, doctor9, patient10, LocalDateTime.parse("2022-01-30T16:00:00"), "Baker Street 221C");
+        Appointment appointment1 = new Appointment(600, doctor3, patient1, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 221B");
+        Appointment appointment2 = new Appointment(601, doctor2, patient2, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 222A");
+        Appointment appointment3 = new Appointment(602, doctor4, patient3, LocalDateTime.parse("2021-11-04T09:15:00"), "Baker Street 221A");
+        Appointment appointment4 = new Appointment(603, doctor1, patient4, LocalDateTime.parse("2021-07-07T08:15:00"), "Baker Street 221C");
+        Appointment appointment5 = new Appointment(604, doctor5, patient5, LocalDateTime.parse("2022-01-07T12:15:00"), "Baker Street 222B");
+        Appointment appointment6 = new Appointment(605, doctor6, patient6, LocalDateTime.parse("2022-01-14T14:15:00"), "Baker Street 222B");
+        Appointment appointment7 = new Appointment(606, doctor10, patient7, LocalDateTime.parse("2022-01-17T11:45:00"), "Baker Street 221A");
+        Appointment appointment8 = new Appointment(607, doctor7, patient8, LocalDateTime.parse("2022-01-21T12:00:00"), "Baker Street 221B");
+        Appointment appointment9 = new Appointment(608, doctor8, patient9, LocalDateTime.parse("2022-01-27T17:15:00"), "Baker Street 222A");
+        Appointment appointment10 = new Appointment(609, doctor9, patient10, LocalDateTime.parse("2022-01-30T16:00:00"), "Baker Street 221C");
 
         patients = new ArrayList<>();
         // final ObservableList<Person> patients = FXCollections.observableArrayList(
