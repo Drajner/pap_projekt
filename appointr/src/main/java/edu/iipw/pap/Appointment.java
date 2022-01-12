@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 /** A class representing an appointment. */
 public class Appointment {
+    /** The appointment's id. */
+    private int id;
     /** The appointment's doctor. */
     private Doctor doctor;
     /** The appointment's patient. */
@@ -15,16 +17,26 @@ public class Appointment {
 
     /**
      * Constructor for the Appointment class.
+     * @param id The appointment's id.
      * @param doctor The appointment's doctor.
      * @param patient The appointment's patient.
      * @param timeOfAppointment The appointment's date and time.
      * @param officeId The appointment's office_id.
      */
-    public Appointment(Doctor doctor, Patient patient, LocalDateTime timeOfAppointment, String officeId) {
+    public Appointment(int id, Doctor doctor, Patient patient, LocalDateTime timeOfAppointment, String officeId) {
+        this.id = id;
         this.doctor = doctor;
         this.patient = patient;
         this.timeOfAppointment = timeOfAppointment;
         this.officeId = officeId;
+    }
+
+    /**
+     * Returns the appointment's id.
+     * @return The appointment's id.
+     */
+    public int getId() {
+        return id;
     }
 
     /**
@@ -57,6 +69,14 @@ public class Appointment {
      */
     public String getOfficeId() {
         return officeId;
+    }
+
+    /**
+     * Sets the appointment's id.
+     * @param id The appointment's id.
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -97,7 +117,7 @@ public class Appointment {
      */
     @Override
     public String toString() {
-        return "[Doctor: " + doctor + "][Patient: " + patient +
+        return id + " [Doctor: " + doctor + "][Patient: " + patient +
                 "][When: " + timeOfAppointment + "][Where: " + officeId + ']';
     }
 
