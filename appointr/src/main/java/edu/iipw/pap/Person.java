@@ -14,6 +14,7 @@ public abstract class Person {
     /** The person's pesel. */
     private String pesel;
 
+
     /**
      * Constructor for the Person class.
      * @param pesel the person's pesel.

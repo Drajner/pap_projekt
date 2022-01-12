@@ -10,21 +10,21 @@ public class Appointment {
     private Patient patient;
     /** The appointment's date and time. */
     private LocalDateTime timeOfAppointment;
-    /** The appointment's address. */
-    private String address;
+    /** The appointment's office_id. */
+    private String officeId;
 
     /**
      * Constructor for the Appointment class.
      * @param doctor The appointment's doctor.
      * @param patient The appointment's patient.
      * @param timeOfAppointment The appointment's date and time.
-     * @param address The appointment's address.
+     * @param officeId The appointment's office_id.
      */
-    public Appointment(Doctor doctor, Patient patient, LocalDateTime timeOfAppointment, String address) {
+    public Appointment(Doctor doctor, Patient patient, LocalDateTime timeOfAppointment, String officeId) {
         this.doctor = doctor;
         this.patient = patient;
         this.timeOfAppointment = timeOfAppointment;
-        this.address = address;
+        this.officeId = officeId;
     }
 
     /**
@@ -52,11 +52,11 @@ public class Appointment {
     }
 
     /**
-     * Returns the appointment's address.
-     * @return The appointment's address.
+     * Returns the appointment's officeId.
+     * @return The appointment's officeId.
      */
-    public String getAddress() {
-        return address;
+    public String getOfficeId() {
+        return officeId;
     }
 
     /**
@@ -84,11 +84,11 @@ public class Appointment {
     }
 
     /**
-     * Sets the appointment's address.
-     * @param address The appointment's address.
+     * Sets the appointment's officeId.
+     * @param officeId The appointment's address.
      */
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String officeId) {
+        this.officeId = officeId;
     }
 
     /**
@@ -98,7 +98,7 @@ public class Appointment {
     @Override
     public String toString() {
         return "[Doctor: " + doctor + "][Patient: " + patient +
-                "][When: " + timeOfAppointment + "][Where: " + address + ']';
+                "][When: " + timeOfAppointment + "][Where: " + officeId + ']';
     }
 
 }

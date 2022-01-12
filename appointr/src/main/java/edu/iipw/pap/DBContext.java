@@ -91,6 +91,38 @@ public class DBContext implements AutoCloseable {
         return patients;
     }
 
+    public ArrayList<Appointment> getAppointments() {
+        return null;
+    }
+
+    public void deleteDoctor(Connection conn, String pesel) throws Exception{
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery("DELETE FROM doctors WHERE pesel = " + pesel);
+    }
+
+    public void deletePatient(Connection conn, String pesel) throws Exception{
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery("DELETE FROM patients WHERE pesel = " + pesel);
+    }
+
+    public void deleteAppointment() {}
+
+    public void addDoctor(Connection conn, Doctor doctor) throws SQLException {
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery(String.format("INSERT INTO doctors VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                doctor.getPesel(), doctor.getName(), doctor.getSurname(), doctor.getDateOfBirth(),
+                doctor.getSpecialization(), doctor.getLogin(), doctor.getPassword()));
+    }
+
+    public void addPatient(Connection conn, Patient patient) throws SQLException {
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery(String.format("INSERT INTO patients VALUES (%s, %s, %s, %s, %s)",
+                patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(),
+                patient.getDescription()));
+    }
+
+    public void addAppointment() {}
+
     public static void main(String[] args) throws Exception {
         DBContext context = new DBContext();
         Connection conn = context.getConnection();
