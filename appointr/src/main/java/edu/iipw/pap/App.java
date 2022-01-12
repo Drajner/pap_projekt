@@ -137,29 +137,31 @@ public class App extends Application {
 
     public static void addDoctor(ArrayList<Doctor> doctors) {
         Scanner sc = new Scanner(System.in);
-        String name, surname, specialization, login, password;
+        String pesel, name, surname, specialization, login, password;
         LocalDate birthDate;
 
+        System.out.print("PESEL: "); pesel = sc.nextLine();
         System.out.print("Imię: "); name = sc.nextLine();
         System.out.print("Nazwisko: "); surname = sc.nextLine();
         System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
         System.out.print("Specjalizacja: "); specialization = sc.nextLine();
         System.out.print("Login: "); login = sc.nextLine();
         System.out.print("Hasło: "); password = sc.nextLine();
-        Doctor d = new Doctor(name, surname, birthDate, specialization, login, password, new ArrayList<Appointment>());
+        Doctor d = new Doctor(pesel, name, surname, birthDate, specialization, login, password, new ArrayList<Appointment>());
         doctors.add(d);
     }
 
     public static void addPatient(ArrayList<Patient> patients) {
         Scanner sc = new Scanner(System.in);
-        String name, surname, description;
+        String pesel, name, surname, description;
         LocalDate birthDate;
 
+        System.out.print("Pesel: "); pesel = sc.nextLine();
         System.out.print("Imię: "); name = sc.nextLine();
         System.out.print("Nazwisko: "); surname = sc.nextLine();
         System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
         System.out.print("Opis dolegliwości: "); description = sc.nextLine();
-        Patient p = new Patient(name, surname, birthDate, description);
+        Patient p = new Patient(pesel, name, surname, birthDate, description);
         patients.add(p);
     }
 

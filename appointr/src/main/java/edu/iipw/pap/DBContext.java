@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class DBContext implements AutoCloseable {
@@ -38,24 +40,51 @@ public class DBContext implements AutoCloseable {
         return conn;
     }
 
-    public static void main(String[] args) {
-        DBContext context = new DBContext();
-        Connection conn = context.getConnection();
-        System.out.println("Connection opened: " + conn);
+    public String getPatients(Connection conn) throws Exception{
+        Patient patient;
+        ArrayList<Patient> patients = new ArrayList<>();
+
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT name FROM patients");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM patients");
             while (rs.next()) {
-                String patientName = new String();
-                InputStreamReader in = new InputStreamReader(rs.getAsciiStream("name"));
-                while(in.ready()){
-                    patientName = patientName + (char)in.read();
-                }
-                System.out.println(patientName);
+                String pesel = rs.getString(1);
+                String name = rs.getString(2);
+                String surname = rs.getString(3);
+                LocalDate dateOfBirth = LocalDate.parse(rs.getString(4));
+                String description = rs.getString(5);
+
+                patient = new Patient(pesel, name, surname, dateOfBirth, description);
+
+                patients.add(patient);
+                System.out.println(patients.get(0).toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public static void main(String[] args) throws Exception {
+        DBContext context = new DBContext();
+        Connection conn = context.getConnection();
+        System.out.println("Connection opened: " + conn);
+
+        context.getPatients(conn);
+//        try {
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT name FROM patients");
+//            while (rs.next()) {
+//                String patientName = new String();
+//                InputStreamReader in = new InputStreamReader(rs.getAsciiStream("name"));
+//                while(in.ready()){
+//                    patientName = patientName + (char)in.read();
+//                }
+//                System.out.println(patientName);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         context.close();
         System.out.println("Connection closed");
     }

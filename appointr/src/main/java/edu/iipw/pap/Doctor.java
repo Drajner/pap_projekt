@@ -17,6 +17,7 @@ public class Doctor extends Person{
 
     /**
      * Constructor for the Doctor class.
+     * @param pesel The doctor's pesel.
      * @param name The doctor's name.
      * @param surname The doctor's surname.
      * @param dateOfBirth The doctor's date of birth.
@@ -25,9 +26,9 @@ public class Doctor extends Person{
      * @param password The doctor's account's password.
      * @param appointments The doctor's appointments.
      */
-    public Doctor(String name, String surname, LocalDate dateOfBirth, String specialization,
+    public Doctor(String pesel, String name, String surname, LocalDate dateOfBirth, String specialization,
                   String login, String password, ArrayList<Appointment> appointments) {
-        super(name, surname, dateOfBirth);
+        super(pesel, name, surname, dateOfBirth);
         this.specialization = specialization;
         this.login = login;
         this.password = password;

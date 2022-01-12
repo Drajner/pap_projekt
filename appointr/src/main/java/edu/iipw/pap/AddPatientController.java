@@ -20,6 +20,8 @@ public class AddPatientController {
     @FXML
     private Button cancelButton;
     @FXML
+    private TextField peselField;
+    @FXML
     private TextField nameField;
     @FXML
     private TextField surnameField;
@@ -39,7 +41,7 @@ public class AddPatientController {
 
     private void createPatientFromData() throws IOException{
 
-        new Patient(nameField.getText(), surnameField.getText(), dataField.getValue(), descriptionField.getText());
+        new Patient(peselField.getText(), nameField.getText(), surnameField.getText(), dataField.getValue(), descriptionField.getText());
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
