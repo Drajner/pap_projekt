@@ -114,7 +114,12 @@ public class DBContext implements AutoCloseable {
                 doctor.getSpecialization(), doctor.getLogin(), doctor.getPassword()));
     }
 
-    public void addPatient() {}
+    public void addPatient(Connection conn, Patient patient) throws SQLException {
+        Statement stmt = conn.createStatement();
+        stmt.executeQuery(String.format("INSERT INTO patients VALUES (%s, %s, %s, %s, %s)",
+                patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(),
+                patient.getDescription()));
+    }
 
     public void addAppointment() {}
 
