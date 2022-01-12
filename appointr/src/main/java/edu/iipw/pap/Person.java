@@ -13,6 +13,8 @@ public abstract class Person {
     private LocalDate dateOfBirth;
     /** The person's pesel. */
     private String pesel;
+    /** The person's gender. */
+    private String gender;
 
     /**
      * Constructor for the Person class.
@@ -20,12 +22,14 @@ public abstract class Person {
      * @param name the person's first name.
      * @param surname the person's surname.
      * @param dateOfBirth the person's date of birth.
+     * @param gender the person's gender
      */
-    public Person(String pesel, String name, String surname, LocalDate dateOfBirth) {
+    public Person(String pesel, String name, String surname, LocalDate dateOfBirth, String gender) {
         this.pesel = pesel;
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
     }
 
     /**
@@ -61,6 +65,14 @@ public abstract class Person {
     }
 
     /**
+     * Sets the person's gender.
+     * @param gender The person's gender.
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
      * Returns the person's pesel.
      * @return the person's pesel.
      */
@@ -90,6 +102,14 @@ public abstract class Person {
      */
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    /**
+     * Returns the person's gender.
+     * @return the person's gender.
+     */
+    public String getGender() {
+        return gender;
     }
 
     /**
