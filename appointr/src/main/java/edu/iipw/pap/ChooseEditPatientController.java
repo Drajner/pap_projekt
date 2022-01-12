@@ -27,12 +27,15 @@ public class ChooseEditPatientController implements Initializable {
     @FXML
     private Button cancelButton;
 
+    private ObservableList<TableRow> tempData;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
     public void transferData(ObservableList<TableRow> data) {
+        tempData = data;
         for (TableRow tr: data) {
             patientList.getItems().add(tr.getAppointment().getPatient().toString());
         }
@@ -50,8 +53,21 @@ public class ChooseEditPatientController implements Initializable {
 
     private void choosePatientFromData() throws IOException{
         Parent root;
+        String[] splitPatient = patientList.getValue().split(" ");
+        String editedPatientPesel = splitPatient[0];
+        Patient editedPatient = tempData.get(0).getAppointment().getPatient();
+        for (TableRow tr: tempData) {
+            if(tr.getAppointment().getPatient().getPesel() == editedPatientPesel)
+            {
+                editedPatient = tr.getAppointment().getPatient();
+                break;
+            }
+        }
         try {
-            root = FXMLLoader.load(getClass().getResource("editPatientScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("editPatientScreen.fxml"));
+            root = loader.load();
+            EditPatientController epc = loader.getController();
+            epc.transferPatient(editedPatient);
             int sceneX = 300;
             int sceneY = 320;
             Stage stage = new Stage();

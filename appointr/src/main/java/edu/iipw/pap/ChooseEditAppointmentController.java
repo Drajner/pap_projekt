@@ -1,5 +1,6 @@
 package edu.iipw.pap;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,13 +27,18 @@ public class ChooseEditAppointmentController implements Initializable {
     @FXML
     private Button cancelButton;
 
+    private ObservableList<TableRow> tempData;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Populate populate = new Populate();
-        for (Appointment p: populate.appointments) {
-            appointmentList.getItems().add(p.toString());
+
+    }
+
+    public void transferData(ObservableList<TableRow> data) {
+        tempData = data;
+        for (TableRow tr: data) {
+            appointmentList.getItems().add(tr.getAppointment().toString());
         }
-        appointmentList.setValue(populate.appointments.get(0).toString());
     }
 
     public void chooseAppointment(ActionEvent event) throws IOException {

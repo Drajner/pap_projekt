@@ -1,5 +1,6 @@
 package edu.iipw.pap;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,11 +25,15 @@ public class DeleteAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Populate populate = new Populate();
-        for (Appointment a: populate.appointments) {
-            appointmentList.getItems().add(a.toString());
+
+    }
+
+    public void transferData(ObservableList<TableRow> data) {
+        for (TableRow tr: data) {
+            appointmentList.getItems().add(tr.getAppointment().toString());
         }
     }
+
     public String getAppointment() {
         return appointmentList.getValue();
     }
