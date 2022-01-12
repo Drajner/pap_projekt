@@ -1,6 +1,7 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,11 +26,18 @@ public class LoggerController {
 
     private void checkLogin() throws IOException {
         App a = new App();
-        if (loginField.getText().toString().equals("admin") && passwordField.getText().toString().equals("admin")) {
-            a.changeScene("doctorView.fxml");
-        } else {
-            System.out.println("Wrong login or password");
+
+        Populate populate = new Populate();
+        ArrayList<Doctor> doctors = populate.doctors;
+
+        String login = loginField.getText();
+        String password = passwordField.getText();
+
+        for (Doctor d: doctors) {
+            if (login.equals(d.getLogin()) && password.equals(d.getPassword()))
+                a.changeScene("doctorView.fxml");
         }
+        System.out.println("Wrong login or password");
     }
 
 }
