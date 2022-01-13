@@ -1,12 +1,15 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -15,7 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
-public class LoggerController {
+public class LoggerController implements Initializable {
 
     public LoggerController() { }
 
@@ -26,20 +29,28 @@ public class LoggerController {
     @FXML
     private PasswordField passwordField;
 
+    private ArrayList<Doctor> doctors;
+    private Connection conn = null;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        App a = new App();
+
+        DBContext dbContext = new DBContext();
+        conn = dbContext.getConnection();
+
+        try {
+            doctors = dbContext.getDoctors(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void userLogIn(ActionEvent event) throws IOException {
         checkLogin();
     }
 
     private void checkLogin() throws IOException {
-        App a = new App();
-        Parent root;
-
-        DBContext dbContext = new DBContext();
-        Connection conn = dbContext.getConnection();
-
-        Populate populate = new Populate();
-        ArrayList<Doctor> doctors = populate.doctors;
-
         String login = loginField.getText();
         String password = passwordField.getText();
 
@@ -48,7 +59,7 @@ public class LoggerController {
             if (login.equals(d.getLogin()) && password.equals(d.getPassword())) {
                 isLogin = true;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorView.fxml"));
-                root = loader.load();
+                Parent root = loader.load();
                 doctorViewController dvc = loader.getController();
                 dvc.usedDoctorAndConn(d, conn);
                 Stage stage2 = new Stage();
@@ -72,5 +83,4 @@ public class LoggerController {
             System.out.println("Wrong login or password");
         }
     }
-
 }

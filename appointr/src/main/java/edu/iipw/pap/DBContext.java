@@ -43,19 +43,22 @@ public class DBContext implements AutoCloseable {
         return conn;
     }
 
-    private Doctor createDoctor(ResultSet rs) throws Exception {
+    private Doctor createDoctor(ResultSet rs, Connection conn) throws Exception {
+        Statement stmt = conn.createStatement();
+        String login = null;
+        String password = null;
+
         String pesel = rs.getString(1);
         String name = rs.getString(2);
         String surname = rs.getString(3);
         LocalDate dateOfBirth = LocalDate.parse(rs.getString(4).substring(0, 10));
         String specialization = rs.getString(5);
 
-        // trzeba dodac login i password do bazy danych
-
-        String login = null;
-        String password = null;
-//        String login = rs.getString(6);
-//        String password = rs.getString(7);
+        ResultSet account_rs = stmt.executeQuery("SELECT * FROM accounts WHERE doctor_id = " + pesel);
+        if (account_rs.next()) {
+            login = account_rs.getString(2);
+            password = account_rs.getString(3);
+        }
 
         return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>());
     }
@@ -80,7 +83,7 @@ public class DBContext implements AutoCloseable {
         String doctorPesel = rs.getString(2);
         ResultSet doctor_rs = stmt.executeQuery("SELECT * FROM doctors WHERE pesel = " + doctorPesel);
         if (doctor_rs.next())
-            doctor = createDoctor(doctor_rs);
+            doctor = createDoctor(doctor_rs, conn);
 
         String patientPesel = rs.getString(3);
         ResultSet patient_rs = stmt.executeQuery("SELECT * FROM patients WHERE pesel = " + doctorPesel);
@@ -101,7 +104,7 @@ public class DBContext implements AutoCloseable {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM doctors");
         while (rs.next()) {
-            doctors.add(createDoctor(rs));
+            doctors.add(createDoctor(rs, conn));
         }
 
         return doctors;

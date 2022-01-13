@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 import javafx.application.Application;
@@ -27,7 +28,7 @@ public class App extends Application {
         int sceneX = 350;
         int sceneY = 300;
         Scene scene = new Scene(fxmlLoader.load(), sceneX, sceneY);
-        stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
+        stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResource("appointr_logo.png")).toString()));
         stage.setTitle("Appointr");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -50,7 +51,7 @@ public class App extends Application {
             public void handle(WorkerStateEvent event) {
                 try {
                     // changeScene("LoggingScreen.fxml");
-                    Parent pane = FXMLLoader.load(getClass().getResource("LoggingScreen.fxml"));
+                    Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoggingScreen.fxml")));
                     stg.getScene().setRoot(pane);
                 } catch (IOException e) {
                     e.printStackTrace();
