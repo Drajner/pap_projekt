@@ -20,12 +20,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class doctorViewController implements Initializable{
 
     public doctorViewController() { }
 
+    @FXML
+    private TextFlow sideText;
     @FXML
     private Button addPatientButton;
     @FXML
@@ -39,17 +42,29 @@ public class doctorViewController implements Initializable{
     @FXML
     private Button deleteAppointmentButton;
     @FXML
-    private TableView<TableRow> appointmentTable;
+    private TableView<AppointmentTableRow> appointmentTable;
     @FXML
-    private TableColumn<TableRow, Integer> numberColumn;
+    private TableColumn<AppointmentTableRow, Integer> numberColumn;
     @FXML
-    private TableColumn<TableRow, LocalDate> dateColumn;
+    private TableColumn<AppointmentTableRow, LocalDate> dateColumn;
     @FXML
-    private TableColumn<TableRow, String> nameColumn;
+    private TableColumn<AppointmentTableRow, String> appointmentNameColumn;
     @FXML
-    private TableColumn<TableRow, String> addressColumn;
+    private TableColumn<AppointmentTableRow, String> addressColumn;
+    @FXML
+    private TableView<PatientTableRow> patientTable;
+    @FXML
+    private TableColumn<PatientTableRow, String> peselColumn;
+    @FXML
+    private TableColumn<PatientTableRow, String> patientNameColumn;
+    @FXML
+    private TableColumn<PatientTableRow, String> sexColumn;
+    @FXML
+    private TableColumn<PatientTableRow, LocalDate> birthDateColumn;
+    @FXML
+    private TableColumn<PatientTableRow, String> descriptionColumn;
 
-    private ObservableList<TableRow> data;
+    private ObservableList<AppointmentTableRow> data;
 
     private Doctor usedDoctor;
 
@@ -57,21 +72,40 @@ public class doctorViewController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        numberColumn.setCellValueFactory(new PropertyValueFactory<TableRow, Integer>("index"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<TableRow, LocalDate>("date"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<TableRow, String>("name"));
-        addressColumn.setCellValueFactory(new PropertyValueFactory<TableRow, String>("address"));
+        /* Appointments table */
+        numberColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, Integer>("index"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, LocalDate>("date"));
+        appointmentNameColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("name"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("address"));
 
         Populate populate = new Populate();
         ArrayList<Appointment> appointments = populate.appointments;
-        ArrayList<TableRow> rows = new ArrayList<TableRow>();
+        ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
         for (int i = 0; i < appointments.size(); i++) {
-            rows.add(new TableRow(appointments.get(i), i + 1));
+            rows.add(new AppointmentTableRow(appointments.get(i), i + 1));
         }
 
         data = FXCollections.observableArrayList(rows);
 
         appointmentTable.setItems(data);
+
+        /* Patients table */
+
+        peselColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("pesel"));
+        patientNameColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("name"));
+        sexColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
+        birthDateColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, LocalDate>("birthDate"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("description"));
+
+        ArrayList<Patient> patients = populate.patients;
+        ArrayList<PatientTableRow> patientRows = new ArrayList<PatientTableRow>();
+        for (int i = 0; i < patients.size(); i++) {
+            patientRows.add(new PatientTableRow(patients.get(i)));
+        }
+
+        ObservableList<PatientTableRow> patientsData = FXCollections.observableArrayList(patientRows);
+
+        patientTable.setItems(patientsData);
     }
 
     public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn){
@@ -79,6 +113,7 @@ public class doctorViewController implements Initializable{
         conn = usedConn;
     }
 
+    @FXML
     public void addPatient(ActionEvent event) throws IOException {
         Parent root;
         try {
@@ -99,6 +134,7 @@ public class doctorViewController implements Initializable{
         }
     }
 
+    @FXML
     public void editPatient(ActionEvent event) throws IOException {
         Parent root;
         try {
@@ -119,6 +155,7 @@ public class doctorViewController implements Initializable{
         }
     }
 
+    @FXML
     public void deletePatient(ActionEvent event) throws IOException {
         Parent root;
         try {
@@ -142,6 +179,7 @@ public class doctorViewController implements Initializable{
         }
     }
 
+    @FXML
     public void addAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
@@ -162,6 +200,7 @@ public class doctorViewController implements Initializable{
         }
     }
 
+    @FXML
     public void editAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
@@ -182,6 +221,7 @@ public class doctorViewController implements Initializable{
         }
     }
 
+    @FXML
     public void deleteAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {

@@ -28,7 +28,7 @@ public class ChooseEditPatientController implements Initializable {
     @FXML
     private Button cancelButton;
 
-    private ObservableList<TableRow> tempData;
+    private ObservableList<AppointmentTableRow> tempData;
 
     private Doctor loggedDoctor;
 
@@ -39,11 +39,11 @@ public class ChooseEditPatientController implements Initializable {
 
     }
 
-    public void transferData(ObservableList<TableRow> data, Doctor doctor, Connection usedConn) {
+    public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
         conn = usedConn;
         loggedDoctor = doctor;
         tempData = data;
-        for (TableRow tr: data) {
+        for (AppointmentTableRow tr: data) {
             patientList.getItems().add(tr.getAppointment().getPatient().toString());
         }
         patientList.setValue(data.get(0).getAppointment().getPatient().toString());
@@ -63,7 +63,7 @@ public class ChooseEditPatientController implements Initializable {
         String[] splitPatient = patientList.getValue().split(" ");
         String editedPatientPesel = splitPatient[0];
         Patient editedPatient = tempData.get(0).getAppointment().getPatient();
-        for (TableRow tr: tempData) {
+        for (AppointmentTableRow tr: tempData) {
             if(tr.getAppointment().getPatient().getPesel() == editedPatientPesel)
             {
                 editedPatient = tr.getAppointment().getPatient();
