@@ -12,7 +12,7 @@ public class PatientTableRow {
     public PatientTableRow(Patient patient) {
         this.pesel = patient.getPesel();
         this.name = patient.getName() + " " + patient.getSurname();
-        this.gender = "?";
+        this.gender = patient.getGender().toString();
         this.birthDate = patient.getDateOfBirth();
         this.description = patient.getDescription();
     }

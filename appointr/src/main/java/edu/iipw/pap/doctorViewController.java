@@ -85,6 +85,7 @@ public class doctorViewController implements Initializable{
         sexColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, LocalDate>("birthDate"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("description"));
+        sexColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
     }
 
     public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn){

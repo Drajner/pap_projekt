@@ -155,7 +155,7 @@ public class DBContext implements AutoCloseable {
     }
 
     public void addDoctor(Connection conn, Doctor doctor) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO doctors VALUES (?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO doctors VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         stmt.setString(1, doctor.getPesel());
         stmt.setString(2, doctor.getName());
         stmt.setString(3, doctor.getSurname());
@@ -163,16 +163,18 @@ public class DBContext implements AutoCloseable {
         stmt.setString(5, doctor.getSpecialization());
         stmt.setString(6, doctor.getLogin());
         stmt.setString(7, doctor.getPassword());
+        stmt.setString(8, doctor.getGender().toString());
         stmt.executeQuery();
     }
 
     public static void addPatient(Connection conn, Patient patient) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO patients VALUES (?, ?, ?, ?, ?)");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO patients VALUES (?, ?, ?, ?, ?, ?)");
         stmt.setString(1, patient.getPesel());
         stmt.setString(2, patient.getName());
         stmt.setString(3, patient.getSurname());
         stmt.setDate(4, Date.valueOf(patient.getDateOfBirth()));
         stmt.setString(5, patient.getDescription());
+        stmt.setString(6, patient.getGender().toString());
         stmt.executeQuery();
     }
 
