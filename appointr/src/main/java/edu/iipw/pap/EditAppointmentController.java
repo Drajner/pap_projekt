@@ -66,7 +66,7 @@ public class EditAppointmentController implements Initializable {
 
         patientList.setValue(appointment.getPatient().toString());
         dateList.setValue(appointment.getTimeOfAppointment().toLocalDate());
-        officeId.setText(appointment.getOfficeId());
+        officeId.setText(String.valueOf(appointment.getOfficeId()));
         ArrayList<String> hours_array = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
             for (int j = 0; j < 60; j+=5) {

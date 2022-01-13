@@ -107,7 +107,7 @@ public class Appointment {
      * Sets the appointment's officeId.
      * @param officeId The appointment's address.
      */
-    public void setAddress(int officeId) {
+    public void setOfficeId(int officeId) {
         this.officeId = officeId;
     }
 

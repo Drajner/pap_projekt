@@ -244,7 +244,7 @@ public class App extends Application {
                     break;
                 case "address":
                     System.out.print("Wprowadź nowy gabinet: ");
-                    appointment.setAddress(sc.nextInt());
+                    appointment.setOfficeId(sc.nextInt());
                     break;
                 case "quit":
                     fin = true;
