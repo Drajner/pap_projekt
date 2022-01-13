@@ -185,7 +185,7 @@ public class doctorViewController implements Initializable{
     public void deleteAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("deletePatientScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("deleteAppointmentScreen.fxml"));
             root = loader.load();
             DeleteAppointmentController dac = loader.getController();
             dac.transferData(data, usedDoctor, conn);

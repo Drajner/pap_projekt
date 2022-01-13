@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 public class LoggerController {
 
@@ -48,7 +50,15 @@ public class LoggerController {
                 root = loader.load();
                 doctorViewController dvc = loader.getController();
                 dvc.usedDoctorAndConn(d, conn);
-                a.changeScene("doctorView.fxml");
+                Stage stage2 = new Stage();
+                int sceneX = 300;
+                int sceneY = 320;
+                stage2.setScene(new Scene(root, sceneX, sceneY));
+                stage2.setResizable(false);
+                stage2.show();
+                //a.changeScene("doctorView.fxml");
+                Stage stage = (Stage) logInButton.getScene().getWindow();
+                stage.close();
             }
         }
         if (!isLogin) {

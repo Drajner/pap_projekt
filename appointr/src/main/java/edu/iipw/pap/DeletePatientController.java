@@ -34,16 +34,16 @@ public class DeletePatientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DBContext dbContext = new DBContext();
+        /*DBContext dbContext = new DBContext();
         try {
             patients = dbContext.getPatients(conn);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
-        for (Patient p: patients) {
+        /*for (Patient p: patients) {
             patientList.getItems().add(p.toString());
-        }
+        }*/
     }
 
     public void transferData(ObservableList<TableRow> data, Doctor doctor, Connection usedConn) {
