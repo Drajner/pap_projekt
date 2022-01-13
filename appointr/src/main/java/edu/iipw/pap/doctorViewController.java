@@ -90,11 +90,14 @@ public class doctorViewController implements Initializable{
     public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn){
         usedDoctor = loggedDoctor;
         conn = usedConn;
-        if (!loggedDoctor.getPesel().equals("777")) {
-            updateAppointmentTable();
-        }
 
+        updateAppointmentTable();
+        updatePatientsTable();
+    }
+
+    public void updateAppointmentTable(){
         DBContext dbContext = new DBContext();
+
         ArrayList<Appointment> appointments = null;
 
         try {
@@ -105,14 +108,19 @@ public class doctorViewController implements Initializable{
 
         ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
         for (int i = 0; i < appointments.size(); i++) {
-            rows.add(new AppointmentTableRow(appointments.get(i), i + 1));
+            if (appointments.get(i).getDoctor().getPesel().equals(usedDoctor.getPesel())) {
+                rows.add(new AppointmentTableRow(appointments.get(i), i + 1));
+            }
         }
 
         data = FXCollections.observableArrayList(rows);
         appointmentTable.setItems(data);
+    }
 
-
+    public void updatePatientsTable() {
+        DBContext dbContext = new DBContext();
         ArrayList<Patient> patients = null;
+
         try {
             patients = dbContext.getPatients(conn);
         } catch (Exception e) {
@@ -126,21 +134,6 @@ public class doctorViewController implements Initializable{
 
         ObservableList<PatientTableRow> patientsData = FXCollections.observableArrayList(patientRows);
         patientTable.setItems(patientsData);
-    }
-
-    public void updateAppointmentTable(){
-        Populate populate = new Populate();
-        ArrayList<Appointment> appointments = populate.appointments;
-        ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
-        for (int i = 0; i < appointments.size(); i++) {
-            if (appointments.get(i).getDoctor().getPesel() == usedDoctor.getPesel()) {
-                rows.add(new AppointmentTableRow(appointments.get(i), i + 1));
-            }
-        }
-
-        data = FXCollections.observableArrayList(rows);
-
-        appointmentTable.setItems(data);
     }
 
     @FXML

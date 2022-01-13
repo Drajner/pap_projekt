@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -48,8 +49,13 @@ public class DBContext implements AutoCloseable {
         String surname = rs.getString(3);
         LocalDate dateOfBirth = LocalDate.parse(rs.getString(4).substring(0, 10));
         String specialization = rs.getString(5);
-        String login = rs.getString(6);
-        String password = rs.getString(7);
+
+        // trzeba dodac login i password do bazy danych
+
+        String login = null;
+        String password = null;
+//        String login = rs.getString(6);
+//        String password = rs.getString(7);
 
         return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>());
     }
@@ -64,20 +70,26 @@ public class DBContext implements AutoCloseable {
         return new Patient(pesel, name, surname, dateOfBirth, description);
     }
 
-    private Appointment createAppointment(ResultSet rs) throws Exception {
+    private Appointment createAppointment(ResultSet rs, Connection conn) throws Exception {
         Statement stmt = conn.createStatement();
+        Doctor doctor = null;
+        Patient patient = null;
 
         int appointment_id = rs.getInt(1);
 
         String doctorPesel = rs.getString(2);
         ResultSet doctor_rs = stmt.executeQuery("SELECT * FROM doctors WHERE pesel = " + doctorPesel);
-        Doctor doctor = createDoctor(doctor_rs);
+        if (doctor_rs.next())
+            doctor = createDoctor(doctor_rs);
 
         String patientPesel = rs.getString(3);
         ResultSet patient_rs = stmt.executeQuery("SELECT * FROM patients WHERE pesel = " + doctorPesel);
-        Patient patient = createPatient(patient_rs);
+        if (patient_rs.next())
+            patient = createPatient(patient_rs);
 
-        LocalDateTime time = LocalDateTime.parse(rs.getString(4));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime time = LocalDateTime.parse(rs.getString(4).substring(0, 16), formatter);
+
         String officeId = rs.getString(5);
 
         return new Appointment(appointment_id, doctor, patient, time, officeId);
@@ -113,7 +125,7 @@ public class DBContext implements AutoCloseable {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM appointments");
         while (rs.next()) {
-            appointments.add(createAppointment(rs));
+            appointments.add(createAppointment(rs, conn));
         }
         return appointments;
     }
