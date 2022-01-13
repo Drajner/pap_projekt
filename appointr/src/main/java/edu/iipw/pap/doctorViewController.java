@@ -111,6 +111,24 @@ public class doctorViewController implements Initializable{
     public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn){
         usedDoctor = loggedDoctor;
         conn = usedConn;
+        if (!loggedDoctor.getPesel().equals("777")) {
+            updateAppointmentTable();
+        }
+    }
+
+    public void updateAppointmentTable(){
+        Populate populate = new Populate();
+        ArrayList<Appointment> appointments = populate.appointments;
+        ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
+        for (int i = 0; i < appointments.size(); i++) {
+            if (appointments.get(i).getDoctor().getPesel() == usedDoctor.getPesel()) {
+                rows.add(new AppointmentTableRow(appointments.get(i), i + 1));
+            }
+        }
+
+        data = FXCollections.observableArrayList(rows);
+
+        appointmentTable.setItems(data);
     }
 
     @FXML
