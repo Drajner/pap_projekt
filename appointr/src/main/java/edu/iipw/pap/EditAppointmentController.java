@@ -29,7 +29,7 @@ public class EditAppointmentController implements Initializable {
     @FXML
     private Spinner<String> hourSelection;
     @FXML
-    private TextField address;
+    private TextField addressField;
     @FXML
     private Button cancelButton;
     @FXML
@@ -66,7 +66,7 @@ public class EditAppointmentController implements Initializable {
 
         patientList.setValue(appointment.getPatient().toString());
         dateList.setValue(appointment.getTimeOfAppointment().toLocalDate());
-
+        addressField.setText(appointment.getOfficeId());
         ArrayList<String> hours_array = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
             for (int j = 0; j < 60; j+=5) {
@@ -116,7 +116,7 @@ public class EditAppointmentController implements Initializable {
     }
 
     public String getAddress() {
-        return address.getText();
+        return addressField.getText();
     }
 
     public void editAppointment() {

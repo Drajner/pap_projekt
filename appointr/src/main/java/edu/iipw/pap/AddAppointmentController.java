@@ -32,7 +32,7 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private Spinner<String> hourSelection;
     @FXML
-    private TextField address;
+    private TextField addressField;
     @FXML
     private Button cancelButton;
     @FXML
@@ -113,7 +113,7 @@ public class AddAppointmentController implements Initializable {
     }
 
     public String getAddress() {
-        return address.getText();
+        return addressField.getText();
     }
 
     public Appointment createAppointment() {
