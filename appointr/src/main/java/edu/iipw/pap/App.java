@@ -38,7 +38,7 @@ public class App extends Application {
             @Override
             protected Void call() throws Exception {
                 try {
-                    Thread.sleep(1);  // was 1000
+                    Thread.sleep(0);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
