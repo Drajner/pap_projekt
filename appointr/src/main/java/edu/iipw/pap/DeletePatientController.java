@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
-public class DeletePatientController implements Initializable {
+public class DeletePatientController {
 
     public DeletePatientController() { }
 
@@ -32,28 +32,21 @@ public class DeletePatientController implements Initializable {
 
     private Connection conn;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*DBContext dbContext = new DBContext();
-        try {
-            patients = dbContext.getPatients(conn);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-        /*for (Patient p: patients) {
-            patientList.getItems().add(p.toString());
-        }*/
-    }
-
     public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
         // fajnie jakby bylo przekazane connection i w sumie nic wiecej
         loggedDoctor = doctor;
         conn = usedConn;
-        for (AppointmentTableRow tr: data) {
-            patientList.getItems().add(tr.getAppointment().getPatient().toString());
+
+        DBContext dbContext = new DBContext();
+        try {
+            patients = dbContext.getPatients(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+        for (Patient p: patients) {
+            patientList.getItems().add(p.toString());
+        }
     }
 
     public String getPatient() {
