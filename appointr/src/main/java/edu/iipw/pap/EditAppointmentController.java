@@ -14,6 +14,7 @@ import javafx.scene.control.SpinnerValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -36,6 +37,12 @@ public class EditAppointmentController implements Initializable {
     @FXML
     private Button editButton;
 
+    private Connection conn;
+
+    private Doctor loggedDoctor;
+
+    private Appointment edditedAppointment;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -54,14 +61,18 @@ public class EditAppointmentController implements Initializable {
 
         SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<String>(hours);
 
-        valueFactory.setValue("12:00");
+        valueFactory.setValue(edditedAppointment.getTimeOfAppointment().toLocalTime().toString());
 
         hourSelection.setValueFactory(valueFactory);
 
     }
 
-    public void transferAppointment(Appointment appointment) {
+    public void transferAppointment(Appointment appointment, Doctor doctor, Connection usedConn) {
 
+        conn = usedConn;
+        loggedDoctor = doctor;
+        patientList.setValue(appointment.getPatient());
+        dateList.setValue(appointment.getTimeOfAppointment().toLocalDate());
     }
 
     public void cancel(ActionEvent event) throws IOException {

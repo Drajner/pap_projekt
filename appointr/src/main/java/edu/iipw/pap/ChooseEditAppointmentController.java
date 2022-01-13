@@ -60,8 +60,21 @@ public class ChooseEditAppointmentController implements Initializable {
 
     private void chooseAppointmentFromData() throws IOException{
         Parent root;
+        String[] splitAppointment = appointmentList.getValue().split(" ");
+        int editedAppointmentId = Integer.parseInt(splitAppointment[0]);
+        Appointment editedAppointment = tempData.get(0).getAppointment();
+        for (TableRow tr: tempData) {
+            if(tr.getAppointment().getId() == editedAppointmentId)
+            {
+                editedAppointment = tr.getAppointment();
+                break;
+            }
+        }
         try {
-            root = FXMLLoader.load(getClass().getResource("editAppointmentScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("editAppointmentScreen.fxml"));
+            root = loader.load();
+            EditAppointmentController eac = loader.getController();
+            eac.transferAppointment(editedAppointment, loggedDoctor, conn);
             int sceneX = 240;
             int sceneY = 240;
             Stage stage = new Stage();
