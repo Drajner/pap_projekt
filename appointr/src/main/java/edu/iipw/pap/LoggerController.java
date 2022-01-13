@@ -35,7 +35,6 @@ public class LoggerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (conn == null) {
-//            App a = new App();
 
             DBContext dbContext = new DBContext();
             conn = dbContext.getConnection();
