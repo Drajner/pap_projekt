@@ -161,24 +161,26 @@ public class DBContext implements AutoCloseable {
     public static void editDoctor(Connection conn, Doctor doctor) throws Exception {
         Statement stmt = conn.createStatement();
         stmt.executeQuery(String.format(
-                "UPDATE doctors" +
-                "SET pesel = %s, name = %s, surname = %s, birth_date = %s, spec_id = %d",
+                "UPDATE doctors " +
+                "SET pesel = %s, name = %s, surname = %s, birth_date = %s, spec_id = %d;",
                 doctor.getPesel(), doctor.getName(), doctor.getSurname(), doctor.getDateOfBirth(), doctor.getSpecialization()));
     }
 
-    public static void editPatient(Connection conn, Patient patient) throws Exception {
+    public static void editPatient(Connection conn, Patient patient, String oldPesel) throws Exception {
         Statement stmt = conn.createStatement();
         stmt.executeQuery(String.format(
-                "UPDATE patients" +
-                        "SET pesel = %s, name = %s, surname = %s, birth_date = %s, description = %s",
-                patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(), patient.getDescription()));
+                "UPDATE patients " +
+                        "SET pesel = %s, name = '%s', surname = '%s', birth_date = '%s', description = '%s' " +
+                        "WHERE pesel = %s",
+                patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(), patient.getDescription(),
+                oldPesel));
     }
 
     public static void editAppointment(Connection conn, Appointment appointment) throws Exception {
         Statement stmt = conn.createStatement();
         stmt.executeQuery(String.format(
-                "UPDATE appointments" +
-                        "SET appointment_id = %d, doctor = %s, patient = %s, time = %s, office_id = %d",
+                "UPDATE appointments " +
+                        "SET appointment_id = %d, doctor = %s, patient = %s, time = %s, office_id = %d;",
                 appointment.getId(), appointment.getDoctor().getPesel(), appointment.getPatient().getPesel(),
                 appointment.getTimeOfAppointment(), appointment.getOfficeId()));
     }

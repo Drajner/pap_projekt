@@ -35,6 +35,8 @@ public class ChooseEditPatientController implements Initializable {
 
     private Connection conn;
 
+    private ArrayList<Patient> patients;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -44,7 +46,6 @@ public class ChooseEditPatientController implements Initializable {
         conn = usedConn;
         loggedDoctor = doctor;
         tempData = data;
-        ArrayList<Patient> patients;
 
         DBContext dbContext = new DBContext();
         try {
@@ -71,16 +72,16 @@ public class ChooseEditPatientController implements Initializable {
 
     private void choosePatientFromData() throws IOException{
         Parent root;
-        String[] splitPatient = patientList.getValue().split(" ");
-        String editedPatientPesel = splitPatient[0];
-        Patient editedPatient = tempData.get(0).getAppointment().getPatient();
-        for (AppointmentTableRow tr: tempData) {
-            if(tr.getAppointment().getPatient().getPesel() == editedPatientPesel)
-            {
-                editedPatient = tr.getAppointment().getPatient();
+        String s_patient = patientList.getValue();
+        Patient editedPatient = null;
+
+        for (Patient p: patients) {
+            if (p.toString().equals(s_patient)){
+                editedPatient = p;
                 break;
             }
         }
+        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("editPatientScreen.fxml"));
             root = loader.load();
