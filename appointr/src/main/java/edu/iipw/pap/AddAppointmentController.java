@@ -26,7 +26,7 @@ public class AddAppointmentController implements Initializable {
     }
 
     @FXML
-    private ChoiceBox<Patient> patientList;
+    private ChoiceBox<String> patientList;
     @FXML
     private DatePicker dateList;
     @FXML
@@ -38,6 +38,8 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private Button addButton;
 
+    private ArrayList<Patient> patients;
+
     private Doctor loggedDoctor;
 
     private Connection conn;
@@ -45,6 +47,16 @@ public class AddAppointmentController implements Initializable {
     public void transferDoctorAndConn(Doctor doctor, Connection usedConn){
         loggedDoctor = doctor;
         conn = usedConn;
+        DBContext dbContext = new DBContext();
+        try {
+            patients = dbContext.getPatients(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (Patient p: patients) {
+            patientList.getItems().add(p.toString());
+        }
     }
 
     @Override
@@ -79,7 +91,16 @@ public class AddAppointmentController implements Initializable {
     }
 
     public Patient getPatient() {
-        return patientList.getValue();
+        String s_patient = patientList.getValue();
+        Patient patient = null;
+
+        for (Patient p: patients) {
+            if (s_patient.equals(p.toString())) {
+                patient = p;
+                break;
+            }
+        }
+        return patient;
     }
 
     public LocalDate getDate() {
