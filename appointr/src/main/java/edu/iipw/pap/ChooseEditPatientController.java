@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ChooseEditPatientController implements Initializable {
@@ -43,10 +44,20 @@ public class ChooseEditPatientController implements Initializable {
         conn = usedConn;
         loggedDoctor = doctor;
         tempData = data;
-        for (AppointmentTableRow tr: data) {
-            patientList.getItems().add(tr.getAppointment().getPatient().toString());
+        ArrayList<Patient> patients;
+
+        DBContext dbContext = new DBContext();
+        try {
+            patients = dbContext.getPatients(conn);
+
+            for (Patient p: patients) {
+                patientList.getItems().add(p.toString());
+            }
+            patientList.setValue(patients.get(0).toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        patientList.setValue(data.get(0).getAppointment().getPatient().toString());
     }
 
     public void choosePatient(ActionEvent event) throws IOException {
