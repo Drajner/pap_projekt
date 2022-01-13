@@ -34,15 +34,17 @@ public class LoggerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        App a = new App();
+        if (conn == null) {
+//            App a = new App();
 
-        DBContext dbContext = new DBContext();
-        conn = dbContext.getConnection();
+            DBContext dbContext = new DBContext();
+            conn = dbContext.getConnection();
 
-        try {
-            doctors = dbContext.getDoctors(conn);
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                doctors = dbContext.getDoctors(conn);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
