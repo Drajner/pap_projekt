@@ -44,7 +44,7 @@ public class LoggerController {
         for (Doctor d: doctors) {
             if (login.equals(d.getLogin()) && password.equals(d.getPassword())) {
                 isLogin = true;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditPatientScreen.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorView.fxml"));
                 root = loader.load();
                 doctorViewController dvc = loader.getController();
                 dvc.usedDoctorAndConn(d, conn);
