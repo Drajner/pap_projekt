@@ -35,10 +35,10 @@ public class DeleteAppointmentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void transferData(ObservableList<TableRow> data, Doctor doctor, Connection usedConn) {
+    public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
         loggedDoctor = doctor;
         conn = usedConn;
-        for (TableRow tr: data) {
+        for (AppointmentTableRow tr: data) {
             appointmentList.getItems().add(tr.getAppointment().toString());
             appointments.add(tr.getAppointment());
         }

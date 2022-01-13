@@ -2,14 +2,14 @@ package edu.iipw.pap;
 
 import java.time.LocalDate;
 
-public class TableRow {
+public class AppointmentTableRow {
     private Appointment appointment;
     private Integer index;
     private LocalDate date;
     private String name;
     private String address;
 
-    public TableRow(Appointment appointment, int index) {
+    public AppointmentTableRow(Appointment appointment, int index) {
         this.appointment = appointment;
         this.index = index;
         this.date = appointment.getTimeOfAppointment().toLocalDate();
