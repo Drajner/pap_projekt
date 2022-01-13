@@ -14,9 +14,10 @@ public class Patient extends Person{
      * @param surname The patient's surname.
      * @param dateOfBirth The patient's birth date.
      * @param description The patient's reason for an appointment.
+     * @param gender The patient's gender.
      */
-    public Patient(String pesel, String name, String surname, LocalDate dateOfBirth, String description) {
-        super(pesel, name, surname, dateOfBirth);
+    public Patient(String pesel, String name, String surname, LocalDate dateOfBirth, String description, Character gender) {
+        super(pesel, name, surname, dateOfBirth, gender);
         this.description = description;
     }
 

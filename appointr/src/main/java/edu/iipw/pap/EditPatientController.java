@@ -31,6 +31,8 @@ public class EditPatientController {
     private DatePicker dataField;
     @FXML
     private TextArea descriptionField;
+    @FXML
+    private TextField genderField;
 
     private Doctor loggedDoctor;
 
@@ -46,6 +48,7 @@ public class EditPatientController {
         surnameField.setText(patient.getSurname());
         descriptionField.setText((patient.getDescription()));
         dataField.setValue(patient.getDateOfBirth());
+        genderField.setText(patient.getGender().toString());
     }
 
     public void editPatient(ActionEvent event) throws IOException {
@@ -68,7 +71,7 @@ public class EditPatientController {
 
     private Patient editPatientFromData() throws IOException{
         return new Patient(peselField.getText(), nameField.getText(), surnameField.getText(),
-                dataField.getValue(), descriptionField.getText());
+                dataField.getValue(), descriptionField.getText(), genderField.getText().charAt(0));
 
     }
 }

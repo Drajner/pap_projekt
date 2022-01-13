@@ -38,7 +38,7 @@ public class App extends Application {
             @Override
             protected Void call() throws Exception {
                 try {
-                    Thread.sleep(0);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -50,7 +50,6 @@ public class App extends Application {
             @Override
             public void handle(WorkerStateEvent event) {
                 try {
-                    // changeScene("LoggingScreen.fxml");
                     Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoggingScreen.fxml")));
                     stg.getScene().setRoot(pane);
                 } catch (IOException e) {
@@ -61,18 +60,6 @@ public class App extends Application {
 
         new Thread(sleeper).start();
     }
-
-    // public void changeScene(String fxml) throws IOException {
-    //     if (fxml == "doctorView.fxml") {
-    //         stg.setResizable(true);
-    //         stg.setHeight(480);
-    //         stg.setWidth(640);
-    //         stg.setMinHeight(360);
-    //         stg.setMinWidth(380);
-    //     }
-    //     Parent pane = FXMLLoader.load(getClass().getResource(fxml));
-    //     stg.getScene().setRoot(pane);
-    // }
 
     public static void showAppointments(ArrayList<Appointment> appointments) {
         if (appointments.isEmpty()) {
@@ -145,6 +132,7 @@ public class App extends Application {
         Scanner sc = new Scanner(System.in);
         String pesel, name, surname, specialization, login, password;
         LocalDate birthDate;
+        Character gender;
 
         System.out.print("PESEL: "); pesel = sc.nextLine();
         System.out.print("Imię: "); name = sc.nextLine();
@@ -153,7 +141,8 @@ public class App extends Application {
         System.out.print("Specjalizacja: "); specialization = sc.nextLine();
         System.out.print("Login: "); login = sc.nextLine();
         System.out.print("Hasło: "); password = sc.nextLine();
-        Doctor d = new Doctor(pesel, name, surname, birthDate, specialization, login, password, new ArrayList<Appointment>());
+        System.out.println("Płeć: "); gender = sc.nextLine().charAt(0);
+        Doctor d = new Doctor(pesel, name, surname, birthDate, specialization, login, password, new ArrayList<Appointment>(), gender);
         doctors.add(d);
     }
 
@@ -161,13 +150,15 @@ public class App extends Application {
         Scanner sc = new Scanner(System.in);
         String pesel, name, surname, description;
         LocalDate birthDate;
+        Character gender;
 
         System.out.print("Pesel: "); pesel = sc.nextLine();
         System.out.print("Imię: "); name = sc.nextLine();
         System.out.print("Nazwisko: "); surname = sc.nextLine();
         System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
         System.out.print("Opis dolegliwości: "); description = sc.nextLine();
-        Patient p = new Patient(pesel, name, surname, birthDate, description);
+        System.out.println("Płeć: "); gender = sc.nextLine().charAt(0);
+        Patient p = new Patient(pesel, name, surname, birthDate, description, gender);
         patients.add(p);
     }
 

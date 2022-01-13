@@ -25,10 +25,11 @@ public class Doctor extends Person{
      * @param login The doctor's account's login.
      * @param password The doctor's account's password.
      * @param appointments The doctor's appointments.
+     * @param gender The doctor's gender.
      */
     public Doctor(String pesel, String name, String surname, LocalDate dateOfBirth, String specialization,
-                  String login, String password, ArrayList<Appointment> appointments) {
-        super(pesel, name, surname, dateOfBirth);
+                  String login, String password, ArrayList<Appointment> appointments, Character gender) {
+        super(pesel, name, surname, dateOfBirth, gender);
         this.specialization = specialization;
         this.login = login;
         this.password = password;

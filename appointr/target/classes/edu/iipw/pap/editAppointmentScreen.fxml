@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -13,7 +14,7 @@
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="395.0" text="Wizytujący pacjent" textAlignment="CENTER">
          <VBox.margin>
-            <Insets bottom="2.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="2.0" left="10.0" right="10.0" top="5.0" />
          </VBox.margin></Label>
       <ChoiceBox fx:id="patientList" prefHeight="26.0" prefWidth="306.0">
          <VBox.margin>
@@ -21,7 +22,7 @@
          </VBox.margin></ChoiceBox>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="285.0" text="Data wizyty" textAlignment="CENTER">
          <VBox.margin>
-            <Insets bottom="2.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="2.0" left="10.0" right="10.0" top="5.0" />
          </VBox.margin></Label>
       <DatePicker fx:id="dateList" prefHeight="26.0" prefWidth="375.0" promptText="YYYY-MM-DD">
          <VBox.margin>
@@ -29,12 +30,22 @@
          </VBox.margin></DatePicker>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="335.0" text="Godzina wizyty" textAlignment="CENTER">
          <VBox.margin>
-            <Insets bottom="2.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="2.0" left="10.0" right="10.0" top="5.0" />
          </VBox.margin></Label>
       <Spinner fx:id="hourSelection" editable="true" prefHeight="26.0" prefWidth="406.0">
          <VBox.margin>
             <Insets left="10.0" right="10.0" />
          </VBox.margin></Spinner>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="293.0" text="Gabinet">
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </Label>
+      <TextField fx:id="officeId">
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+         </VBox.margin>
+      </TextField>
       <HBox prefHeight="30.0" prefWidth="200.0">
          <children>
             <Button fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#editAppointment" prefWidth="50.0" text="Zapisz" textAlignment="CENTER">
@@ -47,7 +58,7 @@
                </HBox.margin></Button>
          </children>
          <padding>
-            <Insets bottom="20.0" top="20.0" />
+            <Insets bottom="10.0" top="10.0" />
          </padding>
       </HBox>
    </children>

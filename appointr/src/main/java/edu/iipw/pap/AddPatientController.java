@@ -30,6 +30,8 @@ public class AddPatientController {
     private DatePicker dataField;
     @FXML
     private TextArea descriptionField;
+    @FXML
+    private TextField genderField;
 
     private Doctor loggedDoctor;
 
@@ -58,8 +60,7 @@ public class AddPatientController {
     }
 
     private Patient createPatientFromData() throws IOException{
-
         return new Patient(peselField.getText(), nameField.getText(),
-                surnameField.getText(), dataField.getValue(), descriptionField.getText());
+                surnameField.getText(), dataField.getValue(), descriptionField.getText(), genderField.getText().charAt(0));
     }
 }

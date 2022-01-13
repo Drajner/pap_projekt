@@ -20,12 +20,37 @@
             <Insets bottom="2.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="413.0" text="PESEL" textAlignment="CENTER" />
-      <TextField fx:id="peselField" prefHeight="26.0" prefWidth="326.0" promptText="PESEL">
+      <HBox>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="400.0" text="PESEL" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="400.0" text="Płeć" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox>
          <VBox.margin>
             <Insets left="10.0" right="10.0" />
          </VBox.margin>
-      </TextField>
+         <children>
+            <TextField fx:id="peselField" prefHeight="25.0" prefWidth="400.0" promptText="PESEL">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </TextField>
+            <TextField fx:id="genderField" prefHeight="25.0" prefWidth="400.0" promptText="Płeć">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
       <HBox>
          <VBox.margin>
             <Insets bottom="2.0" left="10.0" right="10.0" top="10.0" />

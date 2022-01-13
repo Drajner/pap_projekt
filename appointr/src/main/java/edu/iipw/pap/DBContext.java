@@ -48,6 +48,7 @@ public class DBContext implements AutoCloseable {
         String surname = rs.getString(3);
         LocalDate dateOfBirth = LocalDate.parse(rs.getString(4).substring(0, 10));
         String specialization = rs.getString(5);
+        Character gender = rs.getString(6).charAt(0);
 
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM accounts WHERE doctor_id = ?");
         stmt.setString(1, pesel);
@@ -58,7 +59,7 @@ public class DBContext implements AutoCloseable {
             password = account_rs.getString(3);
         }
 
-        return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>());
+        return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>(), gender);
     }
 
     private Patient createPatient(ResultSet rs) throws Exception {
@@ -67,8 +68,9 @@ public class DBContext implements AutoCloseable {
         String surname = rs.getString(3);
         LocalDate dateOfBirth = LocalDate.parse(rs.getString(4).substring(0, 10));
         String description = rs.getString(5);
+        Character gender = rs.getString(6).charAt(0);
 
-        return new Patient(pesel, name, surname, dateOfBirth, description);
+        return new Patient(pesel, name, surname, dateOfBirth, description, gender);
     }
 
     private Appointment createAppointment(ResultSet rs, Connection conn) throws Exception {
