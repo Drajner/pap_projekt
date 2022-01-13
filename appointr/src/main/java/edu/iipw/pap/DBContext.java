@@ -107,17 +107,13 @@ public class DBContext implements AutoCloseable {
         return patients;
     }
 
-    public ArrayList<Appointment> getAppointments(Connection conn) {
+    public ArrayList<Appointment> getAppointments(Connection conn) throws Exception {
         ArrayList<Appointment> appointments = new ArrayList<>();
 
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM appointments");
-            while (rs.next()) {
-                appointments.add(createAppointment(rs));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM appointments");
+        while (rs.next()) {
+            appointments.add(createAppointment(rs));
         }
         return appointments;
     }

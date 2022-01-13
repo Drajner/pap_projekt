@@ -78,17 +78,6 @@ public class doctorViewController implements Initializable{
         appointmentNameColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("name"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("address"));
 
-        Populate populate = new Populate();
-        ArrayList<Appointment> appointments = populate.appointments;
-        ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
-        for (int i = 0; i < appointments.size(); i++) {
-            rows.add(new AppointmentTableRow(appointments.get(i), i + 1));
-        }
-
-        data = FXCollections.observableArrayList(rows);
-
-        appointmentTable.setItems(data);
-
         /* Patients table */
 
         peselColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("pesel"));
@@ -96,16 +85,6 @@ public class doctorViewController implements Initializable{
         sexColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, LocalDate>("birthDate"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("description"));
-
-        ArrayList<Patient> patients = populate.patients;
-        ArrayList<PatientTableRow> patientRows = new ArrayList<PatientTableRow>();
-        for (int i = 0; i < patients.size(); i++) {
-            patientRows.add(new PatientTableRow(patients.get(i)));
-        }
-
-        ObservableList<PatientTableRow> patientsData = FXCollections.observableArrayList(patientRows);
-
-        patientTable.setItems(patientsData);
     }
 
     public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn){
@@ -114,6 +93,39 @@ public class doctorViewController implements Initializable{
         if (!loggedDoctor.getPesel().equals("777")) {
             updateAppointmentTable();
         }
+
+        DBContext dbContext = new DBContext();
+        ArrayList<Appointment> appointments = null;
+
+        try {
+            appointments = dbContext.getAppointments(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
+        for (int i = 0; i < appointments.size(); i++) {
+            rows.add(new AppointmentTableRow(appointments.get(i), i + 1));
+        }
+
+        data = FXCollections.observableArrayList(rows);
+        appointmentTable.setItems(data);
+
+
+        ArrayList<Patient> patients = null;
+        try {
+            patients = dbContext.getPatients(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<PatientTableRow> patientRows = new ArrayList<PatientTableRow>();
+        for (Patient patient : patients) {
+            patientRows.add(new PatientTableRow(patient));
+        }
+
+        ObservableList<PatientTableRow> patientsData = FXCollections.observableArrayList(patientRows);
+        patientTable.setItems(patientsData);
     }
 
     public void updateAppointmentTable(){
