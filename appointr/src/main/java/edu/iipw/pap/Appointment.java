@@ -13,7 +13,7 @@ public class Appointment {
     /** The appointment's date and time. */
     private LocalDateTime timeOfAppointment;
     /** The appointment's office_id. */
-    private String officeId;
+    private int officeId;
 
     /**
      * Constructor for the Appointment class.
@@ -23,7 +23,7 @@ public class Appointment {
      * @param timeOfAppointment The appointment's date and time.
      * @param officeId The appointment's office_id.
      */
-    public Appointment(int id, Doctor doctor, Patient patient, LocalDateTime timeOfAppointment, String officeId) {
+    public Appointment(int id, Doctor doctor, Patient patient, LocalDateTime timeOfAppointment, int officeId) {
         this.id = id;
         this.doctor = doctor;
         this.patient = patient;
@@ -67,7 +67,7 @@ public class Appointment {
      * Returns the appointment's officeId.
      * @return The appointment's officeId.
      */
-    public String getOfficeId() {
+    public int getOfficeId() {
         return officeId;
     }
 
@@ -107,7 +107,7 @@ public class Appointment {
      * Sets the appointment's officeId.
      * @param officeId The appointment's address.
      */
-    public void setAddress(String officeId) {
+    public void setAddress(int officeId) {
         this.officeId = officeId;
     }
 

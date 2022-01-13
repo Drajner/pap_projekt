@@ -29,7 +29,7 @@ public class EditAppointmentController implements Initializable {
     @FXML
     private Spinner<String> hourSelection;
     @FXML
-    private TextField address;
+    private TextField officeId;
     @FXML
     private Button cancelButton;
     @FXML
@@ -115,8 +115,8 @@ public class EditAppointmentController implements Initializable {
         return LocalTime.parse(hour);
     }
 
-    public String getAddress() {
-        return address.getText();
+    public int getOfficeId() {
+        return Integer.parseInt(officeId.getText());
     }
 
     public void editAppointment() {
@@ -126,9 +126,9 @@ public class EditAppointmentController implements Initializable {
         LocalDate date = getDate();
         LocalTime time = getTime();
         LocalDateTime dateTime = LocalDateTime.of(date, time);
-        String address = getAddress();
+        int officeId = getOfficeId();
 
-        Appointment appointment = new Appointment(id, loggedDoctor, patient, dateTime, address);
+        Appointment appointment = new Appointment(id, loggedDoctor, patient, dateTime, officeId);
         // update wpis w bazie danych dotyczacy danej wizyty
     }
 }

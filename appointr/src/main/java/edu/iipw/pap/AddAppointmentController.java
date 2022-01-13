@@ -32,7 +32,7 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private Spinner<String> hourSelection;
     @FXML
-    private TextField address;
+    private TextField officeId;
     @FXML
     private Button cancelButton;
     @FXML
@@ -112,8 +112,8 @@ public class AddAppointmentController implements Initializable {
         return LocalTime.parse(hour);
     }
 
-    public String getAddress() {
-        return address.getText();
+    public int getOfficeId() {
+        return Integer.parseInt(officeId.getText());
     }
 
     public Appointment createAppointment() {
@@ -122,9 +122,9 @@ public class AddAppointmentController implements Initializable {
         LocalDate date = getDate();
         LocalTime time = getTime();
         LocalDateTime dateTime = LocalDateTime.of(date, time);
-        String address = getAddress();
+        int officeId = getOfficeId();
 
-        return new Appointment(id, loggedDoctor, patient, dateTime, address);
+        return new Appointment(id, loggedDoctor, patient, dateTime, officeId);
     }
 
     public void addAppointment() {

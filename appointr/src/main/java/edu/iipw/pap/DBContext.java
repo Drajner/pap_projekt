@@ -1,11 +1,7 @@
 package edu.iipw.pap;
 
 import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -44,7 +40,6 @@ public class DBContext implements AutoCloseable {
     }
 
     private Doctor createDoctor(ResultSet rs, Connection conn) throws Exception {
-        Statement stmt = conn.createStatement();
         String login = null;
         String password = null;
 
@@ -54,7 +49,10 @@ public class DBContext implements AutoCloseable {
         LocalDate dateOfBirth = LocalDate.parse(rs.getString(4).substring(0, 10));
         String specialization = rs.getString(5);
 
-        ResultSet account_rs = stmt.executeQuery("SELECT * FROM accounts WHERE doctor_id = " + pesel);
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM accounts WHERE doctor_id = ?");
+        stmt.setString(1, pesel);
+        ResultSet account_rs = stmt.executeQuery();
+
         if (account_rs.next()) {
             login = account_rs.getString(2);
             password = account_rs.getString(3);
@@ -74,26 +72,29 @@ public class DBContext implements AutoCloseable {
     }
 
     private Appointment createAppointment(ResultSet rs, Connection conn) throws Exception {
-        Statement stmt = conn.createStatement();
         Doctor doctor = null;
         Patient patient = null;
 
         int appointment_id = rs.getInt(1);
 
         String doctorPesel = rs.getString(2);
-        ResultSet doctor_rs = stmt.executeQuery("SELECT * FROM doctors WHERE pesel = " + doctorPesel);
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM doctors WHERE pesel = ?");
+        stmt.setString(1, doctorPesel);
+        ResultSet doctor_rs = stmt.executeQuery();
         if (doctor_rs.next())
             doctor = createDoctor(doctor_rs, conn);
 
         String patientPesel = rs.getString(3);
-        ResultSet patient_rs = stmt.executeQuery("SELECT * FROM patients WHERE pesel = " + doctorPesel);
+        stmt = conn.prepareStatement("SELECT * FROM patients WHERE pesel = ?");
+        stmt.setString(1, patientPesel);
+        ResultSet patient_rs = stmt.executeQuery();
         if (patient_rs.next())
             patient = createPatient(patient_rs);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime time = LocalDateTime.parse(rs.getString(4).substring(0, 16), formatter);
 
-        String officeId = rs.getString(5);
+        int officeId = rs.getInt(5);
 
         return new Appointment(appointment_id, doctor, patient, time, officeId);
     }
@@ -134,66 +135,94 @@ public class DBContext implements AutoCloseable {
     }
 
     public void deleteDoctor(Connection conn, String pesel) throws Exception{
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery("DELETE FROM doctors WHERE pesel = " + pesel);
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM doctors WHERE pesel = ?");
+        stmt.setString(1, pesel);
+        stmt.executeQuery();
     }
 
     public static void deletePatient(Connection conn, String pesel) throws Exception{
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery("DELETE FROM patients WHERE pesel = " + pesel);
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM patients WHERE pesel = ?");
+        stmt.setString(1, pesel);
+        stmt.executeQuery();
     }
 
     public static void deleteAppointment(Connection conn, int appointmentId) throws Exception{
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery("DELETE FROM appointments WHERE appointment_id = " + appointmentId);
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM appointments WHERE appointment_id = ?");
+        stmt.setInt(1, appointmentId);
+        stmt.executeQuery();
     }
 
     public void addDoctor(Connection conn, Doctor doctor) throws SQLException {
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery(String.format("INSERT INTO doctors VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                doctor.getPesel(), doctor.getName(), doctor.getSurname(), doctor.getDateOfBirth(),
-                doctor.getSpecialization(), doctor.getLogin(), doctor.getPassword()));
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO doctors VALUES (?, ?, ?, ?, ?, ?, ?)");
+        stmt.setString(1, doctor.getPesel());
+        stmt.setString(2, doctor.getName());
+        stmt.setString(3, doctor.getSurname());
+        stmt.setDate(4, Date.valueOf(doctor.getDateOfBirth()));
+        stmt.setString(5, doctor.getSpecialization());
+        stmt.setString(6, doctor.getLogin());
+        stmt.setString(7, doctor.getPassword());
+        stmt.executeQuery();
     }
 
     public static void addPatient(Connection conn, Patient patient) throws SQLException {
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery(String.format("INSERT INTO patients VALUES ('%s', '%s', '%s', '%s', '%s')",
-                patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(),
-                patient.getDescription()));
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO patients VALUES (?, ?, ?, ?, ?)");
+        stmt.setString(1, patient.getPesel());
+        stmt.setString(2, patient.getName());
+        stmt.setString(3, patient.getSurname());
+        stmt.setDate(4, Date.valueOf(patient.getDateOfBirth()));
+        stmt.setString(5, patient.getDescription());
+        stmt.executeQuery();
     }
 
-    public static void addAppointment(Connection conn, Appointment appointment) throws Exception{
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery(String.format("INSERT INTO appointments VALUES (NULL, '%s', '%s', '%s', '%s')",
-                appointment.getDoctor().getPesel(), appointment.getPatient().getPesel(),
-                appointment.getTimeOfAppointment(), appointment.getOfficeId()));
+    public static void addAppointment(Connection conn, Appointment appointment) throws Exception {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO appointments VALUES (NULL, ?, ?, ?, ?)");
+        stmt.setString(1, appointment.getDoctor().getPesel());
+        stmt.setString(2, appointment.getPatient().getName());
+        stmt.setTimestamp(3, Timestamp.valueOf(appointment.getTimeOfAppointment()));
+        stmt.setInt(4, appointment.getOfficeId());
+        stmt.executeQuery();
     }
 
     public static void editDoctor(Connection conn, Doctor doctor) throws Exception {
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery(String.format(
-                "UPDATE doctors " +
-                "SET pesel = '%s', name = '%s', surname = '%s', birth_date = '%s', spec_id = %d;",
-                doctor.getPesel(), doctor.getName(), doctor.getSurname(), doctor.getDateOfBirth(), doctor.getSpecialization()));
+        PreparedStatement stmt = conn.prepareStatement("UPDATE doctors " +
+                "SET pesel = ?, name = ?, surname = ?, birth_date = ?, spec_id = ?");
+        stmt.setString(1, doctor.getPesel());
+        stmt.setString(2, doctor.getName());
+        stmt.setString(3, doctor.getSurname());
+        stmt.setDate(4, Date.valueOf(doctor.getDateOfBirth()));
+
+        PreparedStatement stmt2 = conn.prepareStatement("SELECT spec_id FROM specializations WHERE name = ?");
+        stmt2.setString(1, doctor.getSpecialization());
+        ResultSet spec_rs = stmt2.executeQuery();
+        spec_rs.next();
+        int specId = spec_rs.getInt(1);
+        stmt.setInt(5, specId);
+
+        stmt.executeQuery();
     }
 
     public static void editPatient(Connection conn, Patient patient, String patientPesel) throws Exception {
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery(String.format(
-                "UPDATE patients " +
-                        "SET pesel = %s, name = '%s', surname = '%s', birth_date = '%s', description = '%s' " +
-                        "WHERE pesel = %s",
-                patient.getPesel(), patient.getName(), patient.getSurname(), patient.getDateOfBirth(), patient.getDescription(),
-                patientPesel));
+        PreparedStatement stmt = conn.prepareStatement("UPDATE patients " +
+                "SET pesel = ?, name = ?, surname = ?, birth_date = ?, description = ? " +
+                "WHERE pesel = ?");
+        stmt.setString(1, patient.getPesel());
+        stmt.setString(2, patient.getName());
+        stmt.setString(3, patient.getSurname());
+        stmt.setDate(4, Date.valueOf(patient.getDateOfBirth()));
+        stmt.setString(5, patient.getDescription());
+        stmt.setString(6, patientPesel);
+        stmt.executeQuery();
     }
 
     public static void editAppointment(Connection conn, Appointment appointment) throws Exception {
-        Statement stmt = conn.createStatement();
-        stmt.executeQuery(String.format(
-                "UPDATE appointments " +
-                        "SET appointment_id = '%d', doctor = '%s', patient = '%s', time = '%s', office_id = %d;",
-                appointment.getId(), appointment.getDoctor().getPesel(), appointment.getPatient().getPesel(),
-                appointment.getTimeOfAppointment(), appointment.getOfficeId()));
+        PreparedStatement stmt = conn.prepareStatement("UPDATE appointments " +
+                "SET appointment_id = ?, doctor = ?, patient = ?, time = ?, office_id = ?");
+        stmt.setInt(1, appointment.getId());
+        stmt.setString(2, appointment.getDoctor().getPesel());
+        stmt.setString(3, appointment.getPatient().getPesel());
+        stmt.setTimestamp(4, Timestamp.valueOf(appointment.getTimeOfAppointment()));
+        stmt.setInt(5, appointment.getOfficeId());
+        stmt.executeQuery();
     }
 
     public static void main(String[] args) {

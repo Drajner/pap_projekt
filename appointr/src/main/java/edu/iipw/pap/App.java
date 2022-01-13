@@ -124,7 +124,7 @@ public class App extends Application {
 
     public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
         Scanner sc = new Scanner(System.in);
-        String address;
+        int officeId;
         String datetime = "";
         LocalDateTime appointmentDate;
         Patient patient;
@@ -135,9 +135,9 @@ public class App extends Application {
         System.out.print("Data wizyty (YYYY-MM-DD): "); datetime += sc.nextLine();
         System.out.print("Godzina wizyty (HH:MM:SS): "); datetime += "T" + sc.nextLine();
         appointmentDate = LocalDateTime.parse(datetime);
-        System.out.print("Adres: "); address = sc.nextLine();
+        System.out.print("Gabinet: "); officeId = sc.nextInt();
         int id = 500;
-        Appointment a = new Appointment(id, doctor, patient, appointmentDate, address);
+        Appointment a = new Appointment(id, doctor, patient, appointmentDate, officeId);
         appointments.add(a);
     }
 
@@ -243,8 +243,8 @@ public class App extends Application {
                     appointment.setTimeOfAppointment(LocalDateTime.parse(sc.nextLine()));
                     break;
                 case "address":
-                    System.out.print("Wprowadź nowy adres: ");
-                    appointment.setAddress(sc.nextLine());
+                    System.out.print("Wprowadź nowy gabinet: ");
+                    appointment.setAddress(sc.nextInt());
                     break;
                 case "quit":
                     fin = true;

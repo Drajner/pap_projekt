@@ -142,11 +142,11 @@ public class Doctor extends Person{
      * Create new appointment for the doctor.
      * @param patient The patient for whom the appointment is created.
      * @param timeOfAppointment The time of the appointment.
-     * @param address The address of the appointment.
+     * @param officeId The address of the appointment.
      * @return The created appointment.
      */
-    public Appointment createAppointment(int id, Patient patient, LocalDateTime timeOfAppointment, String address) {
-        return new Appointment(id, this, patient, timeOfAppointment, address);
+    public Appointment createAppointment(int id, Patient patient, LocalDateTime timeOfAppointment, int officeId) {
+        return new Appointment(id, this, patient, timeOfAppointment, officeId);
     }
 
     /**
