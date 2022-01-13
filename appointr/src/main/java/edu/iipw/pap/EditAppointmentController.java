@@ -46,6 +46,16 @@ public class EditAppointmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void transferAppointment(Appointment appointment, Doctor doctor, Connection usedConn) {
+
+        conn = usedConn;
+        loggedDoctor = doctor;
+        edditedAppointment = appointment;
+        patientList.setValue(appointment.getPatient());
+        dateList.setValue(appointment.getTimeOfAppointment().toLocalDate());
+
         ArrayList<String> hours_array = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
             for (int j = 0; j < 60; j+=5) {
@@ -64,15 +74,6 @@ public class EditAppointmentController implements Initializable {
         valueFactory.setValue(edditedAppointment.getTimeOfAppointment().toLocalTime().toString());
 
         hourSelection.setValueFactory(valueFactory);
-
-    }
-
-    public void transferAppointment(Appointment appointment, Doctor doctor, Connection usedConn) {
-
-        conn = usedConn;
-        loggedDoctor = doctor;
-        patientList.setValue(appointment.getPatient());
-        dateList.setValue(appointment.getTimeOfAppointment().toLocalDate());
     }
 
     public void cancel(ActionEvent event) throws IOException {

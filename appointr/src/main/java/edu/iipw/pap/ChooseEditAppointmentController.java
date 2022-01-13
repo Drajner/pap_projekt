@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ChooseEditAppointmentController implements Initializable {
@@ -32,6 +33,8 @@ public class ChooseEditAppointmentController implements Initializable {
 
     private Doctor loggedDoctor;
 
+    private ArrayList<Appointment> appointments;
+
     private Connection conn;
 
     @Override
@@ -43,10 +46,19 @@ public class ChooseEditAppointmentController implements Initializable {
         loggedDoctor = doctor;
         conn = usedConn;
         tempData = data;
-        for (AppointmentTableRow tr: data) {
-            appointmentList.getItems().add(tr.getAppointment().toString());
+
+        DBContext dbContext = new DBContext();
+        try {
+            appointments = dbContext.getAppointments(conn);
+
+            for (Appointment a: appointments) {
+                appointmentList.getItems().add(a.toString());
+            }
+            appointmentList.setValue(appointments.get(0).toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        appointmentList.setValue(data.get(0).getAppointment().toString());
     }
 
     public void chooseAppointment(ActionEvent event) throws IOException {
@@ -60,13 +72,22 @@ public class ChooseEditAppointmentController implements Initializable {
 
     private void chooseAppointmentFromData() throws IOException{
         Parent root;
-        String[] splitAppointment = appointmentList.getValue().split(" ");
+        /*String[] splitAppointment = appointmentList.getValue().split(" ");
         int editedAppointmentId = Integer.parseInt(splitAppointment[0]);
         Appointment editedAppointment = tempData.get(0).getAppointment();
         for (AppointmentTableRow tr: tempData) {
             if(tr.getAppointment().getId() == editedAppointmentId)
             {
                 editedAppointment = tr.getAppointment();
+                break;
+            }
+        }*/
+        String s_appointment = appointmentList.getValue();
+        Appointment editedAppointment = null;
+
+        for (Appointment p: appointments) {
+            if (p.toString().equals(s_appointment)){
+                editedAppointment = p;
                 break;
             }
         }
