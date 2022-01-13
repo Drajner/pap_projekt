@@ -23,9 +23,7 @@ import java.util.ResourceBundle;
 
 public class EditAppointmentController implements Initializable {
     @FXML
-    private ChoiceBox<Appointment> appointmentList;
-    @FXML
-    private ChoiceBox<Patient> patientList;
+    private ChoiceBox<String> patientList;
     @FXML
     private DatePicker dateList;
     @FXML
@@ -43,6 +41,8 @@ public class EditAppointmentController implements Initializable {
 
     private Appointment edditedAppointment;
 
+    private ArrayList<Patient> patients;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -53,7 +53,18 @@ public class EditAppointmentController implements Initializable {
         conn = usedConn;
         loggedDoctor = doctor;
         edditedAppointment = appointment;
-        patientList.setValue(appointment.getPatient());
+        DBContext dbContext = new DBContext();
+        try {
+            patients = dbContext.getPatients(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (Patient p: patients) {
+            patientList.getItems().add(p.toString());
+        }
+
+        patientList.setValue(appointment.getPatient().toString());
         dateList.setValue(appointment.getTimeOfAppointment().toLocalDate());
 
         ArrayList<String> hours_array = new ArrayList<>();
@@ -81,12 +92,18 @@ public class EditAppointmentController implements Initializable {
         stage.close();
     }
 
-    public Appointment getAppointment() {
-        return appointmentList.getValue();
-    }
+    public Patient getPatient()
+    {
+        String s_patient = patientList.getValue();
+        Patient patient = null;
 
-    public Patient getPatient() {
-        return patientList.getValue();
+        for (Patient p: patients) {
+            if (s_patient.equals(p.toString())) {
+                patient = p;
+                break;
+            }
+        }
+        return patient;
     }
 
     public LocalDate getDate() {
@@ -103,16 +120,15 @@ public class EditAppointmentController implements Initializable {
     }
 
     public void editAppointment() {
-        Appointment appointment = getAppointment();
-
         // zmiana okna na takie ktore wyswietla dane wizyty do zmiany
-
+        int id = 404;
         Patient patient = getPatient();
         LocalDate date = getDate();
         LocalTime time = getTime();
         LocalDateTime dateTime = LocalDateTime.of(date, time);
         String address = getAddress();
 
+        Appointment appointment = new Appointment(id, loggedDoctor, patient, dateTime, address);
         // update wpis w bazie danych dotyczacy danej wizyty
     }
 }
