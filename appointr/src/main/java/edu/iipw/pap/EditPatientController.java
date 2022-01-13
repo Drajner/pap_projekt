@@ -36,12 +36,12 @@ public class EditPatientController {
 
     private Connection conn;
 
-    private String oldPesel;
+    private String patientPesel;
 
     public void transferPatient(Patient patient, Doctor doctor, Connection usedConn) {
         loggedDoctor = doctor;
         conn = usedConn;
-        peselField.setText(patient.getPesel()); oldPesel = patient.getPesel();
+        peselField.setText(patient.getPesel()); patientPesel = patient.getPesel();
         nameField.setText(patient.getName());
         surnameField.setText(patient.getSurname());
         descriptionField.setText((patient.getDescription()));
@@ -52,7 +52,7 @@ public class EditPatientController {
         Patient patient = editPatientFromData();
 
         try {
-            DBContext.editPatient(conn, patient, oldPesel);
+            DBContext.editPatient(conn, patient, patientPesel);
         } catch (Exception e) {
             e.printStackTrace();
         }
