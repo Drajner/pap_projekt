@@ -37,7 +37,7 @@ public class App extends Application {
             @Override
             protected Void call() throws Exception {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(1);  // was 1000
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -49,7 +49,9 @@ public class App extends Application {
             @Override
             public void handle(WorkerStateEvent event) {
                 try {
-                    changeScene("LoggingScreen.fxml");
+                    // changeScene("LoggingScreen.fxml");
+                    Parent pane = FXMLLoader.load(getClass().getResource("LoggingScreen.fxml"));
+                    stg.getScene().setRoot(pane);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -59,17 +61,17 @@ public class App extends Application {
         new Thread(sleeper).start();
     }
 
-    public void changeScene(String fxml) throws IOException {
-        if (fxml == "doctorView.fxml") {
-            stg.setResizable(true);
-            stg.setHeight(480);
-            stg.setWidth(640);
-            stg.setMinHeight(360);
-            stg.setMinWidth(380);
-        }
-        Parent pane = FXMLLoader.load(getClass().getResource(fxml));
-        stg.getScene().setRoot(pane);
-    }
+    // public void changeScene(String fxml) throws IOException {
+    //     if (fxml == "doctorView.fxml") {
+    //         stg.setResizable(true);
+    //         stg.setHeight(480);
+    //         stg.setWidth(640);
+    //         stg.setMinHeight(360);
+    //         stg.setMinWidth(380);
+    //     }
+    //     Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+    //     stg.getScene().setRoot(pane);
+    // }
 
     public static void showAppointments(ArrayList<Appointment> appointments) {
         if (appointments.isEmpty()) {

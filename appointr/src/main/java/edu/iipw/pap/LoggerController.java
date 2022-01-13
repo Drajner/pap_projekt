@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
@@ -53,8 +54,14 @@ public class LoggerController {
                 Stage stage2 = new Stage();
                 int sceneX = 300;
                 int sceneY = 320;
+                stage2.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
+                stage2.setTitle("Appointr");
                 stage2.setScene(new Scene(root, sceneX, sceneY));
-                stage2.setResizable(false);
+                stage2.setResizable(true);
+                stage2.setHeight(480);
+                stage2.setWidth(640);
+                stage2.setMinHeight(360);
+                stage2.setMinWidth(380);
                 stage2.show();
                 //a.changeScene("doctorView.fxml");
                 Stage stage = (Stage) logInButton.getScene().getWindow();
