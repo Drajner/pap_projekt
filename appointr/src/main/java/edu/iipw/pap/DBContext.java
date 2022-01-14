@@ -207,14 +207,15 @@ public class DBContext implements AutoCloseable {
 
     public static void editPatient(Connection conn, Patient patient, String patientPesel) throws Exception {
         PreparedStatement stmt = conn.prepareStatement("UPDATE patients " +
-                "SET pesel = ?, name = ?, surname = ?, birth_date = ?, description = ? " +
+                "SET pesel = ?, name = ?, surname = ?, birth_date = ?, description = ?, gender = ? " +
                 "WHERE pesel = ?");
         stmt.setString(1, patient.getPesel());
         stmt.setString(2, patient.getName());
         stmt.setString(3, patient.getSurname());
         stmt.setDate(4, Date.valueOf(patient.getDateOfBirth()));
         stmt.setString(5, patient.getDescription());
-        stmt.setString(6, patientPesel);
+        stmt.setString(6, patient.getGender().toString());
+        stmt.setString(7, patientPesel);
         stmt.executeQuery();
     }
 

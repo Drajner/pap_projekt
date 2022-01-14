@@ -153,6 +153,9 @@ public class doctorViewController implements Initializable{
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
             stage.show();
+
+            updatePatientsTable();
+
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -174,6 +177,9 @@ public class doctorViewController implements Initializable{
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
             stage.show();
+
+            updatePatientsTable();
+
         } catch(IOException e) {
             e.printStackTrace();
         }
