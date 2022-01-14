@@ -181,7 +181,7 @@ public class DBContext implements AutoCloseable {
     public static void addAppointment(Connection conn, Appointment appointment) throws Exception {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO appointments VALUES (NULL, ?, ?, ?, ?)");
         stmt.setString(1, appointment.getDoctor().getPesel());
-        stmt.setString(2, appointment.getPatient().getName());
+        stmt.setString(2, appointment.getPatient().getPesel());
         stmt.setTimestamp(3, Timestamp.valueOf(appointment.getTimeOfAppointment()));
         stmt.setInt(4, appointment.getOfficeId());
         stmt.executeQuery();

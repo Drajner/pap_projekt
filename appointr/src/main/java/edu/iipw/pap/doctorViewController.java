@@ -50,7 +50,7 @@ public class doctorViewController implements Initializable{
     @FXML
     private TableColumn<AppointmentTableRow, String> appointmentNameColumn;
     @FXML
-    private TableColumn<AppointmentTableRow, String> addressColumn;
+    private TableColumn<AppointmentTableRow, String> officeColumn;
     @FXML
     private TableView<PatientTableRow> patientTable;
     @FXML
@@ -76,7 +76,7 @@ public class doctorViewController implements Initializable{
         numberColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, Integer>("index"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, LocalDate>("date"));
         appointmentNameColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("name"));
-        addressColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("address"));
+        officeColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("office"));
 
         /* Patients table */
 
@@ -179,6 +179,7 @@ public class doctorViewController implements Initializable{
             stage.show();
 
             updatePatientsTable();
+            updateAppointmentTable();
 
         } catch(IOException e) {
             e.printStackTrace();
@@ -204,6 +205,10 @@ public class doctorViewController implements Initializable{
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
             stage.show();
+
+            updatePatientsTable();
+            updateAppointmentTable();
+
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -225,6 +230,9 @@ public class doctorViewController implements Initializable{
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
             stage.show();
+
+            updateAppointmentTable();
+
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -246,6 +254,9 @@ public class doctorViewController implements Initializable{
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
             stage.show();
+
+            updateAppointmentTable();
+
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -267,6 +278,9 @@ public class doctorViewController implements Initializable{
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
             stage.show();
+
+            updateAppointmentTable();
+
         } catch(IOException e) {
             e.printStackTrace();
         }

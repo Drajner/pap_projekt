@@ -44,7 +44,7 @@
             <Insets bottom="2.0" left="10.0" right="10.0" />
          </VBox.margin>
       </Label>
-      <TextField fx:id="addressField">
+      <TextField fx:id="officeId">
          <VBox.margin>
             <Insets left="10.0" right="10.0" />
          </VBox.margin>

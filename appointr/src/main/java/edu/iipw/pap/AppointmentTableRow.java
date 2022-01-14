@@ -7,14 +7,14 @@ public class AppointmentTableRow {
     private Integer index;
     private LocalDate date;
     private String name;
-    private int officeId;
+    private int office;
 
     public AppointmentTableRow(Appointment appointment, int index) {
         this.appointment = appointment;
         this.index = index;
         this.date = appointment.getTimeOfAppointment().toLocalDate();
         this.name = appointment.getPatient().getName() + " " + appointment.getPatient().getSurname();
-        this.officeId = appointment.getOfficeId();
+        this.office = appointment.getOfficeId();
     }
 
     public Appointment getAppointment() {
@@ -49,12 +49,12 @@ public class AppointmentTableRow {
         this.name = name;
     }
 
-    public int getOfficeId() {
-        return officeId;
+    public int getOffice() {
+        return office;
     }
 
-    public void setOfficeId(int officeId) {
-        this.officeId = officeId;
+    public void setOffice(int office) {
+        this.office = office;
     }
 
 }
