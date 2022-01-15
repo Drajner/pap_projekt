@@ -205,10 +205,16 @@ public class DoctorViewController implements Initializable {
             stage.setTitle("Delete patient");
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
-            stage.show();
 
-            updatePatientsTable();
-            updateAppointmentTable();
+            stage.setOnCloseRequest(
+                    windowEvent -> {
+                        updatePatientsTable();
+                        updateAppointmentTable();
+                    }
+
+            );
+
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();

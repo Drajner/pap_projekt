@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +34,6 @@ public class DeletePatientController {
     private Connection conn;
 
     public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
-        // fajnie jakby bylo przekazane connection i w sumie nic wiecej
         loggedDoctor = doctor;
         conn = usedConn;
 
@@ -63,12 +63,16 @@ public class DeletePatientController {
         }
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        stage.fireEvent(
+                new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)
+        );
     }
 
     public void cancel(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        stage.fireEvent(
+                new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)
+        );
     }
 
     private Patient deletePatientFromData() throws IOException{
