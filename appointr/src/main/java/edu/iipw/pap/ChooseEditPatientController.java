@@ -86,7 +86,10 @@ public class ChooseEditPatientController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("editPatientScreen.fxml"));
             root = loader.load();
             EditPatientController epc = loader.getController();
-            epc.transferPatient(editedPatient, loggedDoctor, conn);
+
+            Stage parentStage = (Stage) cancelButton.getScene().getWindow();
+
+            epc.transferPatient(editedPatient, loggedDoctor, conn, parentStage);
             int sceneX = 300;
             int sceneY = 320;
             Stage stage = new Stage();
@@ -95,8 +98,7 @@ public class ChooseEditPatientController implements Initializable {
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
             stage.show();
-            Stage stage2 = (Stage) cancelButton.getScene().getWindow();
-            stage2.close();
+
         } catch(IOException e) {
             e.printStackTrace();
         }
