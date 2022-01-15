@@ -23,9 +23,10 @@ import javafx.scene.image.Image;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
-public class doctorViewController implements Initializable{
+public class doctorViewController implements Initializable {
 
-    public doctorViewController() { }
+    public doctorViewController() {
+    }
 
     @FXML
     private TextFlow sideText;
@@ -88,7 +89,7 @@ public class doctorViewController implements Initializable{
         sexColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
     }
 
-    public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn){
+    public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn) {
         usedDoctor = loggedDoctor;
         conn = usedConn;
 
@@ -96,7 +97,7 @@ public class doctorViewController implements Initializable{
         updatePatientsTable();
     }
 
-    public void updateAppointmentTable(){
+    public void updateAppointmentTable() {
         DBContext dbContext = new DBContext();
 
         ArrayList<Appointment> appointments = new ArrayList<>();
@@ -108,7 +109,7 @@ public class doctorViewController implements Initializable{
         }
 
         ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
-        for (Appointment a: appointments) {
+        for (Appointment a : appointments) {
             if (a.getDoctor().getPesel().equals(usedDoctor.getPesel()))
                 rows.add(new AppointmentTableRow(a, a.getId()));
         }
@@ -119,7 +120,7 @@ public class doctorViewController implements Initializable{
 
     public void updatePatientsTable() {
         DBContext dbContext = new DBContext();
-        ArrayList<Patient> patients = null;
+        ArrayList<Patient> patients = new ArrayList<>();
 
         try {
             patients = dbContext.getPatients(conn);
@@ -155,7 +156,7 @@ public class doctorViewController implements Initializable{
 
             updatePatientsTable();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -180,7 +181,7 @@ public class doctorViewController implements Initializable{
             updatePatientsTable();
             updateAppointmentTable();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -208,7 +209,7 @@ public class doctorViewController implements Initializable{
             updatePatientsTable();
             updateAppointmentTable();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -232,7 +233,7 @@ public class doctorViewController implements Initializable{
 
             updateAppointmentTable();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -256,7 +257,7 @@ public class doctorViewController implements Initializable{
 
             updateAppointmentTable();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -280,7 +281,7 @@ public class doctorViewController implements Initializable{
 
             updateAppointmentTable();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

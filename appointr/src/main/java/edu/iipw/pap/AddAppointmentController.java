@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 public class AddAppointmentController implements Initializable {
 
     public AddAppointmentController() {
-    // doctor = moze LoggerController bedzie posiadal funckje ktora zwroci aktualnie zalogowanego lekarza
     }
 
     @FXML
@@ -44,7 +43,7 @@ public class AddAppointmentController implements Initializable {
 
     private Connection conn;
 
-    public void transferDoctorAndConn(Doctor doctor, Connection usedConn){
+    public void transferDoctorAndConn(Doctor doctor, Connection usedConn) {
         loggedDoctor = doctor;
         conn = usedConn;
         DBContext dbContext = new DBContext();
@@ -54,7 +53,7 @@ public class AddAppointmentController implements Initializable {
             e.printStackTrace();
         }
 
-        for (Patient p: patients) {
+        for (Patient p : patients) {
             patientList.getItems().add(p.toString());
         }
     }
@@ -64,7 +63,7 @@ public class AddAppointmentController implements Initializable {
 
         ArrayList<String> hours_array = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
-            for (int j = 0; j < 60; j+=5) {
+            for (int j = 0; j < 60; j += 5) {
                 if (j < 10) {
                     hours_array.add(i + ":0" + j);
                 } else {
@@ -84,7 +83,6 @@ public class AddAppointmentController implements Initializable {
     }
 
 
-
     public void cancel(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
@@ -94,7 +92,7 @@ public class AddAppointmentController implements Initializable {
         String s_patient = patientList.getValue();
         Patient patient = null;
 
-        for (Patient p: patients) {
+        for (Patient p : patients) {
             if (s_patient.equals(p.toString())) {
                 patient = p;
                 break;
