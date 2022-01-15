@@ -58,6 +58,7 @@ public class DBContext implements AutoCloseable {
             login = account_rs.getString(2);
             password = account_rs.getString(3);
         }
+        account_rs.close();
 
         return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>(), gender);
     }
@@ -85,6 +86,7 @@ public class DBContext implements AutoCloseable {
         ResultSet doctor_rs = stmt.executeQuery();
         if (doctor_rs.next())
             doctor = createDoctor(doctor_rs, conn);
+        doctor_rs.close();
 
         String patientPesel = rs.getString(3);
         stmt = conn.prepareStatement("SELECT * FROM patients WHERE pesel = ?");
@@ -92,6 +94,7 @@ public class DBContext implements AutoCloseable {
         ResultSet patient_rs = stmt.executeQuery();
         if (patient_rs.next())
             patient = createPatient(patient_rs);
+        patient_rs.close();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime time = LocalDateTime.parse(rs.getString(4).substring(0, 16), formatter);
@@ -109,6 +112,7 @@ public class DBContext implements AutoCloseable {
         while (rs.next()) {
             doctors.add(createDoctor(rs, conn));
         }
+        rs.close();
 
         return doctors;
     }
@@ -121,6 +125,7 @@ public class DBContext implements AutoCloseable {
         while (rs.next()) {
             patients.add(createPatient(rs));
         }
+        rs.close();
 
         return patients;
     }
@@ -133,6 +138,8 @@ public class DBContext implements AutoCloseable {
         while (rs.next()) {
             appointments.add(createAppointment(rs, conn));
         }
+        rs.close();
+
         return appointments;
     }
 
