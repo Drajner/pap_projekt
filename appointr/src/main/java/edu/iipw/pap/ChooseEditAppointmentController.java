@@ -102,7 +102,10 @@ public class ChooseEditAppointmentController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("editAppointmentScreen.fxml"));
             root = loader.load();
             EditAppointmentController eac = loader.getController();
-            eac.transferAppointment(editedAppointment, loggedDoctor, conn);
+
+            Stage parentStage = (Stage) cancelButton.getScene().getWindow();
+
+            eac.transferAppointment(editedAppointment, loggedDoctor, conn, parentStage);
             int sceneX = 240;
             int sceneY = 240;
             Stage stage = new Stage();
@@ -111,8 +114,7 @@ public class ChooseEditAppointmentController implements Initializable {
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
             stage.show();
-            Stage stage2 = (Stage) cancelButton.getScene().getWindow();
-            stage2.close();
+
         } catch(IOException e) {
             e.printStackTrace();
         }

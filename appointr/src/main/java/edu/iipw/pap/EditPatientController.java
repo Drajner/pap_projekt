@@ -65,10 +65,11 @@ public class EditPatientController {
             e.printStackTrace();
         }
 
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
         parentStage.fireEvent(
-                new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)
+                new WindowEvent(parentStage, WindowEvent.WINDOW_CLOSE_REQUEST)
         );
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 

@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +40,8 @@ public class EditAppointmentController implements Initializable {
 
     private Doctor loggedDoctor;
 
+    private Stage parentStage;
+
     private Appointment edditedAppointment;
 
     private ArrayList<Patient> patients;
@@ -48,11 +51,12 @@ public class EditAppointmentController implements Initializable {
 
     }
 
-    public void transferAppointment(Appointment appointment, Doctor doctor, Connection usedConn) {
-
+    public void transferAppointment(Appointment appointment, Doctor doctor, Connection usedConn, Stage stage) {
         conn = usedConn;
         loggedDoctor = doctor;
         edditedAppointment = appointment;
+        parentStage = stage;
+
         DBContext dbContext = new DBContext();
 
         try {
@@ -133,6 +137,10 @@ public class EditAppointmentController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        parentStage.fireEvent(
+                new WindowEvent(parentStage, WindowEvent.WINDOW_CLOSE_REQUEST)
+        );
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
