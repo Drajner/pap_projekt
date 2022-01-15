@@ -1,26 +1,24 @@
 package edu.iipw.pap;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-
 public class LoggerController implements Initializable {
-
-    public LoggerController() { }
 
     @FXML
     private Button logInButton;
@@ -28,9 +26,10 @@ public class LoggerController implements Initializable {
     private TextField loginField;
     @FXML
     private PasswordField passwordField;
-
     private ArrayList<Doctor> doctors;
     private Connection conn = null;
+    public LoggerController() {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -56,7 +55,7 @@ public class LoggerController implements Initializable {
         String password = passwordField.getText();
 
         boolean isLogin = false;
-        for (Doctor d: doctors) {
+        for (Doctor d : doctors) {
             if (login.equals(d.getLogin()) && password.equals(d.getPassword())) {
                 isLogin = true;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorView.fxml"));

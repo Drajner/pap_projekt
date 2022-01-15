@@ -20,22 +20,19 @@ import java.util.ResourceBundle;
 
 public class ChooseEditAppointmentController implements Initializable {
 
-    public ChooseEditAppointmentController() {}
-
     @FXML
     private ChoiceBox<String> appointmentList;
     @FXML
     private Button chooseButton;
     @FXML
     private Button cancelButton;
-
     private ObservableList<AppointmentTableRow> tempData;
-
     private Doctor loggedDoctor;
-
     private ArrayList<Appointment> appointments;
-
     private Connection conn;
+
+    public ChooseEditAppointmentController() {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,7 +49,7 @@ public class ChooseEditAppointmentController implements Initializable {
         try {
             appointments = dbContext.getAppointments(conn);
 
-            for (Appointment a: appointments) {
+            for (Appointment a : appointments) {
                 if (a.getDoctor().getPesel().equals(loggedDoctor.getPesel())) {
                     if (appointment == null)
                         appointment = a;
@@ -77,7 +74,7 @@ public class ChooseEditAppointmentController implements Initializable {
         stage.close();
     }
 
-    private void chooseAppointmentFromData() throws IOException{
+    private void chooseAppointmentFromData() throws IOException {
         Parent root;
         /*String[] splitAppointment = appointmentList.getValue().split(" ");
         int editedAppointmentId = Integer.parseInt(splitAppointment[0]);
@@ -92,8 +89,8 @@ public class ChooseEditAppointmentController implements Initializable {
         String s_appointment = appointmentList.getValue();
         Appointment editedAppointment = null;
 
-        for (Appointment p: appointments) {
-            if (p.toString().equals(s_appointment)){
+        for (Appointment p : appointments) {
+            if (p.toString().equals(s_appointment)) {
                 editedAppointment = p;
                 break;
             }
@@ -115,7 +112,7 @@ public class ChooseEditAppointmentController implements Initializable {
             stage.setResizable(false);
             stage.show();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

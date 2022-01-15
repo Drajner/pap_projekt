@@ -7,10 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -65,7 +61,7 @@ public class EditAppointmentController implements Initializable {
             e.printStackTrace();
         }
 
-        for (Patient p: patients) {
+        for (Patient p : patients) {
             patientList.getItems().add(p.toString());
         }
 
@@ -74,7 +70,7 @@ public class EditAppointmentController implements Initializable {
         officeId.setText(String.valueOf(appointment.getOfficeId()));
         ArrayList<String> hours_array = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
-            for (int j = 0; j < 60; j+=5) {
+            for (int j = 0; j < 60; j += 5) {
                 if (j < 10) {
                     hours_array.add(i + ":0" + j);
                 } else {
@@ -97,12 +93,11 @@ public class EditAppointmentController implements Initializable {
         stage.close();
     }
 
-    private Patient getPatient()
-    {
+    private Patient getPatient() {
         String s_patient = patientList.getValue();
         Patient patient = null;
 
-        for (Patient p: patients) {
+        for (Patient p : patients) {
             if (s_patient.equals(p.toString())) {
                 patient = p;
                 break;

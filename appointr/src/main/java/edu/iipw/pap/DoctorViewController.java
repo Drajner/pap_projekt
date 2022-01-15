@@ -1,13 +1,5 @@
 package edu.iipw.pap;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.sql.Connection;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,10 +16,14 @@ import javafx.scene.image.Image;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
-public class DoctorViewController implements Initializable {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-    public DoctorViewController() {
-    }
+public class DoctorViewController implements Initializable {
 
     @FXML
     private TextFlow sideText;
@@ -65,12 +61,12 @@ public class DoctorViewController implements Initializable {
     private TableColumn<PatientTableRow, LocalDate> birthDateColumn;
     @FXML
     private TableColumn<PatientTableRow, String> descriptionColumn;
-
     private ObservableList<AppointmentTableRow> data;
-
     private Doctor usedDoctor;
-
     private Connection conn;
+
+    public DoctorViewController() {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -5,8 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -17,20 +17,18 @@ import java.util.ResourceBundle;
 
 public class DeleteAppointmentController implements Initializable {
 
-    public DeleteAppointmentController() { }
-
+    private final ArrayList<Appointment> appointments = new ArrayList<>();
     @FXML
     private ChoiceBox<String> appointmentList;
     @FXML
     private Button deleteButton;
     @FXML
     private Button cancelButton;
-
-    private ArrayList<Appointment> appointments = new ArrayList<>();
-
     private Connection conn;
-
     private Doctor loggedDoctor;
+
+    public DeleteAppointmentController() {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,7 +37,7 @@ public class DeleteAppointmentController implements Initializable {
     public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
         loggedDoctor = doctor;
         conn = usedConn;
-        for (AppointmentTableRow tr: data) {
+        for (AppointmentTableRow tr : data) {
             appointmentList.getItems().add(tr.getAppointment().toString());
             appointments.add(tr.getAppointment());
         }
@@ -69,12 +67,12 @@ public class DeleteAppointmentController implements Initializable {
         stage.close();
     }
 
-    private Appointment deleteAppointmentFromData() throws IOException{
+    private Appointment deleteAppointmentFromData() throws IOException {
 
         String s_appointment = getAppointment();
         Appointment appointment = null;
 
-        for (Appointment a: appointments) {
+        for (Appointment a : appointments) {
             if (a.toString().equals(s_appointment)) {
                 appointment = a;
                 break;

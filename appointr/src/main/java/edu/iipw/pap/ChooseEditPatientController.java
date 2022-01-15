@@ -20,22 +20,19 @@ import java.util.ResourceBundle;
 
 public class ChooseEditPatientController implements Initializable {
 
-    public ChooseEditPatientController() {}
-
     @FXML
     private ChoiceBox<String> patientList;
     @FXML
     private Button chooseButton;
     @FXML
     private Button cancelButton;
-
     private ObservableList<AppointmentTableRow> tempData;
-
     private Doctor loggedDoctor;
-
     private Connection conn;
-
     private ArrayList<Patient> patients;
+
+    public ChooseEditPatientController() {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,7 +48,7 @@ public class ChooseEditPatientController implements Initializable {
         try {
             patients = dbContext.getPatients(conn);
 
-            for (Patient p: patients) {
+            for (Patient p : patients) {
                 patientList.getItems().add(p.toString());
             }
             patientList.setValue(patients.get(0).toString());
@@ -70,18 +67,18 @@ public class ChooseEditPatientController implements Initializable {
         stage.close();
     }
 
-    private void choosePatientFromData() throws IOException{
+    private void choosePatientFromData() throws IOException {
         Parent root;
         String s_patient = patientList.getValue();
         Patient editedPatient = null;
 
-        for (Patient p: patients) {
-            if (p.toString().equals(s_patient)){
+        for (Patient p : patients) {
+            if (p.toString().equals(s_patient)) {
                 editedPatient = p;
                 break;
             }
         }
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("editPatientScreen.fxml"));
             root = loader.load();
@@ -99,7 +96,7 @@ public class ChooseEditPatientController implements Initializable {
             stage.setResizable(false);
             stage.show();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

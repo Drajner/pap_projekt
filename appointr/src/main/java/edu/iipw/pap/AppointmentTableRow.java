@@ -1,7 +1,5 @@
 package edu.iipw.pap;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class AppointmentTableRow {
@@ -14,7 +12,7 @@ public class AppointmentTableRow {
     public AppointmentTableRow(Appointment appointment, int index) {
         this.appointment = appointment;
         this.index = index;
-        this.date =  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(appointment.getTimeOfAppointment());
+        this.date = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(appointment.getTimeOfAppointment());
         this.name = appointment.getPatient().getName() + " " + appointment.getPatient().getSurname();
         this.office = appointment.getOfficeId();
     }

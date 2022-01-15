@@ -1,6 +1,5 @@
 package edu.iipw.pap;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,8 +14,6 @@ import java.sql.Connection;
 
 
 public class EditPatientController {
-
-    public EditPatientController() { }
 
     @FXML
     private Button addButton;
@@ -34,21 +31,21 @@ public class EditPatientController {
     private TextArea descriptionField;
     @FXML
     private TextField genderField;
-
     private Doctor loggedDoctor;
-
     private Connection conn;
-
     private Stage parentStage;
-
     private String patientPesel;
+
+    public EditPatientController() {
+    }
 
     public void transferPatient(Patient patient, Doctor doctor, Connection usedConn, Stage stage) {
         loggedDoctor = doctor;
         conn = usedConn;
         parentStage = stage;
 
-        peselField.setText(patient.getPesel()); patientPesel = patient.getPesel();
+        peselField.setText(patient.getPesel());
+        patientPesel = patient.getPesel();
         nameField.setText(patient.getName());
         surnameField.setText(patient.getSurname());
         descriptionField.setText((patient.getDescription()));
@@ -78,7 +75,7 @@ public class EditPatientController {
         stage.close();
     }
 
-    private Patient editPatientFromData() throws IOException{
+    private Patient editPatientFromData() throws IOException {
         return new Patient(peselField.getText(), nameField.getText(), surnameField.getText(),
                 dataField.getValue(), descriptionField.getText(), genderField.getText().charAt(0));
 

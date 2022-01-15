@@ -1,21 +1,19 @@
 package edu.iipw.pap;
 
-import java.io.IOException;
-import java.sql.Connection;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.io.IOException;
+import java.sql.Connection;
+
 
 public class AddPatientController {
-
-    public AddPatientController() { }
 
     @FXML
     private Button addButton;
@@ -33,12 +31,13 @@ public class AddPatientController {
     private TextArea descriptionField;
     @FXML
     private TextField genderField;
-
     private Doctor loggedDoctor;
-
     private Connection conn;
 
-    public void transferConn(Connection usedConn){
+    public AddPatientController() {
+    }
+
+    public void transferConn(Connection usedConn) {
         conn = usedConn;
     }
 
@@ -62,7 +61,7 @@ public class AddPatientController {
         stage.close();
     }
 
-    private Patient createPatientFromData() throws IOException{
+    private Patient createPatientFromData() throws IOException {
         return new Patient(peselField.getText(), nameField.getText(),
                 surnameField.getText(), dataField.getValue(), descriptionField.getText(), genderField.getText().charAt(0));
     }

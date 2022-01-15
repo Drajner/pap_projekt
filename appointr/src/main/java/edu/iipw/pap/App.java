@@ -1,12 +1,5 @@
 package edu.iipw.pap;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
-
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -17,49 +10,18 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-/** JavaFX App. */
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Scanner;
+
+/**
+ * JavaFX App.
+ */
 public class App extends Application {
     private static Stage stg;
-
-    @Override
-    public void start(Stage stage) throws IOException {
-        stg = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("loadingScreen.fxml"));
-        int sceneX = 350;
-        int sceneY = 300;
-        Scene scene = new Scene(fxmlLoader.load(), sceneX, sceneY);
-        stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResource("appointr_logo.png")).toString()));
-        stage.setTitle("Appointr");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-
-        Task<Void> sleeper = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        };
-
-        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                try {
-                    Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoggingScreen.fxml")));
-                    stg.getScene().setRoot(pane);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        new Thread(sleeper).start();
-    }
 
     public static void showAppointments(ArrayList<Appointment> appointments) {
         if (appointments.isEmpty()) {
@@ -77,7 +39,7 @@ public class App extends Application {
         }
     }
 
-    public static void showDoctors(ArrayList<Doctor> doctors){
+    public static void showDoctors(ArrayList<Doctor> doctors) {
         if (doctors.isEmpty()) {
             System.out.println("Brak lekarzy.");
         } else {
@@ -93,7 +55,7 @@ public class App extends Application {
         }
     }
 
-    public static void showPatients(ArrayList<Patient> patients){
+    public static void showPatients(ArrayList<Patient> patients) {
         if (patients.isEmpty()) {
             System.out.println("Brak pacjentów.");
         } else {
@@ -109,7 +71,7 @@ public class App extends Application {
         }
     }
 
-    public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments){
+    public static void addAppointment(Doctor doctor, ArrayList<Patient> patients, ArrayList<Appointment> appointments) {
         Scanner sc = new Scanner(System.in);
         int officeId;
         String datetime = "";
@@ -117,12 +79,16 @@ public class App extends Application {
         Patient patient;
 
         showPatients(patients);
-        System.out.print("Wybierz pacjenta po indeksie: "); patient = patients.get(sc.nextInt());
+        System.out.print("Wybierz pacjenta po indeksie: ");
+        patient = patients.get(sc.nextInt());
         sc.nextLine();
-        System.out.print("Data wizyty (YYYY-MM-DD): "); datetime += sc.nextLine();
-        System.out.print("Godzina wizyty (HH:MM:SS): "); datetime += "T" + sc.nextLine();
+        System.out.print("Data wizyty (YYYY-MM-DD): ");
+        datetime += sc.nextLine();
+        System.out.print("Godzina wizyty (HH:MM:SS): ");
+        datetime += "T" + sc.nextLine();
         appointmentDate = LocalDateTime.parse(datetime);
-        System.out.print("Gabinet: "); officeId = sc.nextInt();
+        System.out.print("Gabinet: ");
+        officeId = sc.nextInt();
         int id = 500;
         Appointment a = new Appointment(id, doctor, patient, appointmentDate, officeId);
         appointments.add(a);
@@ -134,14 +100,22 @@ public class App extends Application {
         LocalDate birthDate;
         Character gender;
 
-        System.out.print("PESEL: "); pesel = sc.nextLine();
-        System.out.print("Imię: "); name = sc.nextLine();
-        System.out.print("Nazwisko: "); surname = sc.nextLine();
-        System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
-        System.out.print("Specjalizacja: "); specialization = sc.nextLine();
-        System.out.print("Login: "); login = sc.nextLine();
-        System.out.print("Hasło: "); password = sc.nextLine();
-        System.out.println("Płeć: "); gender = sc.nextLine().charAt(0);
+        System.out.print("PESEL: ");
+        pesel = sc.nextLine();
+        System.out.print("Imię: ");
+        name = sc.nextLine();
+        System.out.print("Nazwisko: ");
+        surname = sc.nextLine();
+        System.out.print("Data urodzenia: ");
+        birthDate = LocalDate.parse(sc.nextLine());
+        System.out.print("Specjalizacja: ");
+        specialization = sc.nextLine();
+        System.out.print("Login: ");
+        login = sc.nextLine();
+        System.out.print("Hasło: ");
+        password = sc.nextLine();
+        System.out.println("Płeć: ");
+        gender = sc.nextLine().charAt(0);
         Doctor d = new Doctor(pesel, name, surname, birthDate, specialization, login, password, new ArrayList<Appointment>(), gender);
         doctors.add(d);
     }
@@ -152,27 +126,34 @@ public class App extends Application {
         LocalDate birthDate;
         Character gender;
 
-        System.out.print("Pesel: "); pesel = sc.nextLine();
-        System.out.print("Imię: "); name = sc.nextLine();
-        System.out.print("Nazwisko: "); surname = sc.nextLine();
-        System.out.print("Data urodzenia: "); birthDate = LocalDate.parse(sc.nextLine());
-        System.out.print("Opis dolegliwości: "); description = sc.nextLine();
-        System.out.println("Płeć: "); gender = sc.nextLine().charAt(0);
+        System.out.print("Pesel: ");
+        pesel = sc.nextLine();
+        System.out.print("Imię: ");
+        name = sc.nextLine();
+        System.out.print("Nazwisko: ");
+        surname = sc.nextLine();
+        System.out.print("Data urodzenia: ");
+        birthDate = LocalDate.parse(sc.nextLine());
+        System.out.print("Opis dolegliwości: ");
+        description = sc.nextLine();
+        System.out.println("Płeć: ");
+        gender = sc.nextLine().charAt(0);
         Patient p = new Patient(pesel, name, surname, birthDate, description, gender);
         patients.add(p);
     }
 
-    public static void changePatient(ArrayList<Patient> patients){
+    public static void changePatient(ArrayList<Patient> patients) {
         Scanner sc = new Scanner(System.in);
         Patient patient;
         String attribute;
 
         showPatients(patients);
-        System.out.print("Wybierz pacjenta po indeksie: "); patient = patients.get(sc.nextInt());
+        System.out.print("Wybierz pacjenta po indeksie: ");
+        patient = patients.get(sc.nextInt());
         sc.nextLine();
 
         boolean fin = false;
-        while(!fin){
+        while (!fin) {
             System.out.println(patient);
             System.out.print("Wybierz atrybut do zmiany lub opuść edytowanie: {name, surname, dateOfBirth, description, quit}: ");
             attribute = sc.nextLine();
@@ -203,24 +184,26 @@ public class App extends Application {
         }
     }
 
-    public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Doctor> doctors, ArrayList<Patient> patients){
+    public static void changeAppointment(ArrayList<Appointment> appointments, ArrayList<Doctor> doctors, ArrayList<Patient> patients) {
         Scanner sc = new Scanner(System.in);
         Appointment appointment;
         String attribute;
 
         showAppointments(appointments);
-        System.out.print("Wybierz wizyte po indeksie: "); appointment = appointments.get(sc.nextInt());
+        System.out.print("Wybierz wizyte po indeksie: ");
+        appointment = appointments.get(sc.nextInt());
         sc.nextLine();
 
         boolean fin = false;
-        while(!fin){
+        while (!fin) {
             System.out.println(appointment);
             System.out.print("Wybierz atrybut do zmiany lub opuść edytowanie: {doctor, patient, datetime, address, quit}: ");
             attribute = sc.nextLine();
             switch (attribute) {
                 case "doctor":
                     showDoctors(doctors);
-                    System.out.print("Wybierz lekarza po indeksie: "); appointment.setDoctor(doctors.get(sc.nextInt()));
+                    System.out.print("Wybierz lekarza po indeksie: ");
+                    appointment.setDoctor(doctors.get(sc.nextInt()));
                     sc.nextLine();
                     break;
                 case "patient":
@@ -284,7 +267,7 @@ public class App extends Application {
         listingColor.add(100);
         listingColor.add(150);
         listingColor.add(200);
-        while(true) {
+        while (true) {
             System.out.println(CLI.ANSI_RGB(listingColor, "1.") + CLI.ANSI_RESET + " Pokaż wizyty");
             System.out.println(CLI.ANSI_RGB(listingColor, "2.") + CLI.ANSI_RESET + " Pokaż lekarzy");
             System.out.println(CLI.ANSI_RGB(listingColor, "3.") + CLI.ANSI_RESET + " Pokaż pacjentów");
@@ -300,9 +283,9 @@ public class App extends Application {
             System.out.println(CLI.ANSI_RGB(listingColor, "13.") + CLI.ANSI_RESET + " Zakończ");
             System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
             System.out.print("Wpisz opcję: ");
-            input =  sc.nextLine();
+            input = sc.nextLine();
             System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
-            switch(input){
+            switch (input) {
                 case "1":
                     showAppointments(appointments);
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
@@ -346,7 +329,7 @@ public class App extends Application {
                         showAppointments(appointments);
                         System.out.println("Którą wizytę chcesz usunąć?");
                         System.out.print("Podaj indeks: ");
-                        input =  sc.nextLine();
+                        input = sc.nextLine();
                         inputValue = Integer.parseInt(input);
                         appointments.remove(inputValue);
                     }
@@ -359,7 +342,7 @@ public class App extends Application {
                         showDoctors(doctors);
                         System.out.println("Którego lekarza chcesz usunąć?");
                         System.out.print("Podaj indeks: ");
-                        input =  sc.nextLine();
+                        input = sc.nextLine();
                         inputValue = Integer.parseInt(input);
                         doctors.remove(inputValue);
                     }
@@ -372,7 +355,7 @@ public class App extends Application {
                         showPatients(patients);
                         System.out.println("Którego pacjenta chcesz usunąć?");
                         System.out.print("Podaj indeks: ");
-                        input =  sc.nextLine();
+                        input = sc.nextLine();
                         inputValue = Integer.parseInt(input);
                         patients.remove(inputValue);
                     }
@@ -394,6 +377,46 @@ public class App extends Application {
 
         }
 
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        stg = stage;
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("loadingScreen.fxml"));
+        int sceneX = 350;
+        int sceneY = 300;
+        Scene scene = new Scene(fxmlLoader.load(), sceneX, sceneY);
+        stage.getIcons().add(new Image(Objects.requireNonNull(App.class.getResource("appointr_logo.png")).toString()));
+        stage.setTitle("Appointr");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
+
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                try {
+                    Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoggingScreen.fxml")));
+                    stg.getScene().setRoot(pane);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        new Thread(sleeper).start();
     }
 
 }

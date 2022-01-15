@@ -31,13 +31,13 @@ public class CLI {
         color.add(R1);
         color.add(G1);
         color.add(B1);
-        double delta_R = (double)(R2 - R1) / (text.length() - 1);
-        double delta_G = (double)(G2 - G1) / (text.length() - 1);
-        double delta_B = (double)(B2 - B1) / (text.length() - 1);
+        double delta_R = (double) (R2 - R1) / (text.length() - 1);
+        double delta_G = (double) (G2 - G1) / (text.length() - 1);
+        double delta_B = (double) (B2 - B1) / (text.length() - 1);
         for (int i = 0; i < text.length(); i++) {
-            color.set(0, (int)(R1 + delta_R * i));
-            color.set(1, (int)(G1 + delta_G * i));
-            color.set(2, (int)(B1 + delta_B * i));
+            color.set(0, (int) (R1 + delta_R * i));
+            color.set(1, (int) (G1 + delta_G * i));
+            color.set(2, (int) (B1 + delta_B * i));
             result += ANSI_RGB(color, text.substring(i, i + 1));
         }
         return result;
@@ -61,13 +61,13 @@ public class CLI {
         color.add(R1);
         color.add(G1);
         color.add(B1);
-        double delta_R = (double)(R2 - R1) / (length - 1);
-        double delta_G = (double)(G2 - G1) / (length - 1);
-        double delta_B = (double)(B2 - B1) / (length - 1);
+        double delta_R = (double) (R2 - R1) / (length - 1);
+        double delta_G = (double) (G2 - G1) / (length - 1);
+        double delta_B = (double) (B2 - B1) / (length - 1);
         for (int i = 0; i < length; i++) {
-            color.set(0, (int)(R1 + delta_R * i));
-            color.set(1, (int)(G1 + delta_G * i));
-            color.set(2, (int)(B1 + delta_B * i));
+            color.set(0, (int) (R1 + delta_R * i));
+            color.set(1, (int) (G1 + delta_G * i));
+            color.set(2, (int) (B1 + delta_B * i));
             result += (ANSI_RGB(color, "═") + ANSI_RESET);
         }
         return result;

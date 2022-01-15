@@ -1,14 +1,12 @@
 package edu.iipw.pap;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -22,9 +20,6 @@ import java.util.ResourceBundle;
 
 public class AddAppointmentController implements Initializable {
 
-    public AddAppointmentController() {
-    }
-
     @FXML
     private ChoiceBox<String> patientList;
     @FXML
@@ -37,12 +32,12 @@ public class AddAppointmentController implements Initializable {
     private Button cancelButton;
     @FXML
     private Button addButton;
-
     private ArrayList<Patient> patients;
-
     private Doctor loggedDoctor;
-
     private Connection conn;
+
+    public AddAppointmentController() {
+    }
 
     public void transferDoctorAndConn(Doctor doctor, Connection usedConn) {
         loggedDoctor = doctor;

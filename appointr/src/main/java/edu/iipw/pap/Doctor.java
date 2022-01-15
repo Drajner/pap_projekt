@@ -4,28 +4,39 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-/** A class representing a doctor. */
-public class Doctor extends Person{
-    /** The doctor's specialty. */
+/**
+ * A class representing a doctor.
+ */
+public class Doctor extends Person {
+    /**
+     * The doctor's specialty.
+     */
     private String specialization;
-    /** The doctor's account's login. */
+    /**
+     * The doctor's account's login.
+     */
     private String login;
-    /** The doctor's account's password. */
+    /**
+     * The doctor's account's password.
+     */
     private String password;
-    /** The doctor's appointments. */
+    /**
+     * The doctor's appointments.
+     */
     private ArrayList<Appointment> appointments;
 
     /**
      * Constructor for the Doctor class.
-     * @param pesel The doctor's pesel.
-     * @param name The doctor's name.
-     * @param surname The doctor's surname.
-     * @param dateOfBirth The doctor's date of birth.
+     *
+     * @param pesel          The doctor's pesel.
+     * @param name           The doctor's name.
+     * @param surname        The doctor's surname.
+     * @param dateOfBirth    The doctor's date of birth.
      * @param specialization The doctor's specialization.
-     * @param login The doctor's account's login.
-     * @param password The doctor's account's password.
-     * @param appointments The doctor's appointments.
-     * @param gender The doctor's gender.
+     * @param login          The doctor's account's login.
+     * @param password       The doctor's account's password.
+     * @param appointments   The doctor's appointments.
+     * @param gender         The doctor's gender.
      */
     public Doctor(String pesel, String name, String surname, LocalDate dateOfBirth, String specialization,
                   String login, String password, ArrayList<Appointment> appointments, Character gender) {
@@ -39,6 +50,7 @@ public class Doctor extends Person{
 
     /**
      * Returns the doctor's specialization.
+     *
      * @return The doctor's specialization.
      */
     public String getSpecialization() {
@@ -47,14 +59,16 @@ public class Doctor extends Person{
 
     /**
      * Sets the doctor's specialization.
+     *
      * @param specialization The doctor's specialization.
-    */
+     */
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
 
     /**
      * Returns the doctor's account's login.
+     *
      * @return The doctor's account's login.
      */
     public String getLogin() {
@@ -63,6 +77,7 @@ public class Doctor extends Person{
 
     /**
      * Sets the doctor's account's login.
+     *
      * @param login The doctor's account's login.
      */
     public void setLogin(String login) {
@@ -71,6 +86,7 @@ public class Doctor extends Person{
 
     /**
      * Returns the doctor's account's password.
+     *
      * @return The doctor's account's password.
      */
     public String getPassword() {
@@ -79,6 +95,7 @@ public class Doctor extends Person{
 
     /**
      * Sets the doctor's account's password.
+     *
      * @param password The doctor's account's password.
      */
     public void setPassword(String password) {
@@ -87,6 +104,7 @@ public class Doctor extends Person{
 
     /**
      * Returns the doctor's appointments.
+     *
      * @return The doctor's appointments.
      */
     public ArrayList<Appointment> getAppointments() {
@@ -96,6 +114,7 @@ public class Doctor extends Person{
 
     /**
      * Sets the doctor's appointments.
+     *
      * @param appointments The doctor's appointments.
      */
     public void setAppointments(ArrayList<Appointment> appointments) {
@@ -104,6 +123,7 @@ public class Doctor extends Person{
 
     /**
      * Adds an appointment to doctor's appointments.
+     *
      * @param appointment The appointment to be added.
      * @return True if the appointment was added, false otherwise.
      */
@@ -124,6 +144,7 @@ public class Doctor extends Person{
 
     /**
      * Returns the doctor's appointments for a given date.
+     *
      * @param date The date of the appointments.
      * @return The doctor's appointments for a given date.
      */
@@ -141,9 +162,10 @@ public class Doctor extends Person{
 
     /**
      * Create new appointment for the doctor.
-     * @param patient The patient for whom the appointment is created.
+     *
+     * @param patient           The patient for whom the appointment is created.
      * @param timeOfAppointment The time of the appointment.
-     * @param officeId The address of the appointment.
+     * @param officeId          The address of the appointment.
      * @return The created appointment.
      */
     public Appointment createAppointment(int id, Patient patient, LocalDateTime timeOfAppointment, int officeId) {
@@ -152,6 +174,7 @@ public class Doctor extends Person{
 
     /**
      * Returns a string representation of the doctor.
+     *
      * @return A string representation of the doctor.
      */
     @Override
