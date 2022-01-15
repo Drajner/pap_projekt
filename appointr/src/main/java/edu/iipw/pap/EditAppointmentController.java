@@ -54,6 +54,7 @@ public class EditAppointmentController implements Initializable {
         loggedDoctor = doctor;
         edditedAppointment = appointment;
         DBContext dbContext = new DBContext();
+
         try {
             patients = dbContext.getPatients(conn);
         } catch (Exception e) {
@@ -92,7 +93,7 @@ public class EditAppointmentController implements Initializable {
         stage.close();
     }
 
-    public Patient getPatient()
+    private Patient getPatient()
     {
         String s_patient = patientList.getValue();
         Patient patient = null;
@@ -106,29 +107,34 @@ public class EditAppointmentController implements Initializable {
         return patient;
     }
 
-    public LocalDate getDate() {
+    private LocalDate getDate() {
         return dateList.getValue();
     }
 
-    public LocalTime getTime() {
+    private LocalTime getTime() {
         String hour = hourSelection.getValue();
         return LocalTime.parse(hour);
     }
 
-    public int getOfficeId() {
+    private int getOfficeId() {
         return Integer.parseInt(officeId.getText());
     }
 
-    public void editAppointment() {
-        // zmiana okna na takie ktore wyswietla dane wizyty do zmiany
-        int id = 404;
-        Patient patient = getPatient();
-        LocalDate date = getDate();
-        LocalTime time = getTime();
-        LocalDateTime dateTime = LocalDateTime.of(date, time);
-        int officeId = getOfficeId();
+    private Appointment editAppointmentFromData() {
+        return new Appointment(edditedAppointment.getId(), loggedDoctor, getPatient(),
+                LocalDateTime.of(getDate(), getTime()), getOfficeId());
+    }
 
-        Appointment appointment = new Appointment(id, loggedDoctor, patient, dateTime, officeId);
-        // update wpis w bazie danych dotyczacy danej wizyty
+    public void editAppointment(ActionEvent event) throws IOException {
+        Appointment appointment = editAppointmentFromData();
+
+        try {
+            DBContext.editAppointment(conn, appointment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 }

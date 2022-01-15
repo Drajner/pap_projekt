@@ -152,18 +152,21 @@ public class DBContext implements AutoCloseable {
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM doctors WHERE pesel = ?");
         stmt.setString(1, pesel);
         stmt.executeQuery();
+        stmt.close();
     }
 
     public static void deletePatient(Connection conn, String pesel) throws Exception{
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM patients WHERE pesel = ?");
         stmt.setString(1, pesel);
         stmt.executeQuery();
+        stmt.close();
     }
 
     public static void deleteAppointment(Connection conn, int appointmentId) throws Exception{
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM appointments WHERE appointment_id = ?");
         stmt.setInt(1, appointmentId);
         stmt.executeQuery();
+        stmt.close();
     }
 
     public void addDoctor(Connection conn, Doctor doctor) throws SQLException {
@@ -177,6 +180,7 @@ public class DBContext implements AutoCloseable {
         stmt.setString(7, doctor.getPassword());
         stmt.setString(8, doctor.getGender().toString());
         stmt.executeQuery();
+        stmt.close();
     }
 
     public static void addPatient(Connection conn, Patient patient) throws SQLException {
@@ -188,6 +192,7 @@ public class DBContext implements AutoCloseable {
         stmt.setString(5, patient.getDescription());
         stmt.setString(6, patient.getGender().toString());
         stmt.executeQuery();
+        stmt.close();
     }
 
     public static void addAppointment(Connection conn, Appointment appointment) throws Exception {
@@ -197,6 +202,7 @@ public class DBContext implements AutoCloseable {
         stmt.setTimestamp(3, Timestamp.valueOf(appointment.getTimeOfAppointment()));
         stmt.setInt(4, appointment.getOfficeId());
         stmt.executeQuery();
+        stmt.close();
     }
 
     public static void editDoctor(Connection conn, Doctor doctor) throws Exception {
@@ -215,6 +221,7 @@ public class DBContext implements AutoCloseable {
         stmt.setInt(5, specId);
 
         stmt.executeQuery();
+        stmt.close();
     }
 
     public static void editPatient(Connection conn, Patient patient, String patientPesel) throws Exception {
@@ -229,17 +236,19 @@ public class DBContext implements AutoCloseable {
         stmt.setString(6, patient.getGender().toString());
         stmt.setString(7, patientPesel);
         stmt.executeQuery();
+        stmt.close();
     }
 
     public static void editAppointment(Connection conn, Appointment appointment) throws Exception {
         PreparedStatement stmt = conn.prepareStatement("UPDATE appointments " +
-                "SET appointment_id = ?, doctor = ?, patient = ?, time = ?, office_id = ?");
-        stmt.setInt(1, appointment.getId());
-        stmt.setString(2, appointment.getDoctor().getPesel());
-        stmt.setString(3, appointment.getPatient().getPesel());
-        stmt.setTimestamp(4, Timestamp.valueOf(appointment.getTimeOfAppointment()));
-        stmt.setInt(5, appointment.getOfficeId());
+                "SET patient = ?, time = ?, office_id = ? " +
+                "WHERE appointment_id = ?");
+        stmt.setString(1, appointment.getPatient().getPesel());
+        stmt.setTimestamp(2, Timestamp.valueOf(appointment.getTimeOfAppointment()));
+        stmt.setInt(3, appointment.getOfficeId());
+        stmt.setInt(4, appointment.getId());
         stmt.executeQuery();
+        stmt.close();
     }
 
     public static void main(String[] args) {
