@@ -3,6 +3,7 @@ package edu.iipw.pap;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.sql.Connection;
@@ -47,7 +48,7 @@ public class DoctorViewController implements Initializable {
     @FXML
     private TableColumn<AppointmentTableRow, Integer> numberColumn;
     @FXML
-    private TableColumn<AppointmentTableRow, LocalDate> dateColumn;
+    private TableColumn<AppointmentTableRow, String> dateColumn;
     @FXML
     private TableColumn<AppointmentTableRow, String> appointmentNameColumn;
     @FXML
@@ -75,7 +76,7 @@ public class DoctorViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /* Appointments table */
         numberColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, Integer>("index"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, LocalDate>("date"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("date"));
         appointmentNameColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("name"));
         officeColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("office"));
 

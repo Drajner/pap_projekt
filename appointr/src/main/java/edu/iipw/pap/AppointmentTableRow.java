@@ -1,18 +1,20 @@
 package edu.iipw.pap;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AppointmentTableRow {
     private Appointment appointment;
     private Integer index;
-    private LocalDate date;
+    private String date;
     private String name;
     private int office;
 
     public AppointmentTableRow(Appointment appointment, int index) {
         this.appointment = appointment;
         this.index = index;
-        this.date = appointment.getTimeOfAppointment().toLocalDate();
+        this.date =  DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(appointment.getTimeOfAppointment());
         this.name = appointment.getPatient().getName() + " " + appointment.getPatient().getSurname();
         this.office = appointment.getOfficeId();
     }
@@ -33,11 +35,11 @@ public class AppointmentTableRow {
         this.index = index;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
