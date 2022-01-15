@@ -70,9 +70,7 @@ public class DeletePatientController {
 
     public void cancel(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.fireEvent(
-                new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)
-        );
+        stage.close();
     }
 
     private Patient deletePatientFromData() throws IOException{

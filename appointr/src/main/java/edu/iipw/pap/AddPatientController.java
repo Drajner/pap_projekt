@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 public class AddPatientController {
@@ -51,7 +52,9 @@ public class AddPatientController {
         }
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        stage.fireEvent(
+                new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)
+        );
     }
 
     public void cancel(ActionEvent event) throws IOException {
