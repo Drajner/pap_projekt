@@ -61,7 +61,7 @@ public class LoggerController implements Initializable {
                 isLogin = true;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorView.fxml"));
                 Parent root = loader.load();
-                doctorViewController dvc = loader.getController();
+                DoctorViewController dvc = loader.getController();
                 dvc.usedDoctorAndConn(d, conn);
                 Stage stage2 = new Stage();
                 int sceneX = 300;

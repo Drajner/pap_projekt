@@ -23,9 +23,9 @@ import javafx.scene.image.Image;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
-public class doctorViewController implements Initializable {
+public class DoctorViewController implements Initializable {
 
-    public doctorViewController() {
+    public DoctorViewController() {
     }
 
     @FXML
