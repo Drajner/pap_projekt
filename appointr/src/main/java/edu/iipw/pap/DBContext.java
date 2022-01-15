@@ -59,6 +59,7 @@ public class DBContext implements AutoCloseable {
             password = account_rs.getString(3);
         }
         account_rs.close();
+        stmt.close();
 
         return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>(), gender);
     }
@@ -95,6 +96,7 @@ public class DBContext implements AutoCloseable {
         if (patient_rs.next())
             patient = createPatient(patient_rs);
         patient_rs.close();
+        stmt.close();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime time = LocalDateTime.parse(rs.getString(4).substring(0, 16), formatter);
@@ -113,6 +115,7 @@ public class DBContext implements AutoCloseable {
             doctors.add(createDoctor(rs, conn));
         }
         rs.close();
+        stmt.close();
 
         return doctors;
     }
@@ -126,6 +129,7 @@ public class DBContext implements AutoCloseable {
             patients.add(createPatient(rs));
         }
         rs.close();
+        stmt.close();
 
         return patients;
     }
@@ -139,6 +143,7 @@ public class DBContext implements AutoCloseable {
             appointments.add(createAppointment(rs, conn));
         }
         rs.close();
+        stmt.close();
 
         return appointments;
     }
