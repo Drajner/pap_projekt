@@ -46,15 +46,22 @@ public class ChooseEditAppointmentController implements Initializable {
         loggedDoctor = doctor;
         conn = usedConn;
         tempData = data;
+        Appointment appointment = null;
 
         DBContext dbContext = new DBContext();
         try {
             appointments = dbContext.getAppointments(conn);
 
             for (Appointment a: appointments) {
-                appointmentList.getItems().add(a.toString());
+                if (a.getDoctor().getPesel().equals(loggedDoctor.getPesel())) {
+                    if (appointment == null)
+                        appointment = a;
+                    appointmentList.getItems().add(a.toString());
+                }
             }
-            appointmentList.setValue(appointments.get(0).toString());
+
+            if (appointment != null)
+                appointmentList.setValue(appointment.toString());
 
         } catch (Exception e) {
             e.printStackTrace();

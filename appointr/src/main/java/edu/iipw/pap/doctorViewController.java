@@ -99,7 +99,7 @@ public class doctorViewController implements Initializable{
     public void updateAppointmentTable(){
         DBContext dbContext = new DBContext();
 
-        ArrayList<Appointment> appointments = null;
+        ArrayList<Appointment> appointments = new ArrayList<>();
 
         try {
             appointments = dbContext.getAppointments(conn);
@@ -108,10 +108,9 @@ public class doctorViewController implements Initializable{
         }
 
         ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
-        for (int i = 0; i < appointments.size(); i++) {
-            if (appointments.get(i).getDoctor().getPesel().equals(usedDoctor.getPesel())) {
-                rows.add(new AppointmentTableRow(appointments.get(i), i + 1));
-            }
+        for (Appointment a: appointments) {
+            if (a.getDoctor().getPesel().equals(usedDoctor.getPesel()))
+                rows.add(new AppointmentTableRow(a, a.getId()));
         }
 
         data = FXCollections.observableArrayList(rows);
