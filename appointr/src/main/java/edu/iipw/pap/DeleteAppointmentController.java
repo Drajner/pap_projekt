@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,7 +59,9 @@ public class DeleteAppointmentController implements Initializable {
         }
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        stage.fireEvent(
+                new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)
+        );
     }
 
     public void cancel(ActionEvent event) throws IOException {
