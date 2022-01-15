@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -135,6 +136,8 @@ public class AddAppointmentController implements Initializable {
         }
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        stage.fireEvent(
+                new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)
+        );
     }
 }
