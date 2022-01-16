@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
@@ -159,13 +160,16 @@ public class DoctorViewController implements Initializable {
 
         /* Set the dimensions of the TextFlow window */
         sideText.setMinWidth(200);
-        sideText.setPrefWidth(300);
-        sideText.setMaxWidth(400);
+        sideText.setPrefWidth(275);
+        sideText.setMaxWidth(350);
 
         /* Add text to the TextFlow window */
         sideText.getChildren().addAll(text1, text2, text3,
                                       text4, text5, text6,
                                       text7);
+
+        /* Set text alignment */
+        sideText.setTextAlignment(TextAlignment.LEFT);
     }
 
     public void updateAppointmentTable() {
