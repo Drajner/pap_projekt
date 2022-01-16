@@ -166,8 +166,7 @@ public class DoctorViewController implements Initializable {
         text4b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
         Text text4c = new Text("◉ Zalecane jest usunięcie wizyt wygasłych");
-        // text4c.setFill(Color.rgb(155, 177, 214));
-        text4c.setOpacity(0.5);
+        text4c.setOpacity(0.39215686274);
         text4c.setFont(Font.font("Helvetica", FontPosture.ITALIC, 18));
 
         /* Set the dimensions of the TextFlow window */
