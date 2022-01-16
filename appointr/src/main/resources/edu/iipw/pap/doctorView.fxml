@@ -43,7 +43,7 @@
                            <columns>
                               <TableColumn fx:id="peselColumn" maxWidth="60.0" minWidth="50.0" prefWidth="50.0" text="PESEL" />
                               <TableColumn fx:id="patientNameColumn" maxWidth="780.0" minWidth="145.0" prefWidth="180.0" text="Imię i Nazwisko" />
-                              <TableColumn fx:id="sexColumn" maxWidth="50.0" minWidth="40.0" prefWidth="45.0" text="Płeć" />
+                              <TableColumn fx:id="genderColumn" maxWidth="50.0" minWidth="40.0" prefWidth="45.0" text="Płeć" />
                               <TableColumn fx:id="birthDateColumn" maxWidth="240.0" minWidth="90.0" prefWidth="120.0" text="Data urodzenia" />
                               <TableColumn fx:id="descriptionColumn" maxWidth="600.0" minWidth="50.0" prefWidth="145.0" text="Opis" />
                            </columns>

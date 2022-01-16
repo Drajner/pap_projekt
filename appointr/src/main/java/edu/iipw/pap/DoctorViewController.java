@@ -65,7 +65,7 @@ public class DoctorViewController implements Initializable {
     @FXML
     private TableColumn<PatientTableRow, String> patientNameColumn;
     @FXML
-    private TableColumn<PatientTableRow, String> sexColumn;
+    private TableColumn<PatientTableRow, String> genderColumn;
     @FXML
     private TableColumn<PatientTableRow, LocalDate> birthDateColumn;
     @FXML
@@ -89,10 +89,10 @@ public class DoctorViewController implements Initializable {
 
         peselColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("pesel"));
         patientNameColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("name"));
-        sexColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, LocalDate>("birthDate"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("description"));
-        sexColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
     }
 
     public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn) {
