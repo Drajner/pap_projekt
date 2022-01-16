@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -107,7 +108,30 @@ public class DoctorViewController implements Initializable {
         /* Clear all text in case of updating */
         sideText.getChildren().clear();
 
-        /* Powitanie */
+        /* Check for expired appointments */
+        AppointmentTableRow closestAppointment = null;
+        int numOfExpiredAppointments = 0;
+
+        Comparator<AppointmentTableRow> dateComparator = new Comparator<AppointmentTableRow>() {
+            @Override
+            public int compare(AppointmentTableRow atr1, AppointmentTableRow atr2) {
+                return atr1.getDate().compareTo(atr2.getDate());
+            }
+        };
+
+        for (AppointmentTableRow appointment : data.sorted(dateComparator)) {
+            if (appointment.getAppointment().getTimeOfAppointment().isAfter(LocalDateTime.now())) {
+                if (closestAppointment == null) {
+                    closestAppointment = appointment;
+                } else if (appointment.getAppointment().getTimeOfAppointment().isBefore(closestAppointment.getAppointment().getTimeOfAppointment())) {
+                    closestAppointment = appointment;
+                }
+            } else {
+                numOfExpiredAppointments++;
+            }
+        }
+
+        /* Welcome message */
         Text text1 = new Text("Witaj ");
         text1.setFont(Font.font("Helvetica", 24));
 
@@ -119,48 +143,26 @@ public class DoctorViewController implements Initializable {
         Text text3 = new Text("!\n\n");
         text3.setFont(Font.font("Helvetica", 24));
 
-        /* Liczba nadchodzących wizyt */
+        /* Number of upcoming appointments */
         Text text4 = new Text("◉ Liczba nadchodzących wizyt: ");
         text4.setFont(Font.font("Helvetica", 18));
 
-        Text text5 = new Text(String.valueOf(data.size()) + '\n');
+        Text text5 = new Text(String.valueOf(data.size() - numOfExpiredAppointments) + '\n');
         text5.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
-        /* Najbliższa wizyta */
+        /* Next visit */
         Text text6 = new Text("◉ Najbliższa wizyta: ");
         text6.setFont(Font.font("Helvetica", 18));
 
-        LocalDateTime today = LocalDateTime.now();
-
-        AppointmentTableRow closestAppointment = null;
-
-        Comparator<AppointmentTableRow> dateComparator = new Comparator<AppointmentTableRow>() {
-            @Override
-            public int compare(AppointmentTableRow atr1, AppointmentTableRow atr2) {
-                return atr1.getDate().compareTo(atr2.getDate());
-            }
-        };
-
-        for (AppointmentTableRow appointment : data.sorted(dateComparator)) {
-            if (appointment.getAppointment().getTimeOfAppointment().isAfter(today)) {
-                if (closestAppointment == null) {
-                    closestAppointment = appointment;
-                } else if (appointment.getAppointment().getTimeOfAppointment().isBefore(closestAppointment.getAppointment().getTimeOfAppointment())) {
-                    closestAppointment = appointment;
-                }
-            }
-        }
-
-        // Text text7 = new Text(data.sorted(dateComparator).get(0).getDate() + '\n');
         Text text7 = new Text(closestAppointment.getDate() + '\n');
         text7.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
-        /* Ustaw wymiary okna TextFlow */
+        /* Set the dimensions of the TextFlow window */
         sideText.setMinWidth(200);
         sideText.setPrefWidth(300);
         sideText.setMaxWidth(400);
 
-        /* Dodaj text do TextFlow */
+        /* Add text to the TextFlow window */
         sideText.getChildren().addAll(text1, text2, text3,
                                       text4, text5, text6,
                                       text7);
@@ -182,6 +184,23 @@ public class DoctorViewController implements Initializable {
             if (a.getDoctor().getPesel().equals(usedDoctor.getPesel()))
                 rows.add(new AppointmentTableRow(a, a.getId()));
         }
+
+        /* if an appointment is expired, render it differently */
+        /* might have to experiment with this one a bit more */
+        appointmentTable.setRowFactory(tv -> new TableRow<AppointmentTableRow>() {
+            @Override
+            public void updateItem(AppointmentTableRow item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null) {
+                    setStyle("");
+                } else if (item.getAppointment().getTimeOfAppointment().isBefore(LocalDateTime.now())) {
+                    setStyle("-fx-opacity: 0.5;" +
+                             "-fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);");
+                } else {
+                    setStyle("");
+                }
+            }
+        });
 
         data = FXCollections.observableArrayList(rows);
         appointmentTable.setItems(data);
