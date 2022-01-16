@@ -133,30 +133,42 @@ public class DoctorViewController implements Initializable {
         }
 
         /* Welcome message */
-        Text text1 = new Text("Witaj ");
-        text1.setFont(Font.font("Helvetica", 24));
+        Text text1a = new Text("Witaj ");
+        text1a.setFont(Font.font("Helvetica", 24));
 
         String doctorName = usedDoctor.getName() + " " + usedDoctor.getSurname();
-        Text text2 = new Text(doctorName);
-        text2.setFill(Color.rgb(155, 177, 214));
-        text2.setFont(Font.font("Helvetica", FontWeight.BOLD, FontPosture.ITALIC, 24));
+        Text text1b = new Text(doctorName);
+        text1b.setFill(Color.rgb(155, 177, 214));
+        text1b.setFont(Font.font("Helvetica", FontWeight.BOLD, FontPosture.ITALIC, 24));
 
-        Text text3 = new Text("!\n\n");
-        text3.setFont(Font.font("Helvetica", 24));
+        Text text1c = new Text("!\n\n");
+        text1c.setFont(Font.font("Helvetica", 24));
 
         /* Number of upcoming appointments */
-        Text text4 = new Text("◉ Liczba nadchodzących wizyt: ");
-        text4.setFont(Font.font("Helvetica", 18));
+        Text text2a = new Text("◉ Liczba nadchodzących wizyt: ");
+        text2a.setFont(Font.font("Helvetica", 18));
 
-        Text text5 = new Text(String.valueOf(data.size() - numOfExpiredAppointments) + '\n');
-        text5.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        Text text2b = new Text(String.valueOf(data.size() - numOfExpiredAppointments) + '\n');
+        text2b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
         /* Next visit */
-        Text text6 = new Text("◉ Najbliższa wizyta: ");
-        text6.setFont(Font.font("Helvetica", 18));
+        Text text3a = new Text("◉ Najbliższa wizyta: ");
+        text3a.setFont(Font.font("Helvetica", 18));
 
-        Text text7 = new Text(closestAppointment.getDate() + '\n');
-        text7.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        Text text3b = new Text(closestAppointment.getDate() + '\n');
+        text3b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+
+        /* Number of expired appointments */
+        Text text4a = new Text("◉ Liczba wizyt wygasłych: ");
+        text4a.setFont(Font.font("Helvetica", 18));
+
+        Text text4b = new Text(String.valueOf(numOfExpiredAppointments) + '\n');
+        text4b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+
+        Text text4c = new Text("◉ Zalecane jest usunięcie wizyt wygasłych");
+        // text4c.setFill(Color.rgb(155, 177, 214));
+        text4c.setOpacity(0.5);
+        text4c.setFont(Font.font("Helvetica", FontPosture.ITALIC, 18));
 
         /* Set the dimensions of the TextFlow window */
         sideText.setMinWidth(200);
@@ -164,9 +176,13 @@ public class DoctorViewController implements Initializable {
         sideText.setMaxWidth(350);
 
         /* Add text to the TextFlow window */
-        sideText.getChildren().addAll(text1, text2, text3,
-                                      text4, text5, text6,
-                                      text7);
+        sideText.getChildren().addAll(text1a, text1b, text1c,
+                                      text2a, text2b,
+                                      text3a, text3b);
+
+        if (numOfExpiredAppointments > 0) {
+            sideText.getChildren().addAll(text4a, text4b, text4c);
+        }
 
         /* Set text alignment */
         sideText.setTextAlignment(TextAlignment.LEFT);
