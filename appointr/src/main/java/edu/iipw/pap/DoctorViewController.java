@@ -366,7 +366,10 @@ public class DoctorViewController implements Initializable {
             stage.setResizable(false);
 
             stage.setOnCloseRequest(
-                    windowEvent -> updateAppointmentTable()
+                    windowEvent -> {
+                        updateAppointmentTable();
+                        updateSideText();
+                    }
             );
 
             stage.show();
