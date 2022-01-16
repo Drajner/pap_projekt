@@ -13,6 +13,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
@@ -20,7 +25,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class DoctorViewController implements Initializable {
@@ -92,6 +99,71 @@ public class DoctorViewController implements Initializable {
 
         updateAppointmentTable();
         updatePatientsTable();
+
+        updateSideText();
+    }
+
+    public void updateSideText() {
+        /* Clear all text in case of updating */
+        sideText.getChildren().clear();
+
+        /* Powitanie */
+        Text text1 = new Text("Witaj ");
+        text1.setFont(Font.font("Helvetica", 24));
+
+        String doctorName = usedDoctor.getName() + " " + usedDoctor.getSurname();
+        Text text2 = new Text(doctorName);
+        text2.setFill(Color.rgb(155, 177, 214));
+        text2.setFont(Font.font("Helvetica", FontWeight.BOLD, FontPosture.ITALIC, 24));
+
+        Text text3 = new Text("!\n\n");
+        text3.setFont(Font.font("Helvetica", 24));
+
+        /* Liczba nadchodzących wizyt */
+        Text text4 = new Text("◉ Liczba nadchodzących wizyt: ");
+        text4.setFont(Font.font("Helvetica", 18));
+
+        Text text5 = new Text(String.valueOf(data.size()) + '\n');
+        text5.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+
+        /* Najbliższa wizyta */
+        Text text6 = new Text("◉ Najbliższa wizyta: ");
+        text6.setFont(Font.font("Helvetica", 18));
+
+        LocalDateTime today = LocalDateTime.now();
+
+        AppointmentTableRow closestAppointment = null;
+
+        Comparator<AppointmentTableRow> dateComparator = new Comparator<AppointmentTableRow>() {
+            @Override
+            public int compare(AppointmentTableRow atr1, AppointmentTableRow atr2) {
+                return atr1.getDate().compareTo(atr2.getDate());
+            }
+        };
+
+        for (AppointmentTableRow appointment : data.sorted(dateComparator)) {
+            if (appointment.getAppointment().getTimeOfAppointment().isAfter(today)) {
+                if (closestAppointment == null) {
+                    closestAppointment = appointment;
+                } else if (appointment.getAppointment().getTimeOfAppointment().isBefore(closestAppointment.getAppointment().getTimeOfAppointment())) {
+                    closestAppointment = appointment;
+                }
+            }
+        }
+
+        // Text text7 = new Text(data.sorted(dateComparator).get(0).getDate() + '\n');
+        Text text7 = new Text(closestAppointment.getDate() + '\n');
+        text7.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+
+        /* Ustaw wymiary okna TextFlow */
+        sideText.setMinWidth(200);
+        sideText.setPrefWidth(300);
+        sideText.setMaxWidth(400);
+
+        /* Dodaj text do TextFlow */
+        sideText.getChildren().addAll(text1, text2, text3,
+                                      text4, text5, text6,
+                                      text7);
     }
 
     public void updateAppointmentTable() {
@@ -151,8 +223,10 @@ public class DoctorViewController implements Initializable {
             stage.setResizable(false);
 
             stage.setOnCloseRequest(
-                    windowEvent -> updatePatientsTable()
-
+                    windowEvent -> {
+                        updatePatientsTable();
+                        updateSideText();
+                    }
             );
 
             stage.show();
@@ -215,6 +289,7 @@ public class DoctorViewController implements Initializable {
                     windowEvent -> {
                         updatePatientsTable();
                         updateAppointmentTable();
+                        updateSideText();
                     }
             );
 
@@ -242,7 +317,10 @@ public class DoctorViewController implements Initializable {
             stage.setResizable(false);
 
             stage.setOnCloseRequest(
-                    windowEvent -> updateAppointmentTable()
+                    windowEvent -> {
+                        updateAppointmentTable();
+                        updateSideText();
+                    }
             );
 
             stage.show();
@@ -296,7 +374,10 @@ public class DoctorViewController implements Initializable {
             stage.setResizable(false);
 
             stage.setOnCloseRequest(
-                    windowEvent -> updateAppointmentTable()
+                    windowEvent -> {
+                        updateAppointmentTable();
+                        updateSideText();
+                    }
             );
 
             stage.show();
