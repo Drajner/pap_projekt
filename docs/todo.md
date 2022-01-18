@@ -15,6 +15,25 @@
 
 - [x] działająca aplikacja
 
+---
+
+- [ ] zwrócić uwagę na to, kto co robił
+
+- [ ] udoskonalić dokumentację -  2 strony od osoby:
+- [ ] funkcjonalności
+- [ ] ogólny zarys
+- [ ] ograniczenia
+- [ ] krzyżowa weryfikacja kodu podchodzi pod testowanie - można o tym napisać
+
+- [ ] role, zakres dostępu
+- [ ] dodać funkcjonalność dla lekarza-administratora
+
+- [ ] dodać funkcjonalność dla customowych zapytań
+
+- [ ] w przypadku, gdyby brakowało punktów - logi, testy
+
+- [ ] rozwój systemu - co jeszcze można dodać
+
 #### Etap 4 - 26.01.2022
 
 - [ ] działająca aplikacja uwzględniająca uwagi prowadzącego z 3 etapu

@@ -23,19 +23,6 @@ import java.util.Scanner;
 public class App extends Application {
     private static Stage stg;
 
-    // zwrocic uwage kto co robil
-    // udoskonalic dokimentacje 2 strony od osoby
-    // jakiegos glownego lekarza dodac
-    // customowe zapytania
-    // jakies logi testy ale to jakby brakowalo punktow
-    // - role, zakres dostepu
-    // dokumen:
-    // - funkcjonalnosci
-    // - ogolny zarys
-    // - ograniczenia
-    // - krzyzowa weryfikacja kodu podchodzi pod testowanie mozna o tym napisac
-    // - rozwoj systemu co mozna dodac
-
     public static void showAppointments(ArrayList<Appointment> appointments) {
         if (appointments.isEmpty()) {
             System.out.println("Brak wizyt.");
