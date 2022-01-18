@@ -268,6 +268,7 @@ public class App extends Application {
         listingColor.add(150);
         listingColor.add(200);
         while (true) {
+            /*
             System.out.println(CLI.ANSI_RGB(listingColor, "1.") + CLI.ANSI_RESET + " Pokaż wizyty");
             System.out.println(CLI.ANSI_RGB(listingColor, "2.") + CLI.ANSI_RESET + " Pokaż lekarzy");
             System.out.println(CLI.ANSI_RGB(listingColor, "3.") + CLI.ANSI_RESET + " Pokaż pacjentów");
@@ -285,6 +286,8 @@ public class App extends Application {
             System.out.print("Wpisz opcję: ");
             input = sc.nextLine();
             System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+            */
+            input = "12";
             switch (input) {
                 case "1":
                     showAppointments(appointments);

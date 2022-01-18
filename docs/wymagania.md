@@ -32,7 +32,7 @@ Projekt ma w założeniu służyć lekarzom przyjmujących pacjentów na wizyty.
 
 Każda osoba jest odpowiedzialna za jedeną część aplikacji, aczkolwiek w razie potrzeby dana osoba może pracować nad częścią innej osoby:
 
-- Bazy danych: [Jakub Marcowski](https://gitlab-stud.elka.pw.edu.pl/jmarcows "Jakub Marcowski")
-- Rdzenna funkcjonalność: [Jakub Niezabitowski](https://gitlab-stud.elka.pw.edu.pl/jniezabi "Jakub Niezabitowski")
+- Rdzenna funkcjonalność: [Jakub Marcowski](https://gitlab-stud.elka.pw.edu.pl/jmarcows "Jakub Marcowski")
+- Bazy danych: [Jakub Niezabitowski](https://gitlab-stud.elka.pw.edu.pl/jniezabi "Jakub Niezabitowski")
 - Łączność z bazą danych: [Jan Rusak](https://gitlab-stud.elka.pw.edu.pl/jrusak "Jan Rusak")
 - GUI: [Bartłomiej Dudek](https://gitlab-stud.elka.pw.edu.pl/bdudek "Bartłomiej Dudek")
