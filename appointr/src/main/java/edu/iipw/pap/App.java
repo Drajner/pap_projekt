@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import com.sun.javafx.css.StyleManager;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -384,6 +385,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
+        StyleManager.getInstance().addUserAgentStylesheet("example.css");
         stg = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("loadingScreen.fxml"));
         int sceneX = 350;

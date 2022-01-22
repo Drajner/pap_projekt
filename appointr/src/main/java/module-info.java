@@ -1,7 +1,8 @@
 module edu.iipw.pap {
     requires transitive javafx.controls;
+    requires transitive javafx.graphics;
+    requires transitive javafx.fxml;
     requires transitive java.sql;
-    requires javafx.fxml;
     exports edu.iipw.pap;
-    opens edu.iipw.pap to javafx.fxml;
+    opens edu.iipw.pap;
 }
