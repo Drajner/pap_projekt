@@ -30,11 +30,6 @@
             <artifactId>javafx-base</artifactId>
             <version>18-ea+10</version>
         </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>18-ea+10</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -44,12 +39,6 @@
                 <version>3.8.1</version>
                 <configuration>
                     <release>11</release>
-                    <compilerArgs>
-                        <arg>--add-exports</arg>
-                        <arg>javafx.graphics/com.sun.javafx.css=edu.iipw.pap</arg>
-                        <arg>--add-exports</arg>
-                        <arg>javafx.graphics/com.sun.javafx.css=ALL-UNNAMED</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
@@ -64,15 +53,6 @@
                         </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <mainClass>edu.iipw.pap.Main</mainClass>
-                    <options>
-                        <option>--add-exports</option>
-                        <option>javafx.graphics/com.sun.javafx.css=edu.iipw.pap</option>
-                        <option>--add-opens</option>
-                        <option>javafx.graphics/com.sun.javafx.css=edu.iipw.pap</option>
-                    </options>
-                </configuration>
             </plugin>
         </plugins>
     </build>
