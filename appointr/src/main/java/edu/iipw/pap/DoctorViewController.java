@@ -6,12 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -22,6 +25,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,6 +74,8 @@ public class DoctorViewController implements Initializable {
     private TableColumn<PatientTableRow, LocalDate> birthDateColumn;
     @FXML
     private TableColumn<PatientTableRow, String> descriptionColumn;
+    @FXML
+    private ToggleButton darkTheme;
     private ObservableList<AppointmentTableRow> data;
     private Doctor usedDoctor;
     private Connection conn;
@@ -260,6 +266,11 @@ public class DoctorViewController implements Initializable {
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
 
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
+
             stage.setOnCloseRequest(
                     windowEvent -> {
                         updatePatientsTable();
@@ -289,6 +300,11 @@ public class DoctorViewController implements Initializable {
             stage.setTitle("Edit patient");
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
+
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
 
             stage.setOnCloseRequest(
                     windowEvent -> {
@@ -323,6 +339,11 @@ public class DoctorViewController implements Initializable {
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
 
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
+
             stage.setOnCloseRequest(
                     windowEvent -> {
                         updatePatientsTable();
@@ -354,6 +375,11 @@ public class DoctorViewController implements Initializable {
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
 
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
+
             stage.setOnCloseRequest(
                     windowEvent -> {
                         updateAppointmentTable();
@@ -383,6 +409,11 @@ public class DoctorViewController implements Initializable {
             stage.setTitle("Edit appointment");
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
+
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
 
             stage.setOnCloseRequest(
                     windowEvent -> {
@@ -414,6 +445,11 @@ public class DoctorViewController implements Initializable {
             stage.setScene(new Scene(root, sceneX, sceneY));
             stage.setResizable(false);
 
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
+
             stage.setOnCloseRequest(
                     windowEvent -> {
                         updateAppointmentTable();
@@ -425,6 +461,21 @@ public class DoctorViewController implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void changeTheme(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        if (darkTheme.isSelected()) {
+            String css = getClass().getResource("darkTheme2.css").toExternalForm();
+            stage.getScene().getStylesheets().clear();
+            stage.getScene().getStylesheets().add(css);
+        } else {
+            String css = getClass().getResource("doctorViewCSS.css").toExternalForm();
+            stage.getScene().getStylesheets().clear();
+            stage.getScene().getStylesheets().add(css);
         }
     }
 

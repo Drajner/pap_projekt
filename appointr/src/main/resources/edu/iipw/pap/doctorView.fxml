@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -58,11 +59,19 @@
                   <Insets />
                </HBox.margin>
             </TabPane>
-            <TextFlow fx:id="sideText" prefHeight="360.0" prefWidth="210.0" textAlignment="CENTER">
+            <VBox alignment="TOP_CENTER">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
-            </TextFlow>
+               <children>
+                  <ToggleButton fx:id="darkTheme" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeTheme" text="Tryb ciemny" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </ToggleButton>
+                  <TextFlow fx:id="sideText" prefHeight="360.0" prefWidth="210.0" textAlignment="CENTER" />
+               </children>
+            </VBox>
          </children>
       </HBox>
       <GridPane alignment="BOTTOM_CENTER" minHeight="60.0" prefHeight="60.0">

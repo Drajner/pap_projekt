@@ -74,7 +74,6 @@ public class LoggerController implements Initializable {
                 stage2.setMinHeight(360);
                 stage2.setMinWidth(380);
                 stage2.show();
-                //a.changeScene("doctorView.fxml");
                 Stage stage = (Stage) logInButton.getScene().getWindow();
                 stage.close();
             }
