@@ -280,7 +280,14 @@ public class AdminViewController implements Initializable {
     public void addPatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addPatientScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "addPatientScreenEng.fxml";
+            } else {
+                lang = "addPatientScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             AddPatientController apc = loader.getController();
             apc.transferConn(conn);
@@ -547,11 +554,11 @@ public class AdminViewController implements Initializable {
             dateColumn.setText("Date");
             appointmentNameColumn.setText("Name");
             officeColumn.setText("Office");
-            patientNameColumn.setText("Name and surname");
+            patientNameColumn.setText("First name and surname");
             birthDateColumn.setText("Birth date");
             descriptionColumn.setText("Description");
             genderColumn.setText("Sex");
-            doctorNameColumn.setText("Name and surname");
+            doctorNameColumn.setText("First name and surname");
             genderColumnDoc.setText("Sex");
             birthDateColumnDoc.setText("Birth date");
             specializationColumn.setText("Specialization");
