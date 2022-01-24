@@ -79,6 +79,9 @@ public class LoggerController implements Initializable {
                 stage2.setWidth(640);
                 stage2.setMinHeight(360);
                 stage2.setMinWidth(380);
+
+                stage2.getScene().getStylesheets().add(App.class.getResource("doctorViewCSS.css").toExternalForm());
+
                 stage2.show();
                 Stage stage = (Stage) logInButton.getScene().getWindow();
                 stage.close();

@@ -21,7 +21,7 @@
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="425.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
          <children>
-            <TabPane stylesheets="@doctorViewCSS.css" HBox.hgrow="ALWAYS">
+            <TabPane HBox.hgrow="ALWAYS">
                <tabs>
                   <Tab closable="false" text="Wizyty">
                      <content>
