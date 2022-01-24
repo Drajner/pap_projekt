@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -58,6 +59,12 @@ public class AdminViewController implements Initializable {
     private Button deleteDoctorButton;
     @FXML
     private Button editProfileButton;
+    @FXML
+    private Tab appointmentsTab;
+    @FXML
+    private Tab patientsTab;
+    @FXML
+    private Tab doctorsTab;
     @FXML
     private TableView<AppointmentTableRow> appointmentTable;
     @FXML
@@ -509,7 +516,40 @@ public class AdminViewController implements Initializable {
 
     @FXML
     void changeLang(ActionEvent event) {
-        System.out.println("lol, not yet implemented");
+        if (engLang.isSelected()) {
+            engLang.setText("Polski");
+            darkTheme.setText("Dark theme");
+            appointmentsTab.setText("Appointments");
+            patientsTab.setText("Patients");
+            doctorsTab.setText("Doctors");
+            addAppointmentButton.setText("Add appointment");
+            editAppointmentButton.setText("Edit appointment");
+            deleteAppointmentButton.setText("Delete appointment");
+            addPatientButton.setText("Add patient");
+            editPatientButton.setText("Edit patient");
+            deletePatientButton.setText("Delete patient");
+            addDoctorButton.setText("Add doctor");
+            editDoctorButton.setText("Edit doctor");
+            deleteDoctorButton.setText("Delete doctor");
+            editProfileButton.setText("Edit profile");
+        } else {
+            engLang.setText("English");
+            darkTheme.setText("Tryb ciemny");
+            appointmentsTab.setText("Wizyty");
+            patientsTab.setText("Pacjenci");
+            doctorsTab.setText("Lekarze");
+            addAppointmentButton.setText("Dodaj wizytę");
+            editAppointmentButton.setText("Edytuj wizytę");
+            deleteAppointmentButton.setText("Usuń wizytę");
+            addPatientButton.setText("Dodaj pacjenta");
+            editPatientButton.setText("Edytuj pacjenta");
+            deletePatientButton.setText("Usuń pacjenta");
+            addDoctorButton.setText("Dodaj lekarza");
+            editDoctorButton.setText("Edytuj lekarza");
+            deleteDoctorButton.setText("Usuń lekarza");
+            editProfileButton.setText("Edytuj profil");
+        }
+        // still not fully implemented
     }
 
 }

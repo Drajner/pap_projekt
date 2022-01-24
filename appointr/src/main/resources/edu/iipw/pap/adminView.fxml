@@ -23,7 +23,7 @@
          <children>
             <TabPane HBox.hgrow="ALWAYS">
                <tabs>
-                  <Tab closable="false" text="Wizyty">
+                  <Tab fx:id="appointmentsTab" closable="false" text="Wizyty">
                      <content>
                         <TableView fx:id="appointmentTable" prefHeight="350.0" prefWidth="480.0">
                           <columns>
@@ -38,7 +38,7 @@
                         </TableView>
                      </content>
                   </Tab>
-                  <Tab closable="false" text="Pacjenci">
+                  <Tab fx:id="patientsTab" closable="false" text="Pacjenci">
                      <content>
                         <TableView fx:id="patientTable" prefHeight="350.0" prefWidth="480.0">
                            <columns>
@@ -54,7 +54,7 @@
                         </TableView>
                      </content>
                   </Tab>
-                  <Tab closable="false" text="Lekarze">
+                  <Tab fx:id="doctorsTab" closable="false" text="Lekarze">
                      <content>
                         <TableView fx:id="doctorTable" prefHeight="350.0" prefWidth="480.0">
                            <columns>
