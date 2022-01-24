@@ -88,6 +88,18 @@ public class AdminViewController implements Initializable {
     @FXML
     private TableColumn<PatientTableRow, String> descriptionColumn;
     @FXML
+    private TableView<DoctorTableRow> doctorTable;
+    @FXML
+    private TableColumn<DoctorTableRow, String> peselColumnDoc;
+    @FXML
+    private TableColumn<DoctorTableRow, String> doctorNameColumn;
+    @FXML
+    private TableColumn<DoctorTableRow, String> genderColumnDoc;
+    @FXML
+    private TableColumn<DoctorTableRow, LocalDate> birthDateColumnDoc;
+    @FXML
+    private TableColumn<DoctorTableRow, String> specializationColumn;
+    @FXML
     private ToggleButton darkTheme;
     @FXML
     private ToggleButton engLang;
@@ -110,7 +122,6 @@ public class AdminViewController implements Initializable {
 
         peselColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("pesel"));
         patientNameColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("name"));
-        genderColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, LocalDate>("birthDate"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("description"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
@@ -532,6 +543,18 @@ public class AdminViewController implements Initializable {
             editDoctorButton.setText("Edit doctor");
             deleteDoctorButton.setText("Delete doctor");
             editProfileButton.setText("Edit profile");
+            numberColumn.setText("No.");
+            dateColumn.setText("Date");
+            appointmentNameColumn.setText("Name");
+            officeColumn.setText("Office");
+            patientNameColumn.setText("Name and surname");
+            birthDateColumn.setText("Birth date");
+            descriptionColumn.setText("Description");
+            genderColumn.setText("Sex");
+            doctorNameColumn.setText("Name and surname");
+            genderColumnDoc.setText("Sex");
+            birthDateColumnDoc.setText("Birth date");
+            specializationColumn.setText("Specialization");
         } else {
             engLang.setText("English");
             darkTheme.setText("Tryb ciemny");
@@ -548,6 +571,18 @@ public class AdminViewController implements Initializable {
             editDoctorButton.setText("Edytuj lekarza");
             deleteDoctorButton.setText("Usuń lekarza");
             editProfileButton.setText("Edytuj profil");
+            numberColumn.setText("Nr");
+            dateColumn.setText("Data i godzina");
+            appointmentNameColumn.setText("Imię i Nazwisko Pacjenta");
+            officeColumn.setText("Gabinet");
+            patientNameColumn.setText("Imię i Nazwisko");
+            birthDateColumn.setText("Data urodzenia");
+            descriptionColumn.setText("Opis");
+            genderColumn.setText("Płeć");
+            doctorNameColumn.setText("Imię i Nazwisko");
+            genderColumnDoc.setText("Płeć");
+            birthDateColumnDoc.setText("Data urodzenia");
+            specializationColumn.setText("Specjalizacja");
         }
         // still not fully implemented
     }
