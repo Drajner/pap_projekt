@@ -127,7 +127,7 @@
                   <Button fx:id="deleteAppointmentButton" minHeight="25.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="25.0" prefWidth="110.0" text="Usuń Wizytę" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
-            <Button alignment="CENTER" contentDisplay="CENTER" minHeight="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Edytuj Profil" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+            <Button fx:id="editProfileButton" alignment="CENTER" contentDisplay="CENTER" minHeight="25.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="25.0" prefWidth="80.0" text="Edytuj Profil" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets left="45.2" right="45.2" />
                </HBox.margin>
