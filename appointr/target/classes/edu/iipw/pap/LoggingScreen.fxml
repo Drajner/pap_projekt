@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="loggingScreen" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="250.0" prefHeight="300.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.LoggerController">
+<VBox fx:id="loggingScreen" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="250.0" prefHeight="300.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.LoggingScreenController">
    <children>
       <ImageView fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
          <image>

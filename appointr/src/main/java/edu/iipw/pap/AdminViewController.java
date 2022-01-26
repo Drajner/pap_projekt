@@ -241,6 +241,18 @@ public class AdminViewController implements Initializable {
         sideText.setPrefWidth(275);
         sideText.setMaxWidth(350);
 
+        if (darkTheme.isSelected()) {
+            text1a.setFill(Color.WHITE);
+            text1c.setFill(Color.WHITE);
+            text2a.setFill(Color.WHITE);
+            text2b.setFill(Color.WHITE);
+            text3a.setFill(Color.WHITE);
+            text3b.setFill(Color.WHITE);
+            text4a.setFill(Color.WHITE);
+            text4b.setFill(Color.WHITE);
+            text4c.setFill(Color.WHITE);
+        }
+
         /* Add text to the TextFlow window */
         sideText.getChildren().addAll(text1a, text1b, text1c,
                                       text2a, text2b,
@@ -616,6 +628,7 @@ public class AdminViewController implements Initializable {
             stage.getScene().getStylesheets().clear();
             stage.getScene().getStylesheets().add(css);
         }
+        updateSideText();
     }
 
     @FXML
@@ -682,7 +695,6 @@ public class AdminViewController implements Initializable {
             birthDateColumnDoc.setText("Data urodzenia");
             specializationColumn.setText("Specjalizacja");
         }
-        // still not fully implemented
         stage.setWidth(stage.getWidth() + refresh);
     }
 

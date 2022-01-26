@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LoggerController implements Initializable {
+public class LoggingScreenController implements Initializable {
 
     @FXML
     private Button logInButton;
@@ -28,7 +28,7 @@ public class LoggerController implements Initializable {
     private PasswordField passwordField;
     private ArrayList<Doctor> doctors;
     private Connection conn = null;
-    public LoggerController() {
+    public LoggingScreenController() {
     }
 
     @Override
