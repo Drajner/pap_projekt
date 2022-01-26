@@ -620,8 +620,12 @@ public class AdminViewController implements Initializable {
 
     @FXML
     void changeLang(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        updateSideText();
+        byte refresh = 1;  // we do this because otherwise sideText doesn't fully update, for some reason
         if (engLang.isSelected()) {
-            updateSideText();
+            refresh *= -1;
             flagImage.setImage(new Image(App.class.getResource("gb.png").toString()));
             darkTheme.setText("Dark theme");
             appointmentsTab.setText("Appointments");
@@ -650,7 +654,6 @@ public class AdminViewController implements Initializable {
             birthDateColumnDoc.setText("Birth date");
             specializationColumn.setText("Specialization");
         } else {
-            updateSideText();
             flagImage.setImage(new Image(App.class.getResource("pl.png").toString()));
             darkTheme.setText("Tryb ciemny");
             appointmentsTab.setText("Wizyty");
@@ -680,6 +683,7 @@ public class AdminViewController implements Initializable {
             specializationColumn.setText("Specjalizacja");
         }
         // still not fully implemented
+        stage.setWidth(stage.getWidth() + refresh);
     }
 
 }
