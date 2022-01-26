@@ -168,7 +168,12 @@ public class AdminViewController implements Initializable {
         }
 
         /* Welcome message */
-        Text text1a = new Text("Witaj ");
+        Text text1a;
+        if (engLang.isSelected()) {
+            text1a = new Text("Welcome ");
+        } else {
+            text1a = new Text("Witaj ");
+        }
         text1a.setFont(Font.font("Helvetica", 24));
 
         String doctorName = usedDoctor.getName() + " " + usedDoctor.getSurname();
@@ -180,29 +185,49 @@ public class AdminViewController implements Initializable {
         text1c.setFont(Font.font("Helvetica", 24));
 
         /* Number of upcoming appointments */
-        Text text2a = new Text("◉ Liczba nadchodzących wizyt: ");
+        Text text2a;
+        if (engLang.isSelected()) {
+            text2a = new Text("◉ Number of upcoming appointments: ");
+        } else {
+            text2a = new Text("◉ Liczba nadchodzących wizyt: ");
+        }
         text2a.setFont(Font.font("Helvetica", 18));
 
         Text text2b = new Text(String.valueOf(data.size() - numOfExpiredAppointments) + '\n');
         text2b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
-        /* Next visit */
-        Text text3a = new Text("◉ Najbliższa wizyta: ");
+        /* Next appointment */
+        Text text3a;
+        if (engLang.isSelected()) {
+            text3a = new Text("◉ Next appointment: ");
+        } else {
+            text3a = new Text("◉ Najbliższa wizyta: ");
+        }
         text3a.setFont(Font.font("Helvetica", 18));
 
         Text text3b = new Text(closestAppointment.getDate() + '\n');
         text3b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
         /* Number of expired appointments */
-        Text text4a = new Text("◉ Liczba wizyt wygasłych: ");
+        Text text4a;
+        if (engLang.isSelected()) {
+            text4a = new Text("◉ Number of expired appointments: ");
+        } else {
+            text4a = new Text("◉ Liczba wizyt wygasłych: ");
+        }
         text4a.setFont(Font.font("Helvetica", 18));
 
         Text text4b = new Text(String.valueOf(numOfExpiredAppointments) + '\n');
         text4b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
-        Text text4c = new Text("◉ Zalecane jest usunięcie wizyt wygasłych");
-        text4c.setOpacity(0.39215686274);
+        Text text4c;
+        if (engLang.isSelected()) {
+            text4c = new Text("◉ It is recommended to delete expired appointments");
+        } else {
+            text4c = new Text("◉ Zalecane jest usunięcie wizyt wygasłych");
+        }
         text4c.setFont(Font.font("Helvetica", FontPosture.ITALIC, 18));
+        text4c.setOpacity(0.39215686274);
 
         /* Set the dimensions of the TextFlow window */
         sideText.setMinWidth(200);
@@ -249,7 +274,7 @@ public class AdminViewController implements Initializable {
                     setStyle("");
                 } else if (item.getAppointment().getTimeOfAppointment().isBefore(LocalDateTime.now())) {
                     setStyle("-fx-opacity: 0.5;" +
-                             "-fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);");
+                             "-fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);");
                 } else {
                     setStyle("");
                 }
@@ -325,7 +350,14 @@ public class AdminViewController implements Initializable {
     public void editPatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditPatientScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "chooseEditPatientScreenEng.fxml";
+            } else {
+                lang = "chooseEditPatientScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             ChooseEditPatientController cepc = loader.getController();
             cepc.transferData(data, usedDoctor, conn);
@@ -360,13 +392,17 @@ public class AdminViewController implements Initializable {
     public void deletePatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            // this:
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("deletePatientScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "deletePatientScreenEng.fxml";
+            } else {
+                lang = "deletePatientScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             DeletePatientController dpc = loader.getController();
             dpc.transferData(data, usedDoctor, conn);
-            // instead of this:
-            // root = FXMLLoader.load(getClass().getResource("deletePatientScreen.fxml"));
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();
@@ -399,7 +435,14 @@ public class AdminViewController implements Initializable {
     public void addAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addAppointmentScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "addAppointmentScreenEng.fxml";
+            } else {
+                lang = "addAppointmentScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             AddAppointmentController aac = loader.getController();
             aac.transferDoctorAndConn(usedDoctor, conn);
@@ -434,7 +477,14 @@ public class AdminViewController implements Initializable {
     public void editAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditAppointmentScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "chooseEditAppointmentScreenEng.fxml";
+            } else {
+                lang = "chooseEditAppointmentScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             ChooseEditAppointmentController ceac = loader.getController();
             ceac.transferData(data, usedDoctor, conn);
@@ -469,7 +519,14 @@ public class AdminViewController implements Initializable {
     public void deleteAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("deleteAppointmentScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "deleteAppointmentScreenEng.fxml";
+            } else {
+                lang = "deleteAppointmentScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             DeleteAppointmentController dac = loader.getController();
             dac.transferData(data, usedDoctor, conn);
@@ -538,6 +595,7 @@ public class AdminViewController implements Initializable {
     @FXML
     void changeLang(ActionEvent event) {
         if (engLang.isSelected()) {
+            updateSideText();
             flagImage.setImage(new Image(App.class.getResource("gb.png").toString()));
             darkTheme.setText("Dark theme");
             appointmentsTab.setText("Appointments");
@@ -566,6 +624,7 @@ public class AdminViewController implements Initializable {
             birthDateColumnDoc.setText("Birth date");
             specializationColumn.setText("Specialization");
         } else {
+            updateSideText();
             flagImage.setImage(new Image(App.class.getResource("pl.png").toString()));
             darkTheme.setText("Tryb ciemny");
             appointmentsTab.setText("Wizyty");
