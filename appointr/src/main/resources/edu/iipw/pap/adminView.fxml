@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -90,10 +93,20 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </ToggleButton>
-                        <ToggleButton fx:id="engLang" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeLang" text="English" textAlignment="CENTER">
+                        <ToggleButton fx:id="engLang" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeLang" textAlignment="CENTER">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fx:id="flagImage" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@pl.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
                         </ToggleButton>
                      </children>
                   </HBox>

@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -103,6 +104,8 @@ public class AdminViewController implements Initializable {
     private ToggleButton darkTheme;
     @FXML
     private ToggleButton engLang;
+    @FXML
+    private ImageView flagImage;
     private ObservableList<AppointmentTableRow> data;
     private Doctor usedDoctor;
     private Connection conn;
@@ -535,7 +538,7 @@ public class AdminViewController implements Initializable {
     @FXML
     void changeLang(ActionEvent event) {
         if (engLang.isSelected()) {
-            engLang.setText("Polski");
+            flagImage.setImage(new Image(App.class.getResource("gb.png").toString()));
             darkTheme.setText("Dark theme");
             appointmentsTab.setText("Appointments");
             patientsTab.setText("Patients");
@@ -563,7 +566,7 @@ public class AdminViewController implements Initializable {
             birthDateColumnDoc.setText("Birth date");
             specializationColumn.setText("Specialization");
         } else {
-            engLang.setText("English");
+            flagImage.setImage(new Image(App.class.getResource("pl.png").toString()));
             darkTheme.setText("Tryb ciemny");
             appointmentsTab.setText("Wizyty");
             patientsTab.setText("Pacjenci");
