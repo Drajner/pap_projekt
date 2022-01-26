@@ -122,12 +122,18 @@ public class AdminViewController implements Initializable {
         officeColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("office"));
 
         /* Patients table */
-
         peselColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("pesel"));
         patientNameColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("name"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, LocalDate>("birthDate"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("description"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
+
+        /* Doctors table */
+        peselColumnDoc.setCellValueFactory(new PropertyValueFactory<DoctorTableRow, String>("pesel"));
+        doctorNameColumn.setCellValueFactory(new PropertyValueFactory<DoctorTableRow, String>("name"));
+        birthDateColumnDoc.setCellValueFactory(new PropertyValueFactory<DoctorTableRow, LocalDate>("birthDate"));
+        specializationColumn.setCellValueFactory(new PropertyValueFactory<DoctorTableRow, String>("specialization"));
+        genderColumnDoc.setCellValueFactory(new PropertyValueFactory<DoctorTableRow, String>("gender"));
     }
 
     public void usedDoctorAndConn(Doctor loggedDoctor, Connection usedConn) {
@@ -136,6 +142,7 @@ public class AdminViewController implements Initializable {
 
         updateAppointmentTable();
         updatePatientsTable();
+        updateDoctorsTable();
 
         updateSideText();
     }
@@ -302,6 +309,25 @@ public class AdminViewController implements Initializable {
 
         ObservableList<PatientTableRow> patientsData = FXCollections.observableArrayList(patientRows);
         patientTable.setItems(patientsData);
+    }
+
+    public void updateDoctorsTable() {
+        DBContext dbContext = new DBContext();
+        ArrayList<Doctor> doctors = new ArrayList<>();
+
+        try {
+            doctors = dbContext.getDoctors(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<DoctorTableRow> doctorRows = new ArrayList<DoctorTableRow>();
+        for (Doctor doctor : doctors) {
+            doctorRows.add(new DoctorTableRow(doctor));
+        }
+
+        ObservableList<DoctorTableRow> doctorsData = FXCollections.observableArrayList(doctorRows);
+        doctorTable.setItems(doctorsData);
     }
 
     @FXML

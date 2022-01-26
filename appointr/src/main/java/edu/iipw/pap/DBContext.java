@@ -95,21 +95,6 @@ public class DBContext implements AutoCloseable {
         stmt.close();
     }
 
-    // public static void main(String[] args) {
-    //     DBContext context = new DBContext();
-    //     try {
-    //         Connection conn = context.getConnection();
-    //         System.out.println("Connection opened: " + conn);
-
-    //         ArrayList<Patient> patients = context.getPatients(conn);
-
-    //         context.close();
-    //         System.out.println("Connection closed");
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
-
     public void close() {
         if (conn != null) {
             try {
