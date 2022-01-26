@@ -17,8 +17,6 @@ Projekt z przedmiotu [PAP](https://studia.elka.pw.edu.pl/f-pl/21Z/103A-INxxx-ISP
 
 - [Wymagania](docs/wymagania.md "docs/wymagania.md")
 - [TODO](docs/todo.md "docs/todo.md")
-- [Koncept wyglądu interfejsu](docs/GUI_concept.png "docs/GUI_concept.png")
-- [Pierwsza wersja interfejsu](docs/hello-view_fxml.png "docs/hello-view_fxml.png")
-- [Pierwsza wersja okna logowania](docs/LoggingScreen_fxml_1.png "docs/LoggingScreen_fxml_1.png")
-- [Zaktualizowana wersja interfejsu](docs/doctorView_fxml.png "docs/doctorView_fxml.png")
-- [Zaktualizowana wersja okna logowania](docs/LoggingScreen_fxml_2.png "docs/LoggingScreen_fxml_2.png")
+- [Dokumentacja](Appointr_dokumentacja.pdf "Appointr_dokumentacja.pdf")
+- Interfejs: [koncept wyglądu](docs/GUI_concept.png "docs/GUI_concept.png"), [pierwsza wersja](docs/hello-view_fxml.png "docs/hello-view_fxml.png"), [zaktualizowana wersja](docs/doctorView_fxml.png "docs/doctorView_fxml.png")
+- Okno logowania: [pierwsza wersja](docs/LoggingScreen_fxml_1.png "docs/LoggingScreen_fxml_1.png"), [zaktualizowana wersja](docs/LoggingScreen_fxml_2.png "docs/LoggingScreen_fxml_2.png")
