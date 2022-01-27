@@ -68,7 +68,8 @@ public class LoggingScreenController implements Initializable {
                 // AdminViewController dvc = loader.getController();
 
                 dvc.usedDoctorAndConn(d, conn);
-                Stage stage2 = new Stage();
+                // Stage stage2 = new Stage();                                  // jpro testing
+                Stage stage2 = (Stage) logInButton.getScene().getWindow();      // jpro testing
                 int sceneX = 300;
                 int sceneY = 320;
                 stage2.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
@@ -83,8 +84,8 @@ public class LoggingScreenController implements Initializable {
                 stage2.getScene().getStylesheets().add(App.class.getResource("doctorViewCSS.css").toExternalForm());
 
                 stage2.show();
-                Stage stage = (Stage) logInButton.getScene().getWindow();
-                stage.close();
+                // Stage stage = (Stage) logInButton.getScene().getWindow();    // jpro testing
+                // stage.close();                                               // jpro testing
             }
         }
         if (!isLogin) {
