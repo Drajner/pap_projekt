@@ -11,8 +11,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <javafx.version>18-ea+10</javafx.version>
     </properties>
-    <name>Hello JPro!</name>
-    <url>https://www.jpro.one/</url>
+    <name>Appointr</name>
     <pluginRepositories>
         <pluginRepository>
             <id>jpro - sandec repository</id>
@@ -96,7 +95,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>com.sandec.jpro</groupId>
                 <artifactId>jpro-maven-plugin</artifactId>
@@ -106,11 +104,10 @@
                     <JVMArgs>
                         <!-- <JVMArg>your-args</JVMArg> -->
                     </JVMArgs>
-                    <mainClassName>edu.iipw.pap.App</mainClassName>
+                    <mainClassName>edu.iipw.pap.AppWeb</mainClassName>
                     <openingPath>/</openingPath>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>

@@ -1,24 +1,27 @@
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\App.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AdminViewController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Appointment.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AddAppointmentController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DoctorViewController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\LoggingScreenController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Patient.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DeleteAppointmentController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AddPatientController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\ChooseEditAppointmentController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DoctorTableRow.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AppointmentTableRow.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Doctor.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\EditAppointmentController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Main.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\EditPatientController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\module-info.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\CLI.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DBContext.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\PatientTableRow.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Person.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\ChooseEditPatientController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DeletePatientController.java
-C:\Users\Jakub Marcowski\Desktop\Studia\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Populate.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Appointment.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\ChooseEditPatientController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AppointmentTableRow.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Patient.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Main.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AppWeb.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\EditPatientController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\LoggingScreenController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DoctorTableRow.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DeletePatientController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DeleteAppointmentController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\CLI.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AddPatientController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\ChooseEditAppointmentController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\PatientTableRow.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Populate.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AddAppointmentController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\LoggingScreenControllerWeb.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Doctor.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DoctorViewController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DoctorViewControllerWeb.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\DBContext.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\App.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\AdminViewController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\EditAppointmentController.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\edu\iipw\pap\Person.java
+D:\Programowanie\PAP\pap21z-z31\appointr\src\main\java\module-info.java

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox alignment="BOTTOM_CENTER" minHeight="150.0" minWidth="200.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.DoctorViewControllerWeb">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="425.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TabPane HBox.hgrow="ALWAYS">
+               <tabs>
+                  <Tab fx:id="appointmentsTab" closable="false" text="Wizyty">
+                     <content>
+                        <TableView fx:id="appointmentTable" prefHeight="350.0" prefWidth="480.0">
+                          <columns>
+                            <TableColumn fx:id="numberColumn" maxWidth="60.0" minWidth="20.0" prefWidth="30.0" text="Nr" />
+                            <TableColumn fx:id="dateColumn" maxWidth="240.0" minWidth="90.0" prefWidth="120.0" text="Data i godzina" />
+                              <TableColumn fx:id="appointmentNameColumn" maxWidth="780.0" minWidth="145.0" prefWidth="180.0" text="Imię i Nazwisko Pacjenta" />
+                              <TableColumn fx:id="officeColumn" maxWidth="600.0" minWidth="50.0" prefWidth="145.0" text="Gabinet" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="patientsTab" closable="false" text="Pacjenci">
+                     <content>
+                        <TableView fx:id="patientTable" prefHeight="350.0" prefWidth="480.0">
+                           <columns>
+                              <TableColumn fx:id="peselColumn" maxWidth="60.0" minWidth="50.0" prefWidth="50.0" text="PESEL" />
+                              <TableColumn fx:id="patientNameColumn" maxWidth="780.0" minWidth="145.0" prefWidth="180.0" text="Imię i Nazwisko" />
+                              <TableColumn fx:id="genderColumn" maxWidth="50.0" minWidth="40.0" prefWidth="45.0" text="Płeć" />
+                              <TableColumn fx:id="birthDateColumn" maxWidth="240.0" minWidth="90.0" prefWidth="120.0" text="Data urodzenia" />
+                              <TableColumn fx:id="descriptionColumn" maxWidth="600.0" minWidth="50.0" prefWidth="145.0" text="Opis" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </content>
+                  </Tab>
+               </tabs>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TabPane>
+            <VBox alignment="TOP_CENTER">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <children>
+                  <HBox alignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" />
+                     </VBox.margin>
+                     <children>
+                        <ToggleButton fx:id="darkTheme" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeTheme" text="Tryb ciemny" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ToggleButton>
+                        <ToggleButton fx:id="engLang" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeLang" text="Polski" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ToggleButton>
+                     </children>
+                  </HBox>
+                  <TextFlow fx:id="sideText" prefHeight="360.0" prefWidth="210.0" textAlignment="CENTER" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

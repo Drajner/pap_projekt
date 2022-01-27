@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LoggingScreenController implements Initializable {
+public class LoggingScreenControllerWeb implements Initializable {
 
     @FXML
     private Button logInButton;
@@ -28,7 +28,7 @@ public class LoggingScreenController implements Initializable {
     private PasswordField passwordField;
     private ArrayList<Doctor> doctors;
     private Connection conn = null;
-    public LoggingScreenController() {
+    public LoggingScreenControllerWeb() {
     }
 
     @Override
@@ -59,32 +59,26 @@ public class LoggingScreenController implements Initializable {
             if (login.equals(d.getLogin()) && password.equals(d.getPassword())) {
                 isLogin = true;
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorViewWeb.fxml"));
                 // FXMLLoader loader = new FXMLLoader(getClass().getResource("adminView.fxml"));
 
                 Parent root = loader.load();
 
-                DoctorViewController dvc = loader.getController();
+                DoctorViewControllerWeb dvc = loader.getController();
                 // AdminViewController dvc = loader.getController();
 
                 dvc.usedDoctorAndConn(d, conn);
-                Stage stage2 = new Stage();
-                int sceneX = 300;
-                int sceneY = 320;
-                stage2.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
-                stage2.setTitle("Appointr");
-                stage2.setScene(new Scene(root, sceneX, sceneY));
-                stage2.setResizable(true);
-                stage2.setHeight(480);
-                stage2.setWidth(640);
-                stage2.setMinHeight(360);
-                stage2.setMinWidth(380);
-
-                stage2.getScene().getStylesheets().add(App.class.getResource("doctorViewCSS.css").toExternalForm());
-
-                stage2.show();
                 Stage stage = (Stage) logInButton.getScene().getWindow();
-                stage.close();
+                int sceneX = 640;
+                int sceneY = 480;
+                stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
+                stage.setTitle("Appointr");
+                stage.setScene(new Scene(root, sceneX, sceneY));
+                stage.setResizable(true);
+
+                stage.getScene().getStylesheets().add(App.class.getResource("doctorViewCSS.css").toExternalForm());
+
+                stage.show();
             }
         }
         if (!isLogin) {
