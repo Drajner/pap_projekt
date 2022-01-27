@@ -15,23 +15,6 @@
 
 - [x] działająca aplikacja
 
-- [x] zwrócić uwagę na to, kto co robił
-
-- [ ] udoskonalić dokumentację -  2 strony od osoby:
-- [x] funkcjonalności
-- [x] ogólny zarys
-- [ ] ograniczenia
-- [x] krzyżowa weryfikacja kodu podchodzi pod testowanie - można o tym napisać
-
-- [x] role, zakres dostępu
-- [x] dodać funkcjonalność dla lekarza-administratora
-
-- [ ] dodać funkcjonalność dla customowych zapytań
-
-- [ ] w przypadku, gdyby brakowało punktów - logi, testy
-
-- [ ] rozwój systemu - co jeszcze można dodać
-
 #### Etap 4 - 26.01.2022
 
 - [x] działająca aplikacja uwzględniająca uwagi prowadzącego z 3 etapu
@@ -46,3 +29,17 @@
 - [ ] dodać funkcjonalność wykrywania konfliktów wizyt
 - [ ] obsługa błędów (w ramach GUI)
 - [ ] dodać funkcjonalność konta administratora (ma dostęp do wszystkich wizyt)
+
+---
+
+- [x] zwrócić uwagę na to, kto co robił
+- [ ] udoskonalić dokumentację -  2 strony od osoby:
+- [x] funkcjonalności
+- [x] ogólny zarys
+- [ ] ograniczenia
+- [x] krzyżowa weryfikacja kodu podchodzi pod testowanie - można o tym napisać
+- [x] role, zakres dostępu
+- [x] dodać funkcjonalność dla lekarza-administratora
+- [ ] dodać funkcjonalność dla customowych zapytań
+- [ ] w przypadku, gdyby brakowało punktów - logi, testy
+- [ ] rozwój systemu - co jeszcze można dodać

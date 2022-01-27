@@ -59,13 +59,13 @@ public class LoggingScreenController implements Initializable {
             if (login.equals(d.getLogin()) && password.equals(d.getPassword())) {
                 isLogin = true;
 
-                // FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorView.fxml"));
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("adminView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorView.fxml"));
+                // FXMLLoader loader = new FXMLLoader(getClass().getResource("adminView.fxml"));
 
                 Parent root = loader.load();
 
-                // DoctorViewController dvc = loader.getController();
-                AdminViewController dvc = loader.getController();
+                DoctorViewController dvc = loader.getController();
+                // AdminViewController dvc = loader.getController();
 
                 dvc.usedDoctorAndConn(d, conn);
                 Stage stage2 = new Stage();

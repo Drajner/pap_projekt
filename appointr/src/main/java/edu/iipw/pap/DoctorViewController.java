@@ -10,12 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -51,6 +53,12 @@ public class DoctorViewController implements Initializable {
     @FXML
     private Button deleteAppointmentButton;
     @FXML
+    private Button editProfileButton;
+    @FXML
+    private Tab appointmentsTab;
+    @FXML
+    private Tab patientsTab;
+    @FXML
     private TableView<AppointmentTableRow> appointmentTable;
     @FXML
     private TableColumn<AppointmentTableRow, Integer> numberColumn;
@@ -74,6 +82,10 @@ public class DoctorViewController implements Initializable {
     private TableColumn<PatientTableRow, String> descriptionColumn;
     @FXML
     private ToggleButton darkTheme;
+    @FXML
+    private ToggleButton engLang;
+    @FXML
+    private ImageView flagImage;
     private ObservableList<AppointmentTableRow> data;
     private Doctor usedDoctor;
     private Connection conn;
@@ -90,10 +102,8 @@ public class DoctorViewController implements Initializable {
         officeColumn.setCellValueFactory(new PropertyValueFactory<AppointmentTableRow, String>("office"));
 
         /* Patients table */
-
         peselColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("pesel"));
         patientNameColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("name"));
-        genderColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, LocalDate>("birthDate"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("description"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<PatientTableRow, String>("gender"));
@@ -137,7 +147,12 @@ public class DoctorViewController implements Initializable {
         }
 
         /* Welcome message */
-        Text text1a = new Text("Witaj ");
+        Text text1a;
+        if (engLang.isSelected()) {
+            text1a = new Text("Welcome ");
+        } else {
+            text1a = new Text("Witaj ");
+        }
         text1a.setFont(Font.font("Helvetica", 24));
 
         String doctorName = usedDoctor.getName() + " " + usedDoctor.getSurname();
@@ -149,34 +164,66 @@ public class DoctorViewController implements Initializable {
         text1c.setFont(Font.font("Helvetica", 24));
 
         /* Number of upcoming appointments */
-        Text text2a = new Text("◉ Liczba nadchodzących wizyt: ");
+        Text text2a;
+        if (engLang.isSelected()) {
+            text2a = new Text("◉ Number of upcoming appointments: ");
+        } else {
+            text2a = new Text("◉ Liczba nadchodzących wizyt: ");
+        }
         text2a.setFont(Font.font("Helvetica", 18));
 
         Text text2b = new Text(String.valueOf(data.size() - numOfExpiredAppointments) + '\n');
         text2b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
-        /* Next visit */
-        Text text3a = new Text("◉ Najbliższa wizyta: ");
+        /* Next appointment */
+        Text text3a;
+        if (engLang.isSelected()) {
+            text3a = new Text("◉ Next appointment: ");
+        } else {
+            text3a = new Text("◉ Najbliższa wizyta: ");
+        }
         text3a.setFont(Font.font("Helvetica", 18));
 
         Text text3b = new Text(closestAppointment.getDate() + '\n');
         text3b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
         /* Number of expired appointments */
-        Text text4a = new Text("◉ Liczba wizyt wygasłych: ");
+        Text text4a;
+        if (engLang.isSelected()) {
+            text4a = new Text("◉ Number of expired appointments: ");
+        } else {
+            text4a = new Text("◉ Liczba wizyt wygasłych: ");
+        }
         text4a.setFont(Font.font("Helvetica", 18));
 
         Text text4b = new Text(String.valueOf(numOfExpiredAppointments) + '\n');
         text4b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
-        Text text4c = new Text("◉ Zalecane jest usunięcie wizyt wygasłych");
-        text4c.setOpacity(0.39215686274);
+        Text text4c;
+        if (engLang.isSelected()) {
+            text4c = new Text("◉ It is recommended to delete expired appointments");
+        } else {
+            text4c = new Text("◉ Zalecane jest usunięcie wizyt wygasłych");
+        }
         text4c.setFont(Font.font("Helvetica", FontPosture.ITALIC, 18));
+        text4c.setOpacity(0.39215686274);
 
         /* Set the dimensions of the TextFlow window */
         sideText.setMinWidth(200);
         sideText.setPrefWidth(275);
         sideText.setMaxWidth(350);
+
+        if (darkTheme.isSelected()) {
+            text1a.setFill(Color.WHITE);
+            text1c.setFill(Color.WHITE);
+            text2a.setFill(Color.WHITE);
+            text2b.setFill(Color.WHITE);
+            text3a.setFill(Color.WHITE);
+            text3b.setFill(Color.WHITE);
+            text4a.setFill(Color.WHITE);
+            text4b.setFill(Color.WHITE);
+            text4c.setFill(Color.WHITE);
+        }
 
         /* Add text to the TextFlow window */
         sideText.getChildren().addAll(text1a, text1b, text1c,
@@ -218,7 +265,7 @@ public class DoctorViewController implements Initializable {
                     setStyle("");
                 } else if (item.getAppointment().getTimeOfAppointment().isBefore(LocalDateTime.now())) {
                     setStyle("-fx-opacity: 0.5;" +
-                             "-fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);");
+                             "-fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);");
                 } else {
                     setStyle("");
                 }
@@ -252,7 +299,14 @@ public class DoctorViewController implements Initializable {
     public void addPatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addPatientScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "addPatientScreenEng.fxml";
+            } else {
+                lang = "addPatientScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             AddPatientController apc = loader.getController();
             apc.transferConn(conn);
@@ -287,7 +341,14 @@ public class DoctorViewController implements Initializable {
     public void editPatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditPatientScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "chooseEditPatientScreenEng.fxml";
+            } else {
+                lang = "chooseEditPatientScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             ChooseEditPatientController cepc = loader.getController();
             cepc.transferData(data, usedDoctor, conn);
@@ -322,13 +383,17 @@ public class DoctorViewController implements Initializable {
     public void deletePatient(ActionEvent event) throws IOException {
         Parent root;
         try {
-            // this:
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("deletePatientScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "deletePatientScreenEng.fxml";
+            } else {
+                lang = "deletePatientScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             DeletePatientController dpc = loader.getController();
             dpc.transferData(data, usedDoctor, conn);
-            // instead of this:
-            // root = FXMLLoader.load(getClass().getResource("deletePatientScreen.fxml"));
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();
@@ -361,7 +426,14 @@ public class DoctorViewController implements Initializable {
     public void addAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addAppointmentScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "addAppointmentScreenEng.fxml";
+            } else {
+                lang = "addAppointmentScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             AddAppointmentController aac = loader.getController();
             aac.transferDoctorAndConn(usedDoctor, conn);
@@ -396,7 +468,14 @@ public class DoctorViewController implements Initializable {
     public void editAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("chooseEditAppointmentScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "chooseEditAppointmentScreenEng.fxml";
+            } else {
+                lang = "chooseEditAppointmentScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             ChooseEditAppointmentController ceac = loader.getController();
             ceac.transferData(data, usedDoctor, conn);
@@ -431,7 +510,14 @@ public class DoctorViewController implements Initializable {
     public void deleteAppointment(ActionEvent event) throws IOException {
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("deleteAppointmentScreen.fxml"));
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "deleteAppointmentScreenEng.fxml";
+            } else {
+                lang = "deleteAppointmentScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
             root = loader.load();
             DeleteAppointmentController dac = loader.getController();
             dac.transferData(data, usedDoctor, conn);
@@ -463,6 +549,11 @@ public class DoctorViewController implements Initializable {
     }
 
     @FXML
+    public void editProfile(ActionEvent event) throws IOException {
+        System.out.println("lol, not yet implemented");
+    }
+
+    @FXML
     void changeTheme(ActionEvent event) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -475,6 +566,58 @@ public class DoctorViewController implements Initializable {
             stage.getScene().getStylesheets().clear();
             stage.getScene().getStylesheets().add(css);
         }
+        updateSideText();
+    }
+
+    @FXML
+    void changeLang(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        updateSideText();
+        byte refresh = 1;  // we do this because otherwise sideText doesn't fully update, for some reason
+        if (engLang.isSelected()) {
+            refresh *= -1;
+            flagImage.setImage(new Image(App.class.getResource("gb.png").toString()));
+            darkTheme.setText("Dark theme");
+            appointmentsTab.setText("Appointments");
+            patientsTab.setText("Patients");
+            addAppointmentButton.setText("Add appointment");
+            editAppointmentButton.setText("Edit appointment");
+            deleteAppointmentButton.setText("Delete appointment");
+            addPatientButton.setText("Add patient");
+            editPatientButton.setText("Edit patient");
+            deletePatientButton.setText("Delete patient");
+            editProfileButton.setText("Edit profile");
+            numberColumn.setText("No.");
+            dateColumn.setText("Date");
+            appointmentNameColumn.setText("Name");
+            officeColumn.setText("Office");
+            patientNameColumn.setText("First name and surname");
+            birthDateColumn.setText("Birth date");
+            descriptionColumn.setText("Description");
+            genderColumn.setText("Sex");
+        } else {
+            flagImage.setImage(new Image(App.class.getResource("pl.png").toString()));
+            darkTheme.setText("Tryb ciemny");
+            appointmentsTab.setText("Wizyty");
+            patientsTab.setText("Pacjenci");
+            addAppointmentButton.setText("Dodaj wizytę");
+            editAppointmentButton.setText("Edytuj wizytę");
+            deleteAppointmentButton.setText("Usuń wizytę");
+            addPatientButton.setText("Dodaj pacjenta");
+            editPatientButton.setText("Edytuj pacjenta");
+            deletePatientButton.setText("Usuń pacjenta");
+            editProfileButton.setText("Edytuj profil");
+            numberColumn.setText("Nr");
+            dateColumn.setText("Data i godzina");
+            appointmentNameColumn.setText("Imię i Nazwisko Pacjenta");
+            officeColumn.setText("Gabinet");
+            patientNameColumn.setText("Imię i Nazwisko");
+            birthDateColumn.setText("Data urodzenia");
+            descriptionColumn.setText("Opis");
+            genderColumn.setText("Płeć");
+        }
+        stage.setWidth(stage.getWidth() + refresh);
     }
 
 }
