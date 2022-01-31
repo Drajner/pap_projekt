@@ -27,6 +27,7 @@ public class LoggingScreenControllerWeb implements Initializable {
     @FXML
     private PasswordField passwordField;
     private ArrayList<Doctor> doctors;
+    private ArrayList<String> admins;
     private Connection conn = null;
     public LoggingScreenControllerWeb() {
     }
@@ -40,6 +41,7 @@ public class LoggingScreenControllerWeb implements Initializable {
 
             try {
                 doctors = dbContext.getDoctors(conn);
+                admins = dbContext.getAdmins(conn);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -59,15 +61,19 @@ public class LoggingScreenControllerWeb implements Initializable {
             if (login.equals(d.getLogin()) && password.equals(d.getPassword())) {
                 isLogin = true;
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorViewWeb.fxml"));
-                // FXMLLoader loader = new FXMLLoader(getClass().getResource("adminView.fxml"));
+                Parent root;
+                if (admins.contains(d.getPesel())) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("adminView.fxml"));
+                    root = loader.load();
+                    AdminViewController avc = loader.getController();
+                    avc.usedDoctorAndConn(d, conn);
+                } else {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("doctorViewWeb.fxml"));
+                    root = loader.load();
+                    DoctorViewControllerWeb dvc = loader.getController();
+                    dvc.usedDoctorAndConn(d, conn);
+                }
 
-                Parent root = loader.load();
-
-                DoctorViewControllerWeb dvc = loader.getController();
-                // AdminViewController dvc = loader.getController();
-
-                dvc.usedDoctorAndConn(d, conn);
                 Stage stage = (Stage) logInButton.getScene().getWindow();
                 int sceneX = 640;
                 int sceneY = 480;

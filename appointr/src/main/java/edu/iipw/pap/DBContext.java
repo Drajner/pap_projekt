@@ -232,6 +232,25 @@ public class DBContext implements AutoCloseable {
         return appointments;
     }
 
+    public ArrayList<String> getAdmins(Connection conn) throws Exception {
+        ArrayList<String> admins = new ArrayList<>();
+
+        Statement stmt = conn.createStatement();
+        /*
+        These two should give the same results, but we'll opt for the second one:
+        > SELECT pesel FROM doctors d JOIN hospitals h ON(d.pesel = h.administrator);
+        > SELECT UNIQUE h.administrator FROM hospitals h;
+        */
+        ResultSet rs = stmt.executeQuery("SELECT UNIQUE h.administrator FROM hospitals h");
+        while (rs.next()) {
+            admins.add(rs.getString(1));
+        }
+        rs.close();
+        stmt.close();
+
+        return admins;
+    }
+
     public void deleteDoctor(Connection conn, String pesel) throws Exception {
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM doctors WHERE pesel = ?");
         stmt.setString(1, pesel);
