@@ -141,7 +141,11 @@ public class DBContext implements AutoCloseable {
         account_rs.close();
         stmt.close();
 
-        return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>(), gender);
+        // all doctors will be added to a hospital with id = 1,
+        // but this is not a problem, because the hospital is not used in the application;
+        // it is only used in the database - if we want to add more hospitals,
+        // we will have to change this
+        return new Doctor(pesel, name, surname, dateOfBirth, specialization, login, password, new ArrayList<>(), gender, 1);
     }
 
     private Patient createPatient(ResultSet rs) throws Exception {

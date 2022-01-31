@@ -24,6 +24,10 @@ public class Doctor extends Person {
      * The doctor's appointments.
      */
     private ArrayList<Appointment> appointments;
+    /**
+     * The doctor's hospital's id.
+     */
+    private int hospitalId;
 
     /**
      * Constructor for the Doctor class.
@@ -37,15 +41,17 @@ public class Doctor extends Person {
      * @param password       The doctor's account's password.
      * @param appointments   The doctor's appointments.
      * @param gender         The doctor's gender.
+     * @param hospitalId     The doctor's hospital's id.
      */
     public Doctor(String pesel, String name, String surname, LocalDate dateOfBirth, String specialization,
-                  String login, String password, ArrayList<Appointment> appointments, Character gender) {
+                  String login, String password, ArrayList<Appointment> appointments, Character gender,
+                  int hospitalId) {
         super(pesel, name, surname, dateOfBirth, gender);
         this.specialization = specialization;
         this.login = login;
         this.password = password;
         this.appointments = appointments;
-
+        this.hospitalId = hospitalId;
     }
 
     /**
@@ -119,6 +125,24 @@ public class Doctor extends Person {
      */
     public void setAppointments(ArrayList<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    /**
+     * Returns the doctor's hospital's id.
+     *
+     * @return The doctor's hospital's id.
+     */
+    public int getHospitalId() {
+        return hospitalId;
+    }
+
+    /**
+     * Sets the doctor's hospital's id.
+     *
+     * @param hospitalId The doctor's hospital's id.
+     */
+    public void setHospitalId(int hospitalId) {
+        this.hospitalId = hospitalId;
     }
 
     /**

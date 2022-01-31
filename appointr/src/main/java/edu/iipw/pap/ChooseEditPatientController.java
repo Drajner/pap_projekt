@@ -26,7 +26,6 @@ public class ChooseEditPatientController implements Initializable {
     private Button chooseButton;
     @FXML
     private Button cancelButton;
-    private ObservableList<AppointmentTableRow> tempData;
     private Doctor loggedDoctor;
     private Connection conn;
     private ArrayList<Patient> patients;
@@ -42,7 +41,6 @@ public class ChooseEditPatientController implements Initializable {
     public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
         conn = usedConn;
         loggedDoctor = doctor;
-        tempData = data;
 
         DBContext dbContext = new DBContext();
         try {

@@ -25,7 +25,6 @@ public class DeleteAppointmentController implements Initializable {
     @FXML
     private Button cancelButton;
     private Connection conn;
-    private Doctor loggedDoctor;
 
     public DeleteAppointmentController() {
     }
@@ -35,7 +34,6 @@ public class DeleteAppointmentController implements Initializable {
     }
 
     public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
-        loggedDoctor = doctor;
         conn = usedConn;
         for (AppointmentTableRow tr : data) {
             appointmentList.getItems().add(tr.getAppointment().toString());

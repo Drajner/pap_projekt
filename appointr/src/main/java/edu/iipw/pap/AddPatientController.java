@@ -31,7 +31,6 @@ public class AddPatientController {
     private TextArea descriptionField;
     @FXML
     private TextField genderField;
-    private Doctor loggedDoctor;
     private Connection conn;
 
     public AddPatientController() {

@@ -1,6 +1,7 @@
 package edu.iipw.pap;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -116,7 +117,8 @@ public class App extends Application {
         password = sc.nextLine();
         System.out.println("Płeć: ");
         gender = sc.nextLine().charAt(0);
-        Doctor d = new Doctor(pesel, name, surname, birthDate, specialization, login, password, new ArrayList<Appointment>(), gender);
+        // hospital id = 1, see DBContext.java for more info
+        Doctor d = new Doctor(pesel, name, surname, birthDate, specialization, login, password, new ArrayList<Appointment>(), gender, 1);
         doctors.add(d);
     }
 
@@ -231,32 +233,22 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        /*
+        boolean commandLineInterface = false;  // true - command line interface, false - graphical interface
+        Connection conn = null;
+        ArrayList<Doctor> doctors = new ArrayList<>();
         ArrayList<Patient> patients = new ArrayList<>();
         ArrayList<Appointment> appointments = new ArrayList<>();
-        ArrayList<Doctor> doctors = new ArrayList<>();
-        Patient patient1 = new Patient("Kamil", "Nowak", LocalDate.parse("2001-05-03"), "Cysts on the liver");
-        Patient patient2 = new Patient("Adam", "Durham", LocalDate.parse("1997-04-26"), "Severe toothache");
-        patients.add(patient1);
-        patients.add(patient2);
-        Doctor doctor1 = new Doctor("Jacek", "Kowalski", LocalDate.parse("1970-01-01"), "Optometrist", "jacek", "kEcAj", new ArrayList<Appointment>());
-        Doctor doctor2 = new Doctor("John", "Moore", LocalDate.parse("1980-07-17"), "Dentist", "qwerty", "password", new ArrayList<Appointment>());
-        doctors.add(doctor1);
-        doctors.add(doctor2);
-        Appointment appointment1 = new Appointment(doctor2, patient2, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 221B");
-        Appointment appointment2 = new Appointment(doctor2, patient1, LocalDateTime.parse("2021-12-02T10:15:00"), "Baker Street 222A");
-        doctor2.addAppointment(appointment1);
-        doctor2.addAppointment(appointment2);  // should say that doctor2 cannot have appointment2 assigned to him
-        for(int i = 0; i < doctor2.getAppointments().size(); i++){
-            appointments.add(doctor2.getAppointments().get(i));
+        if (conn == null && commandLineInterface) {
+            DBContext dbContext = new DBContext();
+            conn = dbContext.getConnection();
+            try {
+                doctors = dbContext.getDoctors(conn);
+                patients = dbContext.getPatients(conn);
+                appointments = dbContext.getAppointments(conn);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        */
-        Populate populate = new Populate();
-        // ObservableList<Patient> patients = populate.patients;
-        ArrayList<Patient> patients = populate.patients;
-        ArrayList<Doctor> doctors = populate.doctors;
-        ArrayList<Appointment> appointments = populate.appointments;
-
         Scanner sc = new Scanner(System.in);
         String input;
         int inputValue;
@@ -268,26 +260,27 @@ public class App extends Application {
         listingColor.add(150);
         listingColor.add(200);
         while (true) {
-            /*
-            System.out.println(CLI.ANSI_RGB(listingColor, "1.") + CLI.ANSI_RESET + " Pokaż wizyty");
-            System.out.println(CLI.ANSI_RGB(listingColor, "2.") + CLI.ANSI_RESET + " Pokaż lekarzy");
-            System.out.println(CLI.ANSI_RGB(listingColor, "3.") + CLI.ANSI_RESET + " Pokaż pacjentów");
-            System.out.println(CLI.ANSI_RGB(listingColor, "4.") + CLI.ANSI_RESET + " Dodaj wizytę (dla pierwszego lekarza)");
-            System.out.println(CLI.ANSI_RGB(listingColor, "5.") + CLI.ANSI_RESET + " Dodaj lekarza");
-            System.out.println(CLI.ANSI_RGB(listingColor, "6.") + CLI.ANSI_RESET + " Dodaj pacjenta");
-            System.out.println(CLI.ANSI_RGB(listingColor, "7.") + CLI.ANSI_RESET + " Edytuj wizytę");
-            System.out.println(CLI.ANSI_RGB(listingColor, "8.") + CLI.ANSI_RESET + " Edytuj pacjenta");
-            System.out.println(CLI.ANSI_RGB(listingColor, "9.") + CLI.ANSI_RESET + " Usuń wizytę");
-            System.out.println(CLI.ANSI_RGB(listingColor, "10.") + CLI.ANSI_RESET + " Usuń lekarza");
-            System.out.println(CLI.ANSI_RGB(listingColor, "11.") + CLI.ANSI_RESET + " Usuń pacjenta");
-            System.out.println(CLI.ANSI_RGB(listingColor, "12.") + CLI.ANSI_RESET + " Test GUI");
-            System.out.println(CLI.ANSI_RGB(listingColor, "13.") + CLI.ANSI_RESET + " Zakończ");
-            System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
-            System.out.print("Wpisz opcję: ");
-            input = sc.nextLine();
-            System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
-            */
-            input = "12";
+            if (commandLineInterface) {
+                System.out.println(CLI.ANSI_RGB(listingColor, "1.") + CLI.ANSI_RESET + " Pokaż wizyty");
+                System.out.println(CLI.ANSI_RGB(listingColor, "2.") + CLI.ANSI_RESET + " Pokaż lekarzy");
+                System.out.println(CLI.ANSI_RGB(listingColor, "3.") + CLI.ANSI_RESET + " Pokaż pacjentów");
+                System.out.println(CLI.ANSI_RGB(listingColor, "4.") + CLI.ANSI_RESET + " Dodaj wizytę (dla pierwszego lekarza)");
+                System.out.println(CLI.ANSI_RGB(listingColor, "5.") + CLI.ANSI_RESET + " Dodaj lekarza");
+                System.out.println(CLI.ANSI_RGB(listingColor, "6.") + CLI.ANSI_RESET + " Dodaj pacjenta");
+                System.out.println(CLI.ANSI_RGB(listingColor, "7.") + CLI.ANSI_RESET + " Edytuj wizytę");
+                System.out.println(CLI.ANSI_RGB(listingColor, "8.") + CLI.ANSI_RESET + " Edytuj pacjenta");
+                System.out.println(CLI.ANSI_RGB(listingColor, "9.") + CLI.ANSI_RESET + " Usuń wizytę");
+                System.out.println(CLI.ANSI_RGB(listingColor, "10.") + CLI.ANSI_RESET + " Usuń lekarza");
+                System.out.println(CLI.ANSI_RGB(listingColor, "11.") + CLI.ANSI_RESET + " Usuń pacjenta");
+                System.out.println(CLI.ANSI_RGB(listingColor, "12.") + CLI.ANSI_RESET + " Test GUI");
+                System.out.println(CLI.ANSI_RGB(listingColor, "13.") + CLI.ANSI_RESET + " Zakończ");
+                System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+                System.out.print("Wpisz opcję: ");
+                input = sc.nextLine();
+                System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
+            } else {
+                input = "12";
+            }
             switch (input) {
                 case "1":
                     showAppointments(appointments);
@@ -302,11 +295,7 @@ public class App extends Application {
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "4":
-                    /*
-                    addAppointment(doctor1, patients, appointments);
-                    */
                     addAppointment(doctors.get(0), patients, appointments);
-
                     System.out.println(CLI.interlineGradient(18, 100, 150, 200, 200, 25, 25));
                     break;
                 case "5":

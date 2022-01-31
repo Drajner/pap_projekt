@@ -26,7 +26,6 @@ public class ChooseEditAppointmentController implements Initializable {
     private Button chooseButton;
     @FXML
     private Button cancelButton;
-    private ObservableList<AppointmentTableRow> tempData;
     private Doctor loggedDoctor;
     private ArrayList<Appointment> appointments;
     private Connection conn;
@@ -42,7 +41,6 @@ public class ChooseEditAppointmentController implements Initializable {
     public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
         loggedDoctor = doctor;
         conn = usedConn;
-        tempData = data;
         Appointment appointment = null;
 
         DBContext dbContext = new DBContext();
@@ -76,16 +74,6 @@ public class ChooseEditAppointmentController implements Initializable {
 
     private void chooseAppointmentFromData() throws IOException {
         Parent root;
-        /*String[] splitAppointment = appointmentList.getValue().split(" ");
-        int editedAppointmentId = Integer.parseInt(splitAppointment[0]);
-        Appointment editedAppointment = tempData.get(0).getAppointment();
-        for (AppointmentTableRow tr: tempData) {
-            if(tr.getAppointment().getId() == editedAppointmentId)
-            {
-                editedAppointment = tr.getAppointment();
-                break;
-            }
-        }*/
         String s_appointment = appointmentList.getValue();
         Appointment editedAppointment = null;
 

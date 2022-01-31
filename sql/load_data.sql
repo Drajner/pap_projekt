@@ -159,73 +159,105 @@ COMMIT;
 -- INSERT INTO doctors VALUES (19, 'Alessandra', 'Anthoine', '2019-11-30', NULL, 'K');
 -- INSERT INTO doctors VALUES (20, 'Dominica', 'Arcase', '2017-12-13', NULL, 'K');
 
-INSERT INTO doctors VALUES (01212545653, 'Hubert', 'Małecki', '2001-01-25', NULL, 'M');
-INSERT INTO doctors VALUES (68042928832, 'Arkadiusz', 'Bednarczyk', '1968-04-29', NULL, 'M');
-INSERT INTO doctors VALUES (70010152275, 'Jacek', 'Kowalski', '1970-01-01', NULL, 'M');
-INSERT INTO doctors VALUES (80071732176, 'John', 'Moore', '1980-07-17', NULL, 'M');
-INSERT INTO doctors VALUES (95031266310, 'Bogusław', 'Wróbel', '1995-03-12', NULL, 'M');
-INSERT INTO doctors VALUES (76111249041, 'Bogumiła', 'Polak', '1976-11-12', NULL, 'K');
-INSERT INTO doctors VALUES (78051972283, 'Alina', 'Makowska', '1978-05-19', NULL, 'K');
-INSERT INTO doctors VALUES (58041304863, 'Matylda', 'Domańska', '1958-04-13', NULL, 'K');
-INSERT INTO doctors VALUES (57120125151, 'Błażej', 'Kopeć', '1957-12-01', NULL, 'M');
-INSERT INTO doctors VALUES (97020371241, 'Nicola', 'Stefańska', '1997-02-03', NULL, 'K');
-INSERT INTO doctors VALUES (70040923184, 'Andżelika', 'Nowakowska', '1970-04-09', NULL, 'K');
-INSERT INTO doctors VALUES (58050153827, 'Oliwia', 'Wojciechowska', '1958-05-01', NULL, 'K');
-
+INSERT INTO doctors VALUES (01212545653, 'Hubert', 'Małecki', '2001-01-25', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (68042928832, 'Arkadiusz', 'Bednarczyk', '1968-04-29', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (70010152275, 'Jacek', 'Kowalski', '1970-01-01', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (80071732176, 'John', 'Moore', '1980-07-17', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (95031266310, 'Bogusław', 'Wróbel', '1995-03-12', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (76111249041, 'Bogumiła', 'Polak', '1976-11-12', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (78051972283, 'Alina', 'Makowska', '1978-05-19', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (58041304863, 'Matylda', 'Domańska', '1958-04-13', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (57120125151, 'Błażej', 'Kopeć', '1957-12-01', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (97020371241, 'Nicola', 'Stefańska', '1997-02-03', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (70040923184, 'Andżelika', 'Nowakowska', '1970-04-09', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (58050153827, 'Oliwia', 'Wojciechowska', '1958-05-01', NULL, 'K', NULL);
 
 COMMIT;
 
 --------------------------
 
-INSERT INTO hospitals VALUES (1, 1, 'Gaylord-Witting', '2021-02-23', '6804432525', 1);
-INSERT INTO hospitals VALUES (2, 2, 'Heller and Sons', '2018-02-28', '5422154622', 2);
-INSERT INTO hospitals VALUES (3, 3, 'Fisher-Terry', '2019-12-11', '6741031782', 3);
-INSERT INTO hospitals VALUES (4, 4, 'Schmeler, Harvey and Abernathy', '2019-06-16', '1603062335', 4);
-INSERT INTO hospitals VALUES (5, 5, 'Collins-Kshlerin', '2019-04-15', '1296862399', 5);
-INSERT INTO hospitals VALUES (6, 6, 'Haley Group', '2020-08-31', '5587446107', 6);
-INSERT INTO hospitals VALUES (7, 7, 'Kreiger, Kozey and McLaughlin', '2020-05-25', '9958627442', 7);
-INSERT INTO hospitals VALUES (8, 8, 'Okuneva-Bogan', '2019-08-31', '8610093697', 8);
-INSERT INTO hospitals VALUES (9, 9, 'Anderson-Quitzon', '2021-03-10', '7168795333', 9);
-INSERT INTO hospitals VALUES (10, 10, 'Cassin-Welch', '2020-03-20', '1989669131', 10);
-INSERT INTO hospitals VALUES (11, 11, 'Bartoletti, Gerlach and Labadie', '2017-09-15', '1154307956', 11);
-INSERT INTO hospitals VALUES (12, 12, 'Wolf and Sons', '2021-08-21', '4092704437', 12);
-INSERT INTO hospitals VALUES (13, 13, 'Wyman, Wilkinson and Hintz', '2019-12-16', '4689869464', 13);
-INSERT INTO hospitals VALUES (14, 14, 'Green, Jacobi and Olson', '2019-08-08', '9771417118', 14);
+-- INSERT INTO hospitals VALUES (1, 1, 'Gaylord-Witting', '2021-02-23', '6804432525', 1);
+-- INSERT INTO hospitals VALUES (2, 2, 'Heller and Sons', '2018-02-28', '5422154622', 2);
+-- INSERT INTO hospitals VALUES (3, 3, 'Fisher-Terry', '2019-12-11', '6741031782', 3);
+-- INSERT INTO hospitals VALUES (4, 4, 'Schmeler, Harvey and Abernathy', '2019-06-16', '1603062335', 4);
+-- INSERT INTO hospitals VALUES (5, 5, 'Collins-Kshlerin', '2019-04-15', '1296862399', 5);
+-- INSERT INTO hospitals VALUES (6, 6, 'Haley Group', '2020-08-31', '5587446107', 6);
+-- INSERT INTO hospitals VALUES (7, 7, 'Kreiger, Kozey and McLaughlin', '2020-05-25', '9958627442', 7);
+-- INSERT INTO hospitals VALUES (8, 8, 'Okuneva-Bogan', '2019-08-31', '8610093697', 8);
+-- INSERT INTO hospitals VALUES (9, 9, 'Anderson-Quitzon', '2021-03-10', '7168795333', 9);
+-- INSERT INTO hospitals VALUES (10, 10, 'Cassin-Welch', '2020-03-20', '1989669131', 10);
+-- INSERT INTO hospitals VALUES (11, 11, 'Bartoletti, Gerlach and Labadie', '2017-09-15', '1154307956', 11);
+-- INSERT INTO hospitals VALUES (12, 12, 'Wolf and Sons', '2021-08-21', '4092704437', 12);
+-- INSERT INTO hospitals VALUES (13, 13, 'Wyman, Wilkinson and Hintz', '2019-12-16', '4689869464', 13);
+-- INSERT INTO hospitals VALUES (14, 14, 'Green, Jacobi and Olson', '2019-08-08', '9771417118', 14);
+
+INSERT INTO hospitals VALUES (1, 1, 'Gaylord-Witting', '2021-02-23', '6804432525', 01212545653);
 
 COMMIT;
 
 --------------------
 
-INSERT INTO offices VALUES (1, 9, 90);
-INSERT INTO offices VALUES (2, 6, 52);
-INSERT INTO offices VALUES (3, 13, 2);
-INSERT INTO offices VALUES (4, 8, 61);
-INSERT INTO offices VALUES (5, 7, 47);
-INSERT INTO offices VALUES (6, 3, 54);
-INSERT INTO offices VALUES (7, 8, 66);
-INSERT INTO offices VALUES (8, 11, 63);
-INSERT INTO offices VALUES (9, 9, 42);
-INSERT INTO offices VALUES (10, 12, 62);
-INSERT INTO offices VALUES (11, 10, 86);
-INSERT INTO offices VALUES (12, 3, 93);
-INSERT INTO offices VALUES (13, 2, 50);
-INSERT INTO offices VALUES (14, 6, 87);
-INSERT INTO offices VALUES (15, 3, 80);
-INSERT INTO offices VALUES (16, 14, 58);
-INSERT INTO offices VALUES (17, 12, 65);
-INSERT INTO offices VALUES (18, 9, 12);
-INSERT INTO offices VALUES (19, 2, 34);
-INSERT INTO offices VALUES (20, 12, 5);
-INSERT INTO offices VALUES (21, 5, 63);
-INSERT INTO offices VALUES (22, 3, 11);
-INSERT INTO offices VALUES (23, 4, 76);
-INSERT INTO offices VALUES (24, 9, 86);
-INSERT INTO offices VALUES (25, 9, 44);
-INSERT INTO offices VALUES (26, 6, 67);
-INSERT INTO offices VALUES (27, 7, 80);
-INSERT INTO offices VALUES (28, 1, 42);
-INSERT INTO offices VALUES (29, 8, 44);
-INSERT INTO offices VALUES (30, 14, 100);
+-- INSERT INTO offices VALUES (1, 9, 90);
+-- INSERT INTO offices VALUES (2, 6, 52);
+-- INSERT INTO offices VALUES (3, 13, 2);
+-- INSERT INTO offices VALUES (4, 8, 61);
+-- INSERT INTO offices VALUES (5, 7, 47);
+-- INSERT INTO offices VALUES (6, 3, 54);
+-- INSERT INTO offices VALUES (7, 8, 66);
+-- INSERT INTO offices VALUES (8, 11, 63);
+-- INSERT INTO offices VALUES (9, 9, 42);
+-- INSERT INTO offices VALUES (10, 12, 62);
+-- INSERT INTO offices VALUES (11, 10, 86);
+-- INSERT INTO offices VALUES (12, 3, 93);
+-- INSERT INTO offices VALUES (13, 2, 50);
+-- INSERT INTO offices VALUES (14, 6, 87);
+-- INSERT INTO offices VALUES (15, 3, 80);
+-- INSERT INTO offices VALUES (16, 14, 58);
+-- INSERT INTO offices VALUES (17, 12, 65);
+-- INSERT INTO offices VALUES (18, 9, 12);
+-- INSERT INTO offices VALUES (19, 2, 34);
+-- INSERT INTO offices VALUES (20, 12, 5);
+-- INSERT INTO offices VALUES (21, 5, 63);
+-- INSERT INTO offices VALUES (22, 3, 11);
+-- INSERT INTO offices VALUES (23, 4, 76);
+-- INSERT INTO offices VALUES (24, 9, 86);
+-- INSERT INTO offices VALUES (25, 9, 44);
+-- INSERT INTO offices VALUES (26, 6, 67);
+-- INSERT INTO offices VALUES (27, 7, 80);
+-- INSERT INTO offices VALUES (28, 1, 42);
+-- INSERT INTO offices VALUES (29, 8, 44);
+-- INSERT INTO offices VALUES (30, 14, 100);
+
+INSERT INTO offices VALUES (1, 1, 100);
+INSERT INTO offices VALUES (2, 1, 101);
+INSERT INTO offices VALUES (3, 1, 102);
+INSERT INTO offices VALUES (4, 1, 103);
+INSERT INTO offices VALUES (5, 1, 104);
+INSERT INTO offices VALUES (6, 1, 105);
+INSERT INTO offices VALUES (7, 1, 106);
+INSERT INTO offices VALUES (8, 1, 107);
+INSERT INTO offices VALUES (9, 1, 108);
+INSERT INTO offices VALUES (10, 1, 109);
+INSERT INTO offices VALUES (11, 1, 200);
+INSERT INTO offices VALUES (12, 1, 201);
+INSERT INTO offices VALUES (13, 1, 202);
+INSERT INTO offices VALUES (14, 1, 203);
+INSERT INTO offices VALUES (15, 1, 204);
+INSERT INTO offices VALUES (16, 1, 205);
+INSERT INTO offices VALUES (17, 1, 206);
+INSERT INTO offices VALUES (18, 1, 207);
+INSERT INTO offices VALUES (19, 1, 208);
+INSERT INTO offices VALUES (20, 1, 209);
+INSERT INTO offices VALUES (21, 1, 300);
+INSERT INTO offices VALUES (22, 1, 301);
+INSERT INTO offices VALUES (23, 1, 302);
+INSERT INTO offices VALUES (24, 1, 303);
+INSERT INTO offices VALUES (25, 1, 304);
+INSERT INTO offices VALUES (26, 1, 305);
+INSERT INTO offices VALUES (27, 1, 306);
+INSERT INTO offices VALUES (28, 1, 307);
+INSERT INTO offices VALUES (29, 1, 308);
+INSERT INTO offices VALUES (30, 1, 309);
 
 COMMIT;
 
@@ -294,7 +326,7 @@ INSERT INTO accounts VALUES (3, 'jacek', 'kEcAj', 70010152275);
 INSERT INTO accounts VALUES (4, 'qwerty', 'password', 80071732176);
 INSERT INTO accounts VALUES (5, 'mWf{w?3.kd}a5j!C', 'd9kq>c^dGhg+F', 95031266310);
 INSERT INTO accounts VALUES (6, 'tw8yuTAZN4=UmBC', '2aZdcjnb_^rm*r_', 76111249041);
-INSERT INTO accounts VALUES (7, 'TqA*w+3a?^Jr2F7[', 'TdAY6#>&UU^<}~wJ', 78051972283);
+INSERT INTO accounts VALUES (7, 'TqA*w+3a?^Jr2F7[', 'TdAY6#}~wJ', 78051972283);
 INSERT INTO accounts VALUES (8, 'a?*(/MDwd%Lh2<!m', ',6*}2[4vFz:vHN(w', 58041304863);
 INSERT INTO accounts VALUES (9, 'r}*)QSqC(gDYny6@', 'Rb>kjE7*pHT,ns7/', 57120125151);
 INSERT INTO accounts VALUES (10, '%zg9HrFV(:F&]6Lh', '5csGKyfWtm.f\\W_j', 97020371241);
@@ -305,41 +337,54 @@ COMMIT;
 
 ----------------------
 
-INSERT INTO appointments VALUES (1, 18, 14, '22-01-13 01:34:01', 10);
-INSERT INTO appointments VALUES (2, 17, 14, '22-01-13 18:43:45', 26);
-INSERT INTO appointments VALUES (3, 7, 14, '22-01-13 22:37:08', 18);
-INSERT INTO appointments VALUES (4, 14, 4, '22-01-13 06:09:38', 26);
-INSERT INTO appointments VALUES (5, 15, 6, '22-01-13 12:41:59', 27);
-INSERT INTO appointments VALUES (6, 15, 10, '22-01-13 12:45:34', 22);
-INSERT INTO appointments VALUES (7, 10, 3, '22-01-13 03:47:21', 25);
-INSERT INTO appointments VALUES (8, 12, 19, '22-01-13 01:29:32', 5);
-INSERT INTO appointments VALUES (9, 7, 7, '22-01-13 10:52:50', 30);
-INSERT INTO appointments VALUES (10, 7, 10, '22-01-13 22:27:41', 29);
-INSERT INTO appointments VALUES (11, 6, 20, '22-01-13 09:29:56', 26);
-INSERT INTO appointments VALUES (12, 5, 11, '22-01-13 02:10:34', 16);
-INSERT INTO appointments VALUES (13, 8, 16, '22-01-13 19:57:49', 7);
-INSERT INTO appointments VALUES (14, 7, 12, '22-01-13 08:14:34', 1);
-INSERT INTO appointments VALUES (15, 14, 3, '22-01-13 22:27:44', 24);
+-- INSERT INTO appointments VALUES (1, 18, 14, '22-01-13 01:34:01', 10);
+-- INSERT INTO appointments VALUES (2, 17, 14, '22-01-13 18:43:45', 26);
+-- INSERT INTO appointments VALUES (3, 7, 14, '22-01-13 22:37:08', 18);
+-- INSERT INTO appointments VALUES (4, 14, 4, '22-01-13 06:09:38', 26);
+-- INSERT INTO appointments VALUES (5, 15, 6, '22-01-13 12:41:59', 27);
+-- INSERT INTO appointments VALUES (6, 15, 10, '22-01-13 12:45:34', 22);
+-- INSERT INTO appointments VALUES (7, 10, 3, '22-01-13 03:47:21', 25);
+-- INSERT INTO appointments VALUES (8, 12, 19, '22-01-13 01:29:32', 5);
+-- INSERT INTO appointments VALUES (9, 7, 7, '22-01-13 10:52:50', 30);
+-- INSERT INTO appointments VALUES (10, 7, 10, '22-01-13 22:27:41', 29);
+-- INSERT INTO appointments VALUES (11, 6, 20, '22-01-13 09:29:56', 26);
+-- INSERT INTO appointments VALUES (12, 5, 11, '22-01-13 02:10:34', 16);
+-- INSERT INTO appointments VALUES (13, 8, 16, '22-01-13 19:57:49', 7);
+-- INSERT INTO appointments VALUES (14, 7, 12, '22-01-13 08:14:34', 1);
+-- INSERT INTO appointments VALUES (15, 14, 3, '22-01-13 22:27:44', 24);
+
+INSERT INTO appointments VALUES (1, 95031266310, 01250356956, '22-12-02 10:15:00', 4);
+INSERT INTO appointments VALUES (2, 80071732176, 97042678331, '22-12-02 10:15:00', 22);
+INSERT INTO appointments VALUES (3, 76111249041, 90060798254, '22-11-04 09:15:00', 26);
+INSERT INTO appointments VALUES (4, 70010152275, 58020800634, '22-07-07 08:15:00', 24);
+INSERT INTO appointments VALUES (5, 78051972283, 83062780123, '22-01-07 12:15:00', 22);
+INSERT INTO appointments VALUES (6, 58041304863, 74120570156, '22-01-14 14:15:00', 24);
+INSERT INTO appointments VALUES (7, 58050153827, 60032978694, '22-01-17 11:45:00', 26);
+INSERT INTO appointments VALUES (8, 57120125151, 65071003794, '22-01-21 12:00:00', 24);
+INSERT INTO appointments VALUES (9, 97020371241, 78111075053, '22-01-27 17:15:00', 27);
+INSERT INTO appointments VALUES (10, 70040923184, 97060136732, '22-01-30 16:00:00', 22);
 
 COMMIT;
 
 ---------------------
 
-INSERT INTO dependents VALUES (1, 'Amery', 'Mansbridge', '2020-01-12', 'vitae ipsum', 'M', 19);
-INSERT INTO dependents VALUES (2, 'Bebe', 'Boath', '2021-06-22', 'faucibus accumsan odio', 'K', 12);
-INSERT INTO dependents VALUES (3, 'Dreddy', 'Degoix', '2021-01-31', 'placerat ante', 'K', 7);
-INSERT INTO dependents VALUES (4, 'Ludovika', 'Aspinal', '2019-11-04', 'augue a', 'K', 2);
-INSERT INTO dependents VALUES (5, 'Creight', 'Sherrington', '2019-12-18', 'sed', 'M', 4);
-INSERT INTO dependents VALUES (6, 'Karlis', 'McFarlane', '2020-03-10', 'lorem', 'M', 6);
-INSERT INTO dependents VALUES (7, 'Gerhardine', 'Fevier', '2019-07-21', 'in', 'K', 7);
-INSERT INTO dependents VALUES (8, 'Lilian', 'Dominick', '2021-12-24', 'nisi vulputate nonummy maecenas', 'K', 19);
-INSERT INTO dependents VALUES (9, 'Willem', 'Caswell', '2020-09-27', 'nibh fusce lacus purus', 'M', 4);
-INSERT INTO dependents VALUES (10, 'Orin', 'Knyvett', '2020-06-20', 'bibendum felis sed interdum', 'M', 13);
-INSERT INTO dependents VALUES (11, 'Ariel', 'Saile', '2020-05-09', 'ac est lacinia', 'K', 5);
-INSERT INTO dependents VALUES (12, 'Margy', 'Altamirano', '2021-10-03', 'integer pede justo lacinia eget', 'K', 15);
-INSERT INTO dependents VALUES (13, 'Gardener', 'Smithe', '2020-06-24', 'fusce consequat NULLa nisl nunc', 'M', 15);
-INSERT INTO dependents VALUES (14, 'Jania', 'Mordaunt', '2021-06-18', 'congue', 'K', 12);
-INSERT INTO dependents VALUES (15, 'Marquita', 'Vlahos', '2019-07-25', 'aliquam augue', 'K', 18);
+-- INSERT INTO dependents VALUES (1, 'Amery', 'Mansbridge', '2020-01-12', 'vitae ipsum', 'M', 19);
+-- INSERT INTO dependents VALUES (2, 'Bebe', 'Boath', '2021-06-22', 'faucibus accumsan odio', 'K', 12);
+-- INSERT INTO dependents VALUES (3, 'Dreddy', 'Degoix', '2021-01-31', 'placerat ante', 'K', 7);
+-- INSERT INTO dependents VALUES (4, 'Ludovika', 'Aspinal', '2019-11-04', 'augue a', 'K', 2);
+-- INSERT INTO dependents VALUES (5, 'Creight', 'Sherrington', '2019-12-18', 'sed', 'M', 4);
+-- INSERT INTO dependents VALUES (6, 'Karlis', 'McFarlane', '2020-03-10', 'lorem', 'M', 6);
+-- INSERT INTO dependents VALUES (7, 'Gerhardine', 'Fevier', '2019-07-21', 'in', 'K', 7);
+-- INSERT INTO dependents VALUES (8, 'Lilian', 'Dominick', '2021-12-24', 'nisi vulputate nonummy maecenas', 'K', 19);
+-- INSERT INTO dependents VALUES (9, 'Willem', 'Caswell', '2020-09-27', 'nibh fusce lacus purus', 'M', 4);
+-- INSERT INTO dependents VALUES (10, 'Orin', 'Knyvett', '2020-06-20', 'bibendum felis sed interdum', 'M', 13);
+-- INSERT INTO dependents VALUES (11, 'Ariel', 'Saile', '2020-05-09', 'ac est lacinia', 'K', 5);
+-- INSERT INTO dependents VALUES (12, 'Margy', 'Altamirano', '2021-10-03', 'integer pede justo lacinia eget', 'K', 15);
+-- INSERT INTO dependents VALUES (13, 'Gardener', 'Smithe', '2020-06-24', 'fusce consequat NULLa nisl nunc', 'M', 15);
+-- INSERT INTO dependents VALUES (14, 'Jania', 'Mordaunt', '2021-06-18', 'congue', 'K', 12);
+-- INSERT INTO dependents VALUES (15, 'Marquita', 'Vlahos', '2019-07-25', 'aliquam augue', 'K', 18);
+
+INSERT INTO dependents VALUES (03261510291, 'Lech', 'Włodarczyk', '2003-06-15', 'Bone marrow donor', 'M', 60032978694);
 
 COMMIT;
 
@@ -361,14 +406,14 @@ COMMIT;
 -- INSERT INTO specializations VALUES (14, 'Biostatistician II', 2578, 3438, 17);
 -- INSERT INTO specializations VALUES (15, 'Dental Hygienist', 2304, 4050, 15);
 
-INSERT INTO specializations VALUES (1, 'Administrator', 2482, 4370, 18);
-INSERT INTO specializations VALUES (2, 'Optometrist', 2346, 3656, 18);
-INSERT INTO specializations VALUES (3, 'Dentist', 2744, 4052, 16);
-INSERT INTO specializations VALUES (4, 'Physician', 2911, 3892, 16);
-INSERT INTO specializations VALUES (5, 'Medical apprentice', 2877, 3215, 1);
-INSERT INTO specializations VALUES (6, 'Dietician', 2852, 3965, 15);
-INSERT INTO specializations VALUES (7, 'Neurologist', 2459, 3645, 20);
-INSERT INTO specializations VALUES (8, 'Oncologist', 2107, 3441, 6);
+INSERT INTO specializations VALUES (1, 'Administrator', 2480, 4370, 01212545653);
+INSERT INTO specializations VALUES (2, 'Optometrist', 2340, 3650, 70010152275);
+INSERT INTO specializations VALUES (3, 'Dentist', 2740, 4050, 80071732176);
+INSERT INTO specializations VALUES (4, 'Physician', 2910, 3890, 95031266310);
+INSERT INTO specializations VALUES (5, 'Medical apprentice', 2870, 3210, 76111249041);
+INSERT INTO specializations VALUES (6, 'Dietician', 2850, 3960, 57120125151);
+INSERT INTO specializations VALUES (7, 'Neurologist', 2450, 3640, 70040923184);
+INSERT INTO specializations VALUES (8, 'Oncologist', 2100, 3440, 58050153827);
 
 COMMIT;
 
@@ -433,5 +478,18 @@ UPDATE doctors SET spec_id = 5 WHERE pesel = 68042928832;
 UPDATE doctors SET spec_id = 6 WHERE pesel = 57120125151;
 UPDATE doctors SET spec_id = 7 WHERE pesel = 70040923184;
 UPDATE doctors SET spec_id = 8 WHERE pesel = 58050153827;
+
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 01212545653;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 70010152275;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 80071732176;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 95031266310;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 58041304863;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 97020371241;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 76111249041;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 78051972283;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 68042928832;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 57120125151;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 70040923184;
+UPDATE doctors SET hospital_id = 1 WHERE pesel = 58050153827;
 
 COMMIT;

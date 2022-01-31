@@ -31,7 +31,6 @@ public class EditPatientController {
     private TextArea descriptionField;
     @FXML
     private TextField genderField;
-    private Doctor loggedDoctor;
     private Connection conn;
     private Stage parentStage;
     private String patientPesel;
@@ -40,7 +39,6 @@ public class EditPatientController {
     }
 
     public void transferPatient(Patient patient, Doctor doctor, Connection usedConn, Stage stage) {
-        loggedDoctor = doctor;
         conn = usedConn;
         parentStage = stage;
 

@@ -22,14 +22,12 @@ public class DeletePatientController {
     @FXML
     private Button cancelButton;
     private ArrayList<Patient> patients;
-    private Doctor loggedDoctor;
     private Connection conn;
 
     public DeletePatientController() {
     }
 
     public void transferData(ObservableList<AppointmentTableRow> data, Doctor doctor, Connection usedConn) {
-        loggedDoctor = doctor;
         conn = usedConn;
 
         DBContext dbContext = new DBContext();
