@@ -1,8 +1,8 @@
 INSERT INTO regions VALUES (NULL, 'Europa', 'EU');
 INSERT INTO regions VALUES (NULL, 'Afryka', 'AF');
-INSERT INTO regions VALUES (NULL, 'Ameryka Północna', 'AN');
-INSERT INTO regions VALUES (NULL, 'Ameryka Środkowa', NULL);
-INSERT INTO regions VALUES (NULL, 'Ameryka Południowa', 'AS');
+INSERT INTO regions VALUES (NULL, 'Ameryka Polnocna', 'AN');
+INSERT INTO regions VALUES (NULL, 'Ameryka srodkowa', NULL);
+INSERT INTO regions VALUES (NULL, 'Ameryka Poludniowa', 'AS');
 INSERT INTO regions VALUES (NULL, 'Azja', 'AS');
 INSERT INTO regions VALUES (NULL, 'Australia', 'AU');
 
@@ -16,13 +16,13 @@ INSERT INTO countries VALUES (3, 'Francja', NULL, 66.99, 'francuski', 'EUR', '.f
 INSERT INTO countries VALUES (4, 'Polska', NULL, 37.97, 'polski', 'PLN', '.pl', 'PL', '+48');
 INSERT INTO countries VALUES (5, 'Czechy', NULL, 10.69, 'czeski', 'CZK', '.cz', 'CZ', '+420');
 INSERT INTO countries VALUES (6, 'Litwa', NULL, 2.79, 'litewski', 'EUR', '.lt', 'LT', '+370');
-INSERT INTO countries VALUES (7, 'Ukraina', NULL, 41.98, 'ukraiński', 'UAH', '.ua', 'UA', '+380');
-INSERT INTO countries VALUES (8, 'Słowacja', NULL, 5.45, 'słowacki', 'EUR', '.sk', 'SK', '+421');
+INSERT INTO countries VALUES (7, 'Ukraina', NULL, 41.98, 'ukrainski', 'UAH', '.ua', 'UA', '+380');
+INSERT INTO countries VALUES (8, 'Slowacja', NULL, 5.45, 'slowacki', 'EUR', '.sk', 'SK', '+421');
 INSERT INTO countries VALUES (9, 'Norwegia', NULL, 5.43, 'norweski', 'NOK', '.no', 'NO', '+47');
 INSERT INTO countries VALUES (10, 'Szwecja', NULL, 10.23, 'szwedzki', 'SEK', '.se', 'SE', '+46');
-INSERT INTO countries VALUES (11, 'Finlandia', NULL, 5.58, 'fiński', 'EUR', '.fi', 'FI', '+358');
-INSERT INTO countries VALUES (12, 'Hiszpania', NULL, 46.94, 'hiszpański', 'EUR', '.es', 'E', '+34');
-INSERT INTO countries VALUES (13, 'Republika Południowej Ameryki', NULL, 57.78, 'angielski', 'ZAR', '.za', NULL, NULL);
+INSERT INTO countries VALUES (11, 'Finlandia', NULL, 5.58, 'finski', 'EUR', '.fi', 'FI', '+358');
+INSERT INTO countries VALUES (12, 'Hiszpania', NULL, 46.94, 'hiszpanski', 'EUR', '.es', 'E', '+34');
+INSERT INTO countries VALUES (13, 'Republika Poludniowej Ameryki', NULL, 57.78, 'angielski', 'ZAR', '.za', NULL, NULL);
 INSERT INTO countries VALUES (14, 'Egipt', NULL, 98.42, 'arabski', 'EGP', '.eg', 'EG', '+20');
 INSERT INTO countries VALUES (15, 'Izrael', NULL, 8.88, 'hebrajski', 'ILS', '.il', 'IL', '+972');
 INSERT INTO countries VALUES (16, 'Irak', NULL, 38.43, 'arabski', 'IQD', NULL, 'IQD', NULL);
@@ -30,12 +30,12 @@ INSERT INTO countries VALUES (17, 'Turcja', NULL, 82 ,'turecki' , 'TRY', '.tr', 
 INSERT INTO countries VALUES (18, 'Stany Zjednoczone Ameryki', NULL, 328.2, 'angielski', 'USD', '.us', 'US', '+1');
 INSERT INTO countries VALUES (19, 'Kanada', NULL, 37.59, 'angielski', 'CAD', '.ca', 'CA', '+1');
 INSERT INTO countries VALUES (20, 'Brazylia', NULL, 209.5, 'portugalski', 'BRL', NULL, NULL, NULL);
-INSERT INTO countries VALUES (21, 'Argentyna', NULL, 44.49, 'hiszpański', 'ARS', NULL, NULL, NULL);
-INSERT INTO countries VALUES (22, 'Chińska Republika Ludowa', NULL, 1393, 'chiński', 'CNY', NULL, NULL, NULL);
-INSERT INTO countries VALUES (23, 'Japonia', NULL, 126.5, 'japoński', 'JPY', '.jp', 'JP', '+81');
-INSERT INTO countries VALUES (24, 'Korea Południowa', NULL, 51.64, 'koreański', 'KRW', '.kr', 'KR', '+82');
+INSERT INTO countries VALUES (21, 'Argentyna', NULL, 44.49, 'hiszpanski', 'ARS', NULL, NULL, NULL);
+INSERT INTO countries VALUES (22, 'Chinska Republika Ludowa', NULL, 1393, 'chinski', 'CNY', NULL, NULL, NULL);
+INSERT INTO countries VALUES (23, 'Japonia', NULL, 126.5, 'japonski', 'JPY', '.jp', 'JP', '+81');
+INSERT INTO countries VALUES (24, 'Korea Poludniowa', NULL, 51.64, 'koreanski', 'KRW', '.kr', 'KR', '+82');
 INSERT INTO countries VALUES (25, 'Rosja', NULL, 146, 'rosyjski', 'RUB', '.ru', 'RUS', '+7');
-INSERT INTO countries VALUES (26, 'Gruzja', NULL, 4, 'gruziński', 'GEL', NULL, NULL, NULL);
+INSERT INTO countries VALUES (26, 'Gruzja', NULL, 4, 'gruzinski', 'GEL', NULL, NULL, NULL);
 
 COMMIT;
 
@@ -74,12 +74,12 @@ COMMIT;
 
 INSERT INTO cities VALUES (1, 'Londyn', 8.9, 1);
 INSERT INTO cities VALUES (2, 'Berlin', 3.6, 2);
-INSERT INTO cities VALUES (3, 'Paryż', 2.1, 3);
+INSERT INTO cities VALUES (3, 'Paryz', 2.1, 3);
 INSERT INTO cities VALUES (4, 'Warszawa', 1.8, 4);
 INSERT INTO cities VALUES (5, 'Praga', 1.3, 5);
 INSERT INTO cities VALUES (6, 'Wilno', 0.6, 6);
-INSERT INTO cities VALUES (7, 'Kijów', 2.9, 7);
-INSERT INTO cities VALUES (8, 'Bratysława', 0.4, 8);
+INSERT INTO cities VALUES (7, 'Kijow', 2.9, 7);
+INSERT INTO cities VALUES (8, 'Bratyslawa', 0.4, 8);
 INSERT INTO cities VALUES (9, 'Oslo', 0.7, 9);
 INSERT INTO cities VALUES (10, 'Sztokholm', 1, 10);
 INSERT INTO cities VALUES (11, 'Helsinki', 0.6, 11);
@@ -159,17 +159,17 @@ COMMIT;
 -- INSERT INTO doctors VALUES (19, 'Alessandra', 'Anthoine', '2019-11-30', NULL, 'K');
 -- INSERT INTO doctors VALUES (20, 'Dominica', 'Arcase', '2017-12-13', NULL, 'K');
 
-INSERT INTO doctors VALUES (01212545653, 'Hubert', 'Małecki', '2001-01-25', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (01212545653, 'Hubert', 'Malecki', '2001-01-25', NULL, 'M', NULL);
 INSERT INTO doctors VALUES (68042928832, 'Arkadiusz', 'Bednarczyk', '1968-04-29', NULL, 'M', NULL);
 INSERT INTO doctors VALUES (70010152275, 'Jacek', 'Kowalski', '1970-01-01', NULL, 'M', NULL);
 INSERT INTO doctors VALUES (80071732176, 'John', 'Moore', '1980-07-17', NULL, 'M', NULL);
-INSERT INTO doctors VALUES (95031266310, 'Bogusław', 'Wróbel', '1995-03-12', NULL, 'M', NULL);
-INSERT INTO doctors VALUES (76111249041, 'Bogumiła', 'Polak', '1976-11-12', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (95031266310, 'Boguslaw', 'Wrobel', '1995-03-12', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (76111249041, 'Bogumila', 'Polak', '1976-11-12', NULL, 'K', NULL);
 INSERT INTO doctors VALUES (78051972283, 'Alina', 'Makowska', '1978-05-19', NULL, 'K', NULL);
-INSERT INTO doctors VALUES (58041304863, 'Matylda', 'Domańska', '1958-04-13', NULL, 'K', NULL);
-INSERT INTO doctors VALUES (57120125151, 'Błażej', 'Kopeć', '1957-12-01', NULL, 'M', NULL);
-INSERT INTO doctors VALUES (97020371241, 'Nicola', 'Stefańska', '1997-02-03', NULL, 'K', NULL);
-INSERT INTO doctors VALUES (70040923184, 'Andżelika', 'Nowakowska', '1970-04-09', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (58041304863, 'Matylda', 'Domanska', '1958-04-13', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (57120125151, 'Blazej', 'Kopec', '1957-12-01', NULL, 'M', NULL);
+INSERT INTO doctors VALUES (97020371241, 'Nicola', 'Stefanska', '1997-02-03', NULL, 'K', NULL);
+INSERT INTO doctors VALUES (70040923184, 'Andzelika', 'Nowakowska', '1970-04-09', NULL, 'K', NULL);
 INSERT INTO doctors VALUES (58050153827, 'Oliwia', 'Wojciechowska', '1958-05-01', NULL, 'K', NULL);
 
 COMMIT;
@@ -288,11 +288,11 @@ INSERT INTO patients VALUES (01250356956, 'Kamil', 'Nowak', '2001-05-03', 'Cysts
 INSERT INTO patients VALUES (97042678331, 'Adam', 'Durham', '1997-04-26', 'Severe toothache', 'M');
 INSERT INTO patients VALUES (90060798254, 'Adam', 'Drzewicki', '1990-06-07', 'Tummy ache', 'M');
 INSERT INTO patients VALUES (58020800634, 'Kacper', 'Janicki', '1958-02-08', 'Temporal blindness', 'M');
-INSERT INTO patients VALUES (83062780123, 'Aleksandra', 'Piątek', '1983-06-27', 'No additional information given', 'K');
+INSERT INTO patients VALUES (83062780123, 'Aleksandra', 'Piatek', '1983-06-27', 'No additional information given', 'K');
 INSERT INTO patients VALUES (74120570156, 'Adolf', 'Wierzbicki', '1974-12-05', 'Broken fibula', 'M');
-INSERT INTO patients VALUES (60032978694, 'Waldemar', 'Górecki', '1960-03-29', 'Leukemia', 'M');
+INSERT INTO patients VALUES (60032978694, 'Waldemar', 'Gorecki', '1960-03-29', 'Leukemia', 'M');
 INSERT INTO patients VALUES (65071003794, 'Bohdan', 'Dobrowolski', '1965-07-10', 'Elevated cholesterol', 'M');
-INSERT INTO patients VALUES (78111075053, 'Bronisław', 'Domański', '1978-11-10', 'Clinical depression', 'M');
+INSERT INTO patients VALUES (78111075053, 'Bronislaw', 'Domanski', '1978-11-10', 'Clinical depression', 'M');
 INSERT INTO patients VALUES (97060136732, 'Zenon', 'Sowa', '1997-06-01', 'Childhood epilepsy', 'M');
 
 COMMIT;
@@ -384,7 +384,7 @@ COMMIT;
 -- INSERT INTO dependents VALUES (14, 'Jania', 'Mordaunt', '2021-06-18', 'congue', 'K', 12);
 -- INSERT INTO dependents VALUES (15, 'Marquita', 'Vlahos', '2019-07-25', 'aliquam augue', 'K', 18);
 
-INSERT INTO dependents VALUES (03261510291, 'Lech', 'Włodarczyk', '2003-06-15', 'Bone marrow donor', 'M', 60032978694);
+INSERT INTO dependents VALUES (03261510291, 'Lech', 'Wlodarczyk', '2003-06-15', 'Bone marrow donor', 'M', 60032978694);
 
 COMMIT;
 

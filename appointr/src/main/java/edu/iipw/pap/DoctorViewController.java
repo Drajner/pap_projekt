@@ -178,7 +178,7 @@ public class DoctorViewController implements Initializable {
         /* Next appointment */
         Text text3a = new Text("");
         Text text3b = new Text("");
-        try {
+        if (closestAppointment != null) {
             if (engLang.isSelected()) {
                 text3a = new Text("◉ Next appointment: ");
             } else {
@@ -188,8 +188,6 @@ public class DoctorViewController implements Initializable {
 
             text3b = new Text(closestAppointment.getDate() + '\n');
             text3b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
-        } catch (Exception e) {
-            // handle exception
         }
 
         /* Number of expired appointments */

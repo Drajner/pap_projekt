@@ -204,16 +204,19 @@ public class AdminViewController implements Initializable {
         text2b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
 
         /* Next appointment */
-        Text text3a;
-        if (engLang.isSelected()) {
-            text3a = new Text("◉ Next appointment: ");
-        } else {
-            text3a = new Text("◉ Najbliższa wizyta: ");
-        }
-        text3a.setFont(Font.font("Helvetica", 18));
+        Text text3a = new Text("");
+        Text text3b = new Text("");
+        if (closestAppointment != null) {
+            if (engLang.isSelected()) {
+                text3a = new Text("◉ Next appointment: ");
+            } else {
+                text3a = new Text("◉ Najbliższa wizyta: ");
+            }
+            text3a.setFont(Font.font("Helvetica", 18));
 
-        Text text3b = new Text(closestAppointment.getDate() + '\n');
-        text3b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+            text3b = new Text(closestAppointment.getDate() + '\n');
+            text3b.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        }
 
         /* Number of expired appointments */
         Text text4a;
