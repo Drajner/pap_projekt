@@ -40,6 +40,7 @@ public class AddPatientController {
         conn = usedConn;
     }
 
+    @FXML
     public void addPatient(ActionEvent event) throws IOException {
         Patient patient = createPatientFromData();
 
@@ -55,6 +56,7 @@ public class AddPatientController {
         );
     }
 
+    @FXML
     public void cancel(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();

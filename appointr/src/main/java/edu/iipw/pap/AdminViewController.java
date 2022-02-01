@@ -612,10 +612,10 @@ public class AdminViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
 
             root = loader.load();
-            AddPatientController apc = loader.getController();
-            apc.transferConn(conn);
+            AddDoctorController adc = loader.getController();
+            adc.transferConn(conn);
             int sceneX = 300;
-            int sceneY = 320;
+            int sceneY = 330;
             Stage stage = new Stage();
             stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
             stage.setTitle("Add doctor");
@@ -655,8 +655,8 @@ public class AdminViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
 
             root = loader.load();
-            ChooseEditPatientController cepc = loader.getController();
-            cepc.transferData(data, usedDoctor, conn);
+            ChooseEditDoctorController cedc = loader.getController();
+            cedc.transferData(data, usedDoctor, conn);
             int sceneX = 200;
             int sceneY = 150;
             Stage stage = new Stage();

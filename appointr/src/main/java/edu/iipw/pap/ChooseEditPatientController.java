@@ -56,10 +56,12 @@ public class ChooseEditPatientController implements Initializable {
         }
     }
 
+    @FXML
     public void choosePatient(ActionEvent event) throws IOException {
         choosePatientFromData();
     }
 
+    @FXML
     public void cancel(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
@@ -98,4 +100,5 @@ public class ChooseEditPatientController implements Initializable {
             e.printStackTrace();
         }
     }
+
 }

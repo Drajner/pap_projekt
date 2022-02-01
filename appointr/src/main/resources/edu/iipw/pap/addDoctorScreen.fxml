@@ -138,7 +138,7 @@
       </VBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPatient" prefWidth="50.0" text="Dodaj">
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addDoctor" prefWidth="50.0" text="Dodaj">
                <HBox.margin>
                   <Insets left="85.0" />
                </HBox.margin></Button>

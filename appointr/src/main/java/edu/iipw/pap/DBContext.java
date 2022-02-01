@@ -251,14 +251,14 @@ public class DBContext implements AutoCloseable {
         return admins;
     }
 
-    public void deleteDoctor(Connection conn, String pesel) throws Exception {
+    public static void deleteDoctor(Connection conn, String pesel) throws Exception {
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM doctors WHERE pesel = ?");
         stmt.setString(1, pesel);
         stmt.executeQuery();
         stmt.close();
     }
 
-    public void addDoctor(Connection conn, Doctor doctor) throws SQLException {
+    public static void addDoctor(Connection conn, Doctor doctor) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO doctors VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         stmt.setString(1, doctor.getPesel());
         stmt.setString(2, doctor.getName());
