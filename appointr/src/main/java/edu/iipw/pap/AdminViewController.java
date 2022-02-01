@@ -282,8 +282,9 @@ public class AdminViewController implements Initializable {
 
         ArrayList<AppointmentTableRow> rows = new ArrayList<AppointmentTableRow>();
         for (Appointment a : appointments) {
-            if (a.getDoctor().getPesel().equals(usedDoctor.getPesel()))
+            if (a.getDoctor().getHospitalId() == usedDoctor.getHospitalId()) {
                 rows.add(new AppointmentTableRow(a, a.getId()));
+            }
         }
 
         /* if an appointment is expired, render it differently */
