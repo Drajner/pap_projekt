@@ -5,15 +5,14 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.AddDoctorController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.iipw.pap.AddDoctorController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="314.0" text="Nowy pacjent" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="314.0" text="Nowy lekarz" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
@@ -96,18 +95,45 @@
          </VBox.margin></DatePicker>
       <VBox>
          <VBox.margin>
-            <Insets left="10.0" right="10.0" />
+            <Insets left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="333.0" text="Krótki opis" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets bottom="2.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField />
-            <TextArea fx:id="descriptionField" prefHeight="106.0" prefWidth="280.0" promptText="Wpisz tu wszelkie dodatkowe informacje dotyczące pacjenta" />
-            <TextField />
-            <PasswordField />
+            <HBox alignment="TOP_CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefWidth="160.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="333.0" text="Specjalizacja" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="specializationField" promptText="Specjalizacja" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="160.0">
+                     <children>
+                        <Label text="Login">
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="loginField" promptText="Login" />
+                        <Label text="Hasło">
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <PasswordField fx:id="passwordField" promptText="Hasło" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </VBox>
       <HBox prefHeight="100.0" prefWidth="200.0">

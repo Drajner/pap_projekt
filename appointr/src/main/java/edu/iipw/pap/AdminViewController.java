@@ -601,22 +601,175 @@ public class AdminViewController implements Initializable {
 
     @FXML
     public void addDoctor(ActionEvent event) throws IOException {
-        System.out.println("lol, not yet implemented");
+        Parent root;
+        try {
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "addDoctorScreenEng.fxml";
+            } else {
+                lang = "addDoctorScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
+            root = loader.load();
+            AddPatientController apc = loader.getController();
+            apc.transferConn(conn);
+            int sceneX = 300;
+            int sceneY = 320;
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
+            stage.setTitle("Add doctor");
+            stage.setScene(new Scene(root, sceneX, sceneY));
+            stage.setResizable(false);
+
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
+
+            stage.setOnCloseRequest(
+                    windowEvent -> {
+                        updatePatientsTable();
+                        updateSideText();
+                        updateDoctorsTable();
+                    }
+            );
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void editDoctor(ActionEvent event) throws IOException {
-        System.out.println("lol, not yet implemented");
+        Parent root;
+        try {
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "chooseEditDoctorScreenEng.fxml";
+            } else {
+                lang = "chooseEditDoctorScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
+            root = loader.load();
+            ChooseEditPatientController cepc = loader.getController();
+            cepc.transferData(data, usedDoctor, conn);
+            int sceneX = 200;
+            int sceneY = 150;
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
+            stage.setTitle("Edit doctor");
+            stage.setScene(new Scene(root, sceneX, sceneY));
+            stage.setResizable(false);
+
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
+
+            stage.setOnCloseRequest(
+                    windowEvent -> {
+                        updatePatientsTable();
+                        updateAppointmentTable();
+                        updateDoctorsTable();
+                    }
+            );
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void deleteDoctor(ActionEvent event) throws IOException {
-        System.out.println("lol, not yet implemented");
+        Parent root;
+        try {
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "deleteDoctorScreenEng.fxml";
+            } else {
+                lang = "deleteDoctorScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
+            root = loader.load();
+            DeletePatientController dpc = loader.getController();
+            dpc.transferData(data, usedDoctor, conn);
+            int sceneX = 200;
+            int sceneY = 150;
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
+            stage.setTitle("Delete doctor");
+            stage.setScene(new Scene(root, sceneX, sceneY));
+            stage.setResizable(false);
+
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
+
+            stage.setOnCloseRequest(
+                    windowEvent -> {
+                        updatePatientsTable();
+                        updateAppointmentTable();
+                        updateSideText();
+                        updateDoctorsTable();
+                    }
+            );
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void editProfile(ActionEvent event) throws IOException {
-        System.out.println("lol, not yet implemented");
+        Parent root;
+        try {
+            String lang;
+            if (engLang.isSelected()) {
+                lang = "editProfileScreenEng.fxml";
+            } else {
+                lang = "editProfileScreen.fxml";
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(lang));
+
+            root = loader.load();
+            AddPatientController apc = loader.getController();
+            apc.transferConn(conn);
+            int sceneX = 300;
+            int sceneY = 320;
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image(App.class.getResource("appointr_logo.png").toString()));
+            stage.setTitle("Edit profile");
+            stage.setScene(new Scene(root, sceneX, sceneY));
+            stage.setResizable(false);
+
+            if (darkTheme.isSelected()) {
+                String css = getClass().getResource("darkTheme2.css").toExternalForm();
+                stage.getScene().getStylesheets().add(css);
+            }
+
+            stage.setOnCloseRequest(
+                    windowEvent -> {
+                        updatePatientsTable();
+                        updateSideText();
+                        updateDoctorsTable();
+                    }
+            );
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
